@@ -1,8 +1,21 @@
+<div class="content-wrapper">
+ <section class="content-header">
+
 <p id="notice"><%= notice %></p>
 
 <p>
   <strong>Clase:</strong>
   <%= @request.course.name %>
+</p>
+
+<p>
+  <strong>Requisitos:</strong>
+  <%= @request.course.requirements %>
+</p>
+
+<p>
+  <strong>Requisitos recomendados:</strong>
+  <%= @request.course.recommended_requirements %>
 </p>
 
 <p>
@@ -48,3 +61,7 @@
 	<%= link_to 'Editar', edit_request_path(@request) %> |
 <% end %>
 <%= link_to 'Regresar', requests_path %>
+
+
+</section>
+</div>
