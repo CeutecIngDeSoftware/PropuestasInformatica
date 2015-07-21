@@ -137,14 +137,7 @@
 </table>
 <br>
 
-+<div class="actions">
-+	<a href="../../requests/new">
-+	<% if current_user.telefono.blank? %>
-+    <input type=submit value="Nueva propuesta", onClick="alert('No olvide ingresar su numero de telefono para mejores resultados');"></a>
-+	<% else %>
-+		<input type=submit value="Nueva propuesta"></a>
-+	<%end %>
-+</div>
+<%= link_to 'Nueva propuesta', new_request_path %>
 
 <% else %>
 <h1>Listado de propuestas</h1>
