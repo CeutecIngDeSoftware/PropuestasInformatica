@@ -21,6 +21,22 @@
     <%= f.label :Cuenta %><br />
     <%= f.text_field :cuenta %>
   </p>
+	<p>
+    <%= f.label :Rol %><br />
+    <select name="user[role_id]">
+      <% Role.all.each do |r| %>
+        <option value="<%= r.id %>"><%= r.name %></option>
+      <% end %>
+    </select>
+  </p>
+	<p>
+    <%= f.label :Carrera %><br />
+    <select name="user[career_id]">
+      <% Career.all.each do |c| %>
+        <option value="<%= c.id %>"><%= c.name %></option>
+      <% end %>
+    </select>
+  </p>
   <p><%= f.submit 'Registrar' %></p>
   
 <% end %>

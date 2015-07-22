@@ -9,6 +9,8 @@
       <th>Clase</th>
       <th>Requisitos</th>
       <th>Requisitos recomendados</th>
+			<th>Carrera</th>
+			<th></th>
       <th></th>
       <th></th>
       <th></th>
@@ -21,6 +23,7 @@
         <td><%= course.name %></td>
         <td><%= course.requirements %></td>
         <td><%= course.recommended_requirements %></td>
+				<td><%= course.career.name %></td>
         <td><%= link_to 'Mostrar', course %></td>
         <td><%= link_to 'Editar', edit_course_path(course) %></td>
         <td><%= link_to 'Borrar', course, method: :delete, data: { confirm: '¿Borrar clase?' } %></td>

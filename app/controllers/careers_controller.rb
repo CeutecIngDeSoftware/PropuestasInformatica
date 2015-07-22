@@ -4,7 +4,15 @@ class CareersController < ApplicationController
   # GET /careers
   # GET /careers.json
   def index
+		if current_user
+		if current_user.id == 1
     @careers = Career.all
+		else
+			redirect_to requests_path
+		end
+		else
+		redirect_to log_in_path
+		end
   end
 
   # GET /careers/1
@@ -14,7 +22,15 @@ class CareersController < ApplicationController
 
   # GET /careers/new
   def new
+		if current_user
+		if current_user.id == 1
     @career = Career.new
+		else
+			redirect_to requests_path
+		end
+		else
+		redirect_to log_in_path
+		end
   end
 
   # GET /careers/1/edit
@@ -24,6 +40,7 @@ class CareersController < ApplicationController
   # POST /careers
   # POST /careers.json
   def create
+		if current_user.id == 1
     @career = Career.new(career_params)
 
     respond_to do |format|
@@ -35,11 +52,15 @@ class CareersController < ApplicationController
         format.json { render json: @career.errors, status: :unprocessable_entity }
       end
     end
+		else
+			redirect_to requests_path
+		end
   end
 
   # PATCH/PUT /careers/1
   # PATCH/PUT /careers/1.json
   def update
+		if current_user.id == 1
     respond_to do |format|
       if @career.update(career_params)
         format.html { redirect_to @career, notice: 'Career was successfully updated.' }
@@ -49,22 +70,33 @@ class CareersController < ApplicationController
         format.json { render json: @career.errors, status: :unprocessable_entity }
       end
     end
+		else
+			redirect_to requests_path
+		end
   end
 
   # DELETE /careers/1
   # DELETE /careers/1.json
   def destroy
+		if current_user.id == 1
     @career.destroy
     respond_to do |format|
       format.html { redirect_to careers_url }
       format.json { head :no_content }
     end
+		else
+			redirect_to requests_path
+		end
   end
 
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_career
+			if current_user
       @career = Career.find(params[:id])
+		else
+			redirect_to log_in_path
+		end
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

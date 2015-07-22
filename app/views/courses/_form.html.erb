@@ -24,6 +24,14 @@
     <%= f.label :Requisitos_recomendados %><br>
     <%= f.text_field :recommended_requirements %>
   </div>
+		<p>
+    <%= f.label :Carrera %><br />
+    <select name="course[career_id]">
+      <% Career.all.each do |c| %>
+        <option value="<%= c.id %>"><%= c.name %></option>
+      <% end %>
+    </select>
+  </p>
   <div class="actions">
     <%= f.submit %>
   </div>

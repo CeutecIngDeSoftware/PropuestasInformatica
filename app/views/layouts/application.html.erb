@@ -94,7 +94,16 @@
               </a>
             </li>
 <% if userIsCoordinator %>
-	<li class="treeview">
+
+         <li class="treeview">
+              <a href="/users/new">
+                <i class="fa fa-user-plus"></i>
+                <span>Crear usuario</span>
+              </a>  
+                
+            </li>
+
+				<li class="treeview">
               <a href="/users">
                 <i class="fa fa-users"></i>
                 <span>Usuarios</span>
@@ -116,11 +125,11 @@
              
             </li>
          
-	
-       <li><p></p></li>
             <li><a href="/states"><i class="fa fa-check-square-o"></i> Estados</a></li>
             <li><a href="/schedules"><i class="fa fa-clock-o"></i> Horarios</a></li>
      <% end %>   
+	  <li><a href="/roles"><i class="fa fa-sitemap"></i>Roles</a></li>   
+	  <li><a href="/careers"><i class="fa fa-graduation-cap"></i>Carreras</a></li>   
 	  <li><a href="/users/u/edit"><i class="fa fa-edit"></i> Editar Informacion</a></li>
           </ul>
 <% end %>	

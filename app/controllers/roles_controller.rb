@@ -4,7 +4,15 @@ class RolesController < ApplicationController
   # GET /roles
   # GET /roles.json
   def index
+		if current_user
+		if current_user.id == 1
     @roles = Role.all
+		else
+			redirect_to requests_path
+		end
+		else
+		redirect_to log_in_path
+		end
   end
 
   # GET /roles/1
@@ -14,7 +22,15 @@ class RolesController < ApplicationController
 
   # GET /roles/new
   def new
+		if current_user
+		if current_user.id == 1
     @role = Role.new
+		else
+			redirect_to requests_path
+		end
+		else
+		redirect_to log_in_path
+		end
   end
 
   # GET /roles/1/edit
@@ -24,6 +40,7 @@ class RolesController < ApplicationController
   # POST /roles
   # POST /roles.json
   def create
+		if current_user.id == 1
     @role = Role.new(role_params)
 
     respond_to do |format|
@@ -35,11 +52,15 @@ class RolesController < ApplicationController
         format.json { render json: @role.errors, status: :unprocessable_entity }
       end
     end
+		else
+			redirect_to requests_path
+		end
   end
 
   # PATCH/PUT /roles/1
   # PATCH/PUT /roles/1.json
   def update
+		if current_user.id == 1
     respond_to do |format|
       if @role.update(role_params)
         format.html { redirect_to @role, notice: 'Role was successfully updated.' }
@@ -49,22 +70,33 @@ class RolesController < ApplicationController
         format.json { render json: @role.errors, status: :unprocessable_entity }
       end
     end
+		else
+			redirect_to requests_path
+		end
   end
 
   # DELETE /roles/1
   # DELETE /roles/1.json
   def destroy
+		if current_user.id == 1
     @role.destroy
     respond_to do |format|
       format.html { redirect_to roles_url }
       format.json { head :no_content }
     end
+		else
+			redirect_to requests_path
+		end
   end
 
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_role
+			if current_user
       @role = Role.find(params[:id])
+		else
+			redirect_to log_in_path
+		end
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

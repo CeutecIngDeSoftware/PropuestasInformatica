@@ -1,6 +1,18 @@
-<h1>Editing career</h1>
+<div class="content-wrapper">
+ <section class="content-header">
+ <% if current_user %>
+<% if userIsCoordinator %>
+<h1>Editando carrera</h1>
 
 <%= render 'form' %>
 
-<%= link_to 'Show', @career %> |
-<%= link_to 'Back', careers_path %>
+<%= link_to 'Mostrar', @career %> |
+<%= link_to 'Regresar', careers_path %>
+<% else %>
+	<%= controller.redirect_to requests_path %>
+<% end %>
+<% else %>
+<%= controller.redirect_to log_in_path %>
+<% end %>
+</section>
+</div>

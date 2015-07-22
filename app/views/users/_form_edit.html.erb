@@ -25,6 +25,11 @@
     <%= f.hidden_field :cuenta, {:value => current_user.cuenta, :name => 'user[cuenta]'} %>
 		<%= current_user.cuenta %>
   </p>
+	<p>
+    <%= f.label :Carrera %><br />
+    <%= f.hidden_field :career_id, {:value => current_user.career_id, :name => 'user[career_id]'} %>
+		<%= current_user.career.name %>
+  </p>
   <p>
     <%= f.label :Telefono %><br />
     <%= f.text_field :telefono %>

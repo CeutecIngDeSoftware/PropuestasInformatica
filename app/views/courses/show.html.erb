@@ -19,6 +19,10 @@
 		<strong>Requisitos recomendados:</strong>
 		<%= @course.recommended_requirements %>
 	</p>
+	<p>
+		<strong>Carrera:</strong>
+		<%= @course.career.name %>
+	</p>
 
 	<%= link_to 'Editar', edit_course_path(@course) %> |
 	<%= link_to 'Regresar', courses_path %>
