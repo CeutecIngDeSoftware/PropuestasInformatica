@@ -6,6 +6,8 @@ end
 
 Myapp::Application.routes.draw do
 
+  resources :roles
+
   get "requests/registrarme" => "requests#registrarme"
   get "requests/quitarme" => "requests#quitarme"
 
