@@ -45,7 +45,7 @@ class RolesController < ApplicationController
 
     respond_to do |format|
       if @role.save
-        format.html { redirect_to @role, notice: 'Role was successfully created.' }
+        format.html { redirect_to @role, notice: 'El rol fue creado.' }
         format.json { render action: 'show', status: :created, location: @role }
       else
         format.html { render action: 'new' }
@@ -63,7 +63,7 @@ class RolesController < ApplicationController
 		if current_user.id == 1
     respond_to do |format|
       if @role.update(role_params)
-        format.html { redirect_to @role, notice: 'Role was successfully updated.' }
+        format.html { redirect_to @role, notice: 'El rol fue actualizado.' }
         format.json { head :no_content }
       else
         format.html { render action: 'edit' }
