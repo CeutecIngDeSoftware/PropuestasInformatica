@@ -1,0 +1,32 @@
+<div class="content-wrapper">
+ <section class="content-header">
+
+<h1>Listado de carreras</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Carrera</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @careers.each do |career| %>
+      <tr>
+        <td><%= career.name %></td>
+        <td><%= link_to 'Mostrar', career %></td>
+        <td><%= link_to 'Editar', edit_career_path(career) %></td>
+        <td><%= link_to 'Borrar', career, method: :delete, data: { confirm: 'Borrar la carrera?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'Nueva Carrera', new_career_path %>
+</section>
+</div>

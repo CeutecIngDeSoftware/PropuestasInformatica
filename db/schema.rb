@@ -11,7 +11,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150223153500) do
+ActiveRecord::Schema.define(version: 20150722001356) do
+
+  create_table "careers", force: true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "courses", force: true do |t|
     t.string   "name"
@@ -19,12 +25,19 @@ ActiveRecord::Schema.define(version: 20150223153500) do
     t.string   "recommended_requirements"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "career_id"
   end
 
   create_table "requests", force: true do |t|
     t.integer  "course_id"
     t.integer  "schedule_id"
     t.integer  "state_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "roles", force: true do |t|
+    t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -58,6 +71,8 @@ ActiveRecord::Schema.define(version: 20150223153500) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "name"
+    t.integer  "role_id"
+    t.integer  "career_id"
   end
 
 end

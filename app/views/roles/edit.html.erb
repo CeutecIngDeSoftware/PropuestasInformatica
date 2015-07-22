@@ -1,0 +1,18 @@
+<div class="content-wrapper">
+ <section class="content-header">
+ <% if current_user %>
+<% if userIsCoordinator %>
+<h1>Editando rol</h1>
+
+<%= render 'form' %>
+
+<%= link_to 'Mostrar', @role %> |
+<%= link_to 'Regresar', roles_path %>
+<% else %>
+	<%= controller.redirect_to requests_path %>
+<% end %>
+<% else %>
+<%= controller.redirect_to log_in_path %>
+<% end %>
+</section>
+</div>
