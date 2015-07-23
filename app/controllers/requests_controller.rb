@@ -8,7 +8,11 @@ end
   # GET /requests
   # GET /requests.json
   def index
-    @requests = Request.all
+    if User.where(role_id:1).count > 0
+      @propuestas_iniciales = UserInRequest.all.where(user_id:User.where(role_id:1)[0].id)
+    else
+      @propuestas_iniciales = []
+    end
   end
 
   # GET /requests/1

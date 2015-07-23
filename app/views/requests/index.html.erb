@@ -21,7 +21,7 @@
   </thead> 
 
   <tbody>
-    <% @uir1 = UserInRequest.all.where(user_id:User.where(role_id:1)[0].id).each do |inicial| %>
+    <% @propuestas_iniciales.each do |inicial| %>
       <% @requestito = Request.where(id: inicial.request_id).each do |request| %>
         <tr>
 	  <td><%= request.course.name %></td>
@@ -162,7 +162,7 @@
   </thead>
 
   <tbody>
-    <% @uir1 = UserInRequest.all.where(user_id:User.where(role_id:1)[0].id).each do |inicial| %>
+    <% @propuestas_iniciales.each do |inicial| %>
       <% @requestito = Request.where(id: inicial.request_id).each do |request| %>
         <tr>
 	  <td><%= request.course.name %></td>
