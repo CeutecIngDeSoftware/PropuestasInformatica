@@ -45,7 +45,7 @@
   <tbody>
     <% UserInRequest.where(:request_id => @request.id).each do |uir| %>
 			<% u = User.find_by_id(uir.user_id) %>
-	<% if u.id != 1 %>      
+	<% if u.role_id != 1 %>      
   <tr>
         <td><%= u.email %></td>
         <td><%= u.name %></td>

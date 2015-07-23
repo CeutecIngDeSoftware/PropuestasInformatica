@@ -2,7 +2,7 @@
 <div class="content-wrapper">
  <section class="content-header">
 
-<% if userIsCoordinator %>
+<% if userIsCoordinator || userIsAdmin %>
 	<p id="notice"><%= notice %></p>
 
 	<p>

@@ -18,10 +18,10 @@
       <th></th>
       <th></th>
     </tr>
-  </thead>
+  </thead> 
 
   <tbody>
-    <% @uir1 = UserInRequest.all.where(user_id:1).each do |inicial| %>
+    <% @uir1 = UserInRequest.all.where(user_id:User.where(role_id:1)[0].id).each do |inicial| %>
       <% @requestito = Request.where(id: inicial.request_id).each do |request| %>
         <tr>
 	  <td><%= request.course.name %></td>
@@ -67,7 +67,7 @@
 	  	<td><%= request.course.name %></td>
 	  	<td><%= request.schedule.name %></td>
 	  	<td><%= request.state.name %></td>
-        <% if UserInRequest.where(:request_id => request.id, :user_id => 1).count == 1%>
+        <% if UserInRequest.where(:request_id => request.id, :user_id => User.where(role_id:1)[0].id).count == 1%>
           <td><%= (UserInRequest.where(:request_id => request.id).count) -1%></td>
         <% else%>
           <td><%= (UserInRequest.where(:request_id => request.id).count) %></td>
@@ -108,7 +108,8 @@
       <% @request = Request.all.each do |request| %>
 	<% existe = false %>
 	  <% UserInRequest.where(request_id: request.id).each do |uir| %>
-	   <% if uir.user_id == 1 %>
+<% u = User.where(role_id:1)[0].id %>
+	   <% if uir.user_id == u %>
 	    <% existe = true %>
 	   <% end %>
 	  <% end %>
@@ -161,7 +162,7 @@
   </thead>
 
   <tbody>
-    <% @uir1 = UserInRequest.all.where(user_id:1).each do |inicial| %>
+    <% @uir1 = UserInRequest.all.where(user_id:User.where(role_id:1)[0].id).each do |inicial| %>
       <% @requestito = Request.where(id: inicial.request_id).each do |request| %>
         <tr>
 	  <td><%= request.course.name %></td>
@@ -188,7 +189,8 @@
       <% @request = Request.all.each do |request| %>
 	<% existe = false %>
 	  <% UserInRequest.where(request_id: request.id).each do |uir| %>
-	   <% if uir.user_id == 1 %>
+<% u = User.where(role_id:1)[0].id %>
+	   <% if uir.user_id == u %>
 	    <% existe = true %>
 	   <% end %>
 	  <% end %>
