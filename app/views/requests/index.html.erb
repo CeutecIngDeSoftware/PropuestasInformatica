@@ -67,7 +67,18 @@
 	  	<td><%= request.course.name %></td>
 	  	<td><%= request.schedule.name %></td>
 	  	<td><%= request.state.name %></td>
-        <% if UserInRequest.where(:request_id => request.id, :user_id => User.where(role_id:1)[0].id).count == 1%>
+        <%
+            es_inicial = false
+            UserInRequest.where(request_id: request.id).each do |uir|
+              User.where(role_id:1).each do |u|
+                if uir.user_id == u.id
+                  es_inicial = true
+                end
+              end
+            end
+        %>
+
+        <% if es_inicial %>
           <td><%= (UserInRequest.where(:request_id => request.id).count) -1%></td>
         <% else%>
           <td><%= (UserInRequest.where(:request_id => request.id).count) %></td>
@@ -105,15 +116,7 @@
   </thead>
 
   <tbody>
-      <% @request = Request.all.each do |request| %>
-	<% existe = false %>
-	  <% UserInRequest.where(request_id: request.id).each do |uir| %>
-<% u = User.where(role_id:1)[0].id %>
-	   <% if uir.user_id == u %>
-	    <% existe = true %>
-	   <% end %>
-	  <% end %>
-	<% if existe == false %>
+      <% @propuestas_alumnos.each do |request| %>
       <tr>
 	<td><%= request.course.name %></td>
 	<td><%= request.schedule.name %></td>
@@ -132,7 +135,6 @@
         	<td><%= link_to 'Quitarme', '/requests/quitarme?request_id='+request.id.to_s %></td>
 	<% end %>
       </tr>
-	<% end %>
     <% end %>
   </tbody>
 </table>

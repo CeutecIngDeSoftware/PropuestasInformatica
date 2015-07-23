@@ -9,7 +9,34 @@ end
   # GET /requests.json
   def index
     if User.where(role_id:1).count > 0
-      @propuestas_iniciales = UserInRequest.all.where(user_id:User.where(role_id:1)[0].id)
+      if current_user
+        @propuestas_iniciales=[]
+        User.where(role_id:1,career_id: current_user.career_id).each do |user|
+          UserInRequest.where(user_id:user.id).each do |uir|
+            @propuestas_iniciales.push(uir)
+          end
+        end
+
+        @propuestas_alumnos=[]
+        Request.all.each do |request|
+          if request.course.career == current_user.career
+            es_inicial = false
+            UserInRequest.where(request_id: request.id).each do |uir|
+              User.where(role_id:1).each do |u|
+                if uir.user_id == u.id
+                  es_inicial = true
+                end
+              end
+            end
+            if es_inicial == false
+              @propuestas_alumnos.push(request)
+            end
+          end
+        end
+
+      else
+        @propuestas_iniciales = UserInRequest.all.where(user_id:User.where(role_id:1)[0].id)
+      end
     else
       @propuestas_iniciales = []
     end
@@ -22,11 +49,12 @@ end
 
   # GET /requests/new
   def new
-		if current_user
-    @request = Request.new
-		else
-		redirect_to log_in_path
-		end
+    if current_user
+      @request = Request.new
+      @courses = Course.where(career_id: current_user.career_id)
+    else
+      redirect_to log_in_path
+    end
   end
 
   # GET /requests/1/edit
