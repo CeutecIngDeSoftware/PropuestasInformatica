@@ -6,7 +6,7 @@ class CoursesController < ApplicationController
   def index
 		if current_user
 		if current_user.role_id == 1 || current_user.role_id == 2
-    	@courses = Course.all
+    	@courses = Course.where(career_id: current_user.career_id).all
 		else
 			redirect_to requests_path
 		end
@@ -42,6 +42,7 @@ class CoursesController < ApplicationController
   def create
 		if current_user.role_id == 1 || current_user.role_id == 2
 		  @course = Course.new(course_params)
+      @course.career_id = current_user.career_id
 
 		  respond_to do |format|
 		    if @course.save

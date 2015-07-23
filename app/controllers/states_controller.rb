@@ -5,7 +5,7 @@ class StatesController < ApplicationController
   # GET /states.json
   def index
 	if current_user
-		if current_user.role_id == 1 || current_user.role_id == 2
+		if current_user.role_id == 2
 	    @states = State.all
 		else
 			redirect_to requests_path
@@ -23,7 +23,7 @@ class StatesController < ApplicationController
   # GET /states/new
   def new
 	if current_user
-		if current_user.role_id == 1 || current_user.role_id == 2
+		if current_user.role_id == 2
 	    @state = State.new
 		else
 			redirect_to requests_path
@@ -40,7 +40,7 @@ class StatesController < ApplicationController
   # POST /states
   # POST /states.json
   def create
-		if current_user.role_id == 1 || current_user.role_id == 2
+		if current_user.role_id == 2
 		  @state = State.new(state_params)
 
 		  respond_to do |format|
@@ -60,7 +60,7 @@ class StatesController < ApplicationController
   # PATCH/PUT /states/1
   # PATCH/PUT /states/1.json
   def update
-		if current_user.role_id == 1 || current_user.role_id == 2
+		if current_user.role_id == 2
 		  respond_to do |format|
 		    if @state.update(state_params)
 		      format.html { redirect_to @state, notice: 'El estado ha sido actualizado.' }
@@ -78,7 +78,7 @@ class StatesController < ApplicationController
   # DELETE /states/1
   # DELETE /states/1.json
   def destroy
-		if current_user.role_id == 1 || current_user.role_id == 2
+		if current_user.role_id == 2
 		  @state.destroy
 		  respond_to do |format|
 		    format.html { redirect_to states_url }
