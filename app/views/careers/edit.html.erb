@@ -1,7 +1,7 @@
 <div class="content-wrapper">
  <section class="content-header">
  <% if current_user %>
-<% if userIsCoordinator %>
+<% if userIsCoordinator || userIsAdmin %>
 <h1>Editando carrera</h1>
 
 <%= render 'form' %>

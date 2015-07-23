@@ -5,7 +5,7 @@ class CoursesController < ApplicationController
   # GET /courses.json
   def index
 		if current_user
-		if current_user.id == 1
+		if current_user.role_id == 1 || current_user.role_id == 2
     	@courses = Course.all
 		else
 			redirect_to requests_path
@@ -23,7 +23,7 @@ class CoursesController < ApplicationController
   # GET /courses/new
   def new
 		if current_user
-		if current_user.id == 1
+		if current_user.role_id == 1 || current_user.role_id == 2
     	@course = Course.new
 		else
 			redirect_to requests_path
@@ -40,7 +40,7 @@ class CoursesController < ApplicationController
   # POST /courses
   # POST /courses.json
   def create
-		if current_user.id == 1
+		if current_user.role_id == 1 || current_user.role_id == 2
 		  @course = Course.new(course_params)
 
 		  respond_to do |format|
@@ -60,7 +60,7 @@ class CoursesController < ApplicationController
   # PATCH/PUT /courses/1
   # PATCH/PUT /courses/1.json
   def update
-		if current_user.id == 1
+		if current_user.role_id == 1 || current_user.role_id == 2
 		  respond_to do |format|
 		    if @course.update(course_params)
 		      format.html { redirect_to @course, notice: 'La clase ha sido actualizada.' }
@@ -78,7 +78,7 @@ class CoursesController < ApplicationController
   # DELETE /courses/1
   # DELETE /courses/1.json
   def destroy
-		if current_user.id == 1
+		if current_user.role_id == 1 || current_user.role_id == 2
 		  @course.destroy
 		  respond_to do |format|
 		    format.html { redirect_to courses_url }

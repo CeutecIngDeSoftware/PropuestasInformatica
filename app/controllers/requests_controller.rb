@@ -30,7 +30,7 @@ end
   end
 
 	def yaEstoyInscrito course_id
-		if current_user.id != 1
+		if current_user.role_id != 1
 		clases = UserInRequest.where(:user_id => current_user.id)
 		clases.each do|clase|
 			if Request.find_by_id(clase.request_id).course_id == course_id
@@ -42,7 +42,7 @@ end
 	end	
 
 	def yaEstoyInscritoHorario schedule_id
-		if current_user.id != 1
+		if current_user.role_id != 1
 		clases = UserInRequest.where(:user_id => current_user.id)
 		clases.each do|clase|
 			if Request.find_by_id(clase.request_id).schedule_id == schedule_id

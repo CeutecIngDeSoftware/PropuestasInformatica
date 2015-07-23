@@ -6,7 +6,7 @@ class UsersController < ApplicationController
   # GET /users.json
   def index
 	if current_user
-		if current_user.id == 1
+		if current_user.role_id == 1 || current_user.role_id == 2
     	@users = User.all
 		else
 			redirect_to requests_path
@@ -30,7 +30,7 @@ class UsersController < ApplicationController
 		@user = User.new
 	else
 		if current_user
-			if current_user.id == 1
+			if current_user.role_id == 1 || current_user.role_id == 2
   			@user = User.new
 			else
 				redirect_to requests_path
