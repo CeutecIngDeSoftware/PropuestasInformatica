@@ -26,7 +26,8 @@ class UsersController < ApplicationController
 
 	def new
 	@search = User.find_by_id(1)
-	if @search.blank?
+  @search2 = User.find_by_id(2)
+	if @search.blank? || @search2.blank?
 		@user = User.new
 	else
 		if current_user
