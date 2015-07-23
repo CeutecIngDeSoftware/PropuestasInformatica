@@ -15,12 +15,21 @@
 				<p class="button"><%= submit_tag "Iniciar sesion" %></p>
 				<p><%= notice %></p>
 
-<a href="../../requests">
-<button  type="button"> Ver Propuestas </button></a> <br></br>
 <% @search = User.find_by_id(1) %>
+<% @search2 = User.find_by_id(2) %>
 <% if @search.blank? %>
+	<p><b>>> PASO 1:</p></b>
 	<a href="../../sign_up">
 	<button type="button"> Crear Administrador </button></a>
+<% elsif %>
+	<% if @search2.blank? %>
+		<p><b>>> PASO 2:</p></b>
+		<a href="../../sign_up">
+		<button type="button"> Crear Coordinador </button></a>
+	<% end %>
+<% else %>
+	<a href="../../requests">
+	<button  type="button"> Ver Propuestas </button></a> <br></br>
 <% end %>
 		</div>
 		<% end %>
