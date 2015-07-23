@@ -39,6 +39,7 @@
       <th>Telefono</th>
       <% end %>
       <th>Informacion Adicional</th>
+      <th></th>
     </tr>
   </thead>
 
@@ -54,6 +55,9 @@
         <td><%= u.telefono %></td>
         <% end %>
         <td><%= u.informacion_adicional %></td>
+        <% if userIsCoordinator %>
+          <td><%= link_to 'Quitar Alumno', uir, method: :delete, data: { confirm: '¿Borrar alumno de la propuesta?' } %></td>
+        <% end %>
 			</tr>
 	<% end %>
     <% end %>

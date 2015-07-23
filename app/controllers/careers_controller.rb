@@ -5,7 +5,7 @@ class CareersController < ApplicationController
   # GET /careers.json
   def index
 		if current_user
-		if current_user.role_id == 1 || current_user.role_id == 2
+		if current_user.role_id == 2
     @careers = Career.all
 		else
 			redirect_to requests_path
@@ -23,7 +23,7 @@ class CareersController < ApplicationController
   # GET /careers/new
   def new
 		if current_user
-		if current_user.role_id == 1 || current_user.role_id == 2
+		if current_user.role_id == 2
     @career = Career.new
 		else
 			redirect_to requests_path
@@ -40,7 +40,7 @@ class CareersController < ApplicationController
   # POST /careers
   # POST /careers.json
   def create
-		if current_user.role_id == 1 || current_user.role_id == 2
+		if current_user.role_id == 2
     @career = Career.new(career_params)
 
     respond_to do |format|
@@ -60,7 +60,7 @@ class CareersController < ApplicationController
   # PATCH/PUT /careers/1
   # PATCH/PUT /careers/1.json
   def update
-		if current_user.role_id == 1 || current_user.role_id == 2
+		if current_user.role_id == 2
     respond_to do |format|
       if @career.update(career_params)
         format.html { redirect_to @career, notice: 'La carrera fue actualizada.' }
@@ -78,7 +78,7 @@ class CareersController < ApplicationController
   # DELETE /careers/1
   # DELETE /careers/1.json
   def destroy
-		if current_user.role_id == 1 || current_user.role_id == 2
+		if current_user.role_id == 2
     @career.destroy
     respond_to do |format|
       format.html { redirect_to careers_url }

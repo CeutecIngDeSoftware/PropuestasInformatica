@@ -26,10 +26,8 @@
   </div>
 		<p>
     <%= f.label :Carrera %><br />
-    <select name="course[career_id]">
-      <% Career.all.each do |c| %>
-        <option value="<%= c.id %>"><%= c.name %></option>
-      <% end %>
+    <%= f.hidden_field :career_id, {:value => current_user.career_id, :name => 'user[career_id]'} %>
+		<%= current_user.career.name %>
     </select>
   </p>
   <div class="actions">
