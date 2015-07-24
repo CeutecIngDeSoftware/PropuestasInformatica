@@ -36,7 +36,7 @@ end
 
       else
         @propuestas_iniciales=[]
-        User.where(role_id:1).each do |user|
+        User.where(role_id:1).order("career_id ASC").each do |user|
           UserInRequest.where(user_id:user.id).each do |uir|
             @propuestas_iniciales.push(uir)
           end
