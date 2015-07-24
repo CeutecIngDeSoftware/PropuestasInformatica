@@ -35,7 +35,27 @@ end
         end
 
       else
-        @propuestas_iniciales = UserInRequest.all.where(user_id:User.where(role_id:1)[0].id)
+        @propuestas_iniciales=[]
+        User.where(role_id:1).each do |user|
+          UserInRequest.where(user_id:user.id).each do |uir|
+            @propuestas_iniciales.push(uir)
+          end
+        end
+
+        @propuestas_alumnos = []
+          Request.all.each do |request|
+            es_inicial = false
+            UserInRequest.where(request_id: request.id).each do |uir|
+              User.where(role_id:1).each do |u|
+                if uir.user_id == u.id
+                  es_inicial = true
+                end
+              end
+            end
+            if es_inicial == false
+              @propuestas_alumnos.push(request)
+            end
+         end
       end
     else
       @propuestas_iniciales = []

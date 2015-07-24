@@ -11,7 +11,7 @@
   <% end %>
 	<% if current_user %>
 	<p>
-    <%= f.label :Nombre %><br />
+    <%= f.label :Nombre_Completo %><br />
     <%= f.hidden_field :name, {:value => current_user.name, :name => 'user[name]'} %>
 		<%= current_user.name %>
   </p>
