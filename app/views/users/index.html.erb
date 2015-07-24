@@ -22,7 +22,22 @@
   </thead>
 
   <tbody>
-    <% @users.each do |user| %>
+   <% if userIsAdmin %>
+      <% @users.each do |user| %>
+      <tr>
+        <td><%= user.name %></td>
+        <td><%= user.email %></td>
+        <td><%= user.cuenta %></td>
+        <td><%= user.role.name %></td>
+        <td><%= user.career.name %></td>
+        <td><%= user.telefono %></td>
+        <td><%= user.informacion_adicional %></td>
+        <!--<td><%= link_to 'Mostrar', user %></td>
+        <td><%= link_to 'Editar', edit_user_path(user) %></td>-->
+       </tr>
+      <% end %>
+   <% else %>
+    <% @users.where(career_id: current_user.career_id).each do |user| %>
       <tr>
         <td><%= user.name %></td>
         <td><%= user.email %></td>
@@ -35,6 +50,7 @@
         <td><%= link_to 'Editar', edit_user_path(user) %></td>-->
        </tr>
     <% end %>
+   <% end %>
   </tbody>
 </table>
 

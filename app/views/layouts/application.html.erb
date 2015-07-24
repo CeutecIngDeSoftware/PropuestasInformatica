@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Propuestas Informatica</title>
+  <title>Propuestas CEUTEC</title>
   <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
   <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
   <%= csrf_meta_tags %>
@@ -11,9 +11,9 @@
 <body class="skin-blue">
 <header class="main-header">
 	<% if current_user %>
-		<a href="../../requests" class="logo">I06 Propuestas</a>
+		<a href="../../requests" class="logo">Propuestas CEUTEC</a>
 	<% else %>
-        <a href="../../log_in" class="logo">I06 Propuestas</a>
+        <a href="../../log_in" class="logo">Propuestas CEUTEC</a>
 	<% end %>
         <!-- Header Navbar: style can be found in header.less -->
         <nav class="navbar navbar-static-top" role="navigation">
@@ -66,8 +66,12 @@
           <div class="user-panel">           
             <div class="pull-left info">
               <% if current_user %>
-		<p><%= current_user.email %></p>
-		<% end %>
+            		<p><%= current_user.email %></p>
+                <% if userIsCoordinator || userIsStudent %>
+                  <p><%= current_user.career.name %></p>
+                <% end %>
+                <p><%= current_user.role.name %></p>
+		          <% end %>
              <!-- <a href="#"><i class="fa fa-circle text-success"></i> Online</a> -->
             </div>
           </div>
@@ -86,7 +90,6 @@
           <!-- sidebar menu: : style can be found in sidebar.less -->
           <ul class="sidebar-menu">
 <% if current_user %>      
-	<li><p></p></li>
         <li class="treeview active">
               <a href="/requests">
                 <i class="fa fa-tasks"></i> <span>Propuestas</span>

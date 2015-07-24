@@ -6,9 +6,11 @@ class UsersController < ApplicationController
   # GET /users.json
   def index
 	if current_user
-		if current_user.role_id == 1 || current_user.role_id == 2
-    	@users = User.all
-		else
+    if current_user.role_id == 1
+        @users = User.where.not(:role_id => 2)
+    elsif current_user.role_id == 2
+      @users = User.all.where.not(:role_id => 3)
+		else 
 			redirect_to requests_path
 		end
 	else

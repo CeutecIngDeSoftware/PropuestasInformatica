@@ -34,11 +34,13 @@
 	      <td><%= link_to 'Borrar', request, method: :delete, data: { confirm: '¿Borrar propuesta?' } %></td>
             <% end %>
             <% if UserInRequest.where(:user_id => current_user.id, :request_id =>request.id).count == 0 %>
+              <% if !userIsAdmin %>
             <td><%= link_to 'Registrarme', {:controller => :requests, :action=>'registrarme', :request_id => request.id ,:course_id => request.course_id, :schedule_id => request.schedule_id} %></td>
             <% end %>
 	    <% if UserInRequest.where(:user_id => current_user.id, :request_id =>request.id).count == 1 %>
         	<td><%= link_to 'Quitarme', '/requests/quitarme?request_id='+request.id.to_s %></td>
 	    <% end %>
+              <% end %>
          </tr>
       <% end %>
     <% end %>
@@ -128,12 +130,13 @@
 	        <td><%= link_to 'Borrar', request, method: :delete, data: { confirm: '¿Borrar propuesta?' } %></td>
 				<% end %>
         <% if UserInRequest.where(:user_id => current_user.id, :request_id =>request.id).count == 0 %> 
+          <% if !userIsAdmin %>
           <td><%= link_to 'Registrarme', {:controller => :requests, :action=>'registrarme', :request_id => request.id , :course_id => request.course_id, :schedule_id => request.schedule_id} %></td>				
 				<% end %>
-
         <% if UserInRequest.where(:user_id => current_user.id, :request_id =>request.id).count == 1 %>
         	<td><%= link_to 'Quitarme', '/requests/quitarme?request_id='+request.id.to_s %></td>
 	<% end %>
+          <% end %>
       </tr>
     <% end %>
   </tbody>
@@ -160,6 +163,7 @@
       <th>Horario</th>
       <th>Estado</th>
       <th>Registrados</th>
+      <th>Carrera</th>
     </tr>
   </thead>
 
@@ -170,7 +174,8 @@
 	  <td><%= request.course.name %></td>
 	  <td><%= request.schedule.name %></td>
 	  <td><%= request.state.name %></td>
-          <td><%= (UserInRequest.where(:request_id => request.id).count) -1%></td>
+    <td><%= (UserInRequest.where(:request_id => request.id).count) -1%></td>
+    <td><%= request.course.career.name %></td>
          </tr>
       <% end %>
     <% end %>
@@ -184,26 +189,19 @@
       <th>Horario</th>
       <th>Estado</th>
       <th>Registrados</th>
+      <th>Carrera</th>
     </tr>
   </thead>
 
   <tbody>
-      <% @request = Request.all.each do |request| %>
-	<% existe = false %>
-	  <% UserInRequest.where(request_id: request.id).each do |uir| %>
-<% u = User.where(role_id:1)[0].id %>
-	   <% if uir.user_id == u %>
-	    <% existe = true %>
-	   <% end %>
-	  <% end %>
-	<% if existe == false %>
+      <% @propuestas_alumnos.each do |request| %>
       <tr>
 	<td><%= request.course.name %></td>
 	<td><%= request.schedule.name %></td>
 	<td><%= request.state.name %></td>
-        <td><%= (UserInRequest.where(:request_id => request.id).count) %></td>
+  <td><%= (UserInRequest.where(:request_id => request.id).count) %></td>
+  <td><%= request.course.career.name %></td> 
       </tr>
-	<% end %>
     <% end %>
   </tbody>
 </table>
