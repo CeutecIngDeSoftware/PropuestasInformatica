@@ -24,18 +24,29 @@
 	<p>
     <%= f.label :Rol %><br />
     <select name="user[role_id]">
-      <% Role.all.each do |r| %>
-        <option value="<%= r.id %>"><%= r.name %></option>
+      <% if !userIsCoordinator %>
+        <% Role.all.each do |r| %>
+          <option value="<%= r.id %>"><%= r.name %></option>
+        <% end %> 
+      <% else %>
+        <% Role.where.not(id:2).each do |r| %>
+          <option value="<%= r.id %>"><%= r.name %></option>
+        <% end %> 
       <% end %>
     </select>
   </p>
 	<p>
     <%= f.label :Carrera %><br />
-    <select name="user[career_id]">
-      <% Career.all.each do |c| %>
-        <option value="<%= c.id %>"><%= c.name %></option>
-      <% end %>
-    </select>
+    <% if !userIsCoordinator %>
+      <select name="user[career_id]">
+        <% Career.all.each do |c| %>
+          <option value="<%= c.id %>"><%= c.name %></option>
+        <% end %>
+      </select>
+    <% else %>
+      <%= f.hidden_field :career_id, {:value => current_user.career_id, :name => 'user[career_id]'} %>				
+			<%= current_user.career.name %>
+    <% end %>
   </p>
   <p><%= f.submit 'Registrar' %></p>
   
