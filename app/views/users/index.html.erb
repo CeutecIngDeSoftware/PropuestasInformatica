@@ -10,12 +10,18 @@
       <th>Email</th>
       <th>Cuenta</th>
 			<th>Rol</th>
+      <% if !userIsCoordinator %>
 			<th>Carrera</th>
+      <% end %>
       <th>Telefono</th>
       <th>Informacion Adicional</th>
 			<th></th>
 			<th></th>
       <th></th>
+      <th></th>
+      <% if !userIsCoordinator %>
+      <th></th>
+      <% end %>
       <th></th>
       <th></th>
     </tr>
@@ -43,7 +49,9 @@
         <td><%= user.email %></td>
         <td><%= user.cuenta %></td>
         <td><%= user.role.name %></td>
+        <% if !userIsCoordinator %>
         <td><%= user.career.name %></td>
+        <% end %>
         <td><%= user.telefono %></td>
         <td><%= user.informacion_adicional %></td>
         <!--<td><%= link_to 'Mostrar', user %></td>

@@ -26,9 +26,16 @@
   </div>
 		<p>
     <%= f.label :Carrera %><br />
-    <%= f.hidden_field :career_id, {:value => current_user.career_id, :name => 'user[career_id]'} %>
-		<%= current_user.career.name %>
-    </select>
+    <% if !userIsAdmin %>
+      <%= f.hidden_field :career_id, {:value => current_user.career_id, :name => 'user[career_id]'} %>
+		  <%= current_user.career.name %>
+    <% else %>
+      <select name="course[career_id]">
+        <% Career.all.each do |c| %>
+          <option value="<%= c.id %>"><%= c.name %></option>
+        <% end %>
+      </select>
+    <% end %>
   </p>
   <div class="actions">
     <%= f.submit %>
