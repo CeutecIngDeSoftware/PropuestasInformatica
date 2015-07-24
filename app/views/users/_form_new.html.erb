@@ -21,6 +21,10 @@
     <%= f.label :Cuenta %><br />
     <%= f.text_field :cuenta %>
   </p>
+
+<% @search = User.find_by_id(1) %>
+
+<% if !@search.blank? %>
 	<p>
     <%= f.label :Rol %><br />
     <select name="user[role_id]">
@@ -48,6 +52,24 @@
 			<%= current_user.career.name %>
     <% end %>
   </p>
+<% else %>
+	<p>
+    <%= f.label :Rol %><br />
+    <select name="user[role_id]">
+        <% Role.where.not(id: [1,3]).each do |r| %>
+          <option value="<%= r.id %>"><%= r.name %></option>
+        <% end %> 
+    </select>
+  </p>
+	<p>
+    <%= f.label :Carrera %><br />
+      <select name="user[career_id]">
+        <% Career.all.each do |c| %>
+          <option value="<%= c.id %>"><%= c.name %></option>
+        <% end %>
+      </select>
+  </p>
+<% end %>
   <p><%= f.submit 'Registrar' %></p>
   
 <% end %>

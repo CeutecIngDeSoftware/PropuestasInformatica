@@ -57,6 +57,32 @@ end
             end
          end
       end
+
+# si el usuario es admin puede ver todos los requests
+       if current_user && current_user.role_id == 2
+         @propuestas_iniciales=[]
+         User.where(role_id:1).order("career_id ASC").each do |user|
+           UserInRequest.where(user_id:user.id).each do |uir|
+             @propuestas_iniciales.push(uir)
+           end
+         end
+
+         @propuestas_alumnos = []
+          Request.all.each do |request|
+            es_inicial = false
+            UserInRequest.where(request_id: request.id).each do |uir|
+              User.where(role_id:1).each do |u|
+                if uir.user_id == u.id
+                  es_inicial = true
+                end
+              end
+            end
+            if es_inicial == false
+              @propuestas_alumnos.push(request)
+            end
+          end
+        end
+
     else
       @propuestas_iniciales = []
       @propuestas_alumnos = []

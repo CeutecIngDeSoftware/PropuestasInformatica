@@ -47,9 +47,12 @@ class UsersController < ApplicationController
   	@user = User.new(params[:user])
     @user.password = @user.cuenta
     @user.password_confirmation = @user.cuenta
-
-    if current_user.role_id == 1
-      @user.career_id = current_user.career_id
+    
+    @search = User.find_by_id(1)
+    if !@search.blank?
+      if current_user.role_id == 1
+        @user.career_id = current_user.career_id
+      end
     end
 
  		if @user.save

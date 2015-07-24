@@ -55,7 +55,7 @@
         <td><%= u.telefono %></td>
         <% end %>
         <td><%= u.informacion_adicional %></td>
-        <% if userIsCoordinator %>
+        <% if userIsCoordinator || userIsAdmin %>
           <td><%= link_to 'Quitar Alumno', uir, method: :delete, data: { confirm: '¿Borrar alumno de la propuesta?' } %></td>
         <% end %>
 			</tr>
