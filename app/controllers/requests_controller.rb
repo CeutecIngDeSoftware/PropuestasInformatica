@@ -59,6 +59,7 @@ end
       end
     else
       @propuestas_iniciales = []
+      @propuestas_alumnos = []
     end
   end
 

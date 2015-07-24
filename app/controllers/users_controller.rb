@@ -28,8 +28,7 @@ class UsersController < ApplicationController
 
 	def new
 	@search = User.find_by_id(1)
-  @search2 = User.find_by_id(2)
-	if @search.blank? || @search2.blank?
+	if @search.blank?
 		@user = User.new
 	else
 		if current_user
@@ -48,6 +47,11 @@ class UsersController < ApplicationController
   	@user = User.new(params[:user])
     @user.password = @user.cuenta
     @user.password_confirmation = @user.cuenta
+
+    if current_user.role_id == 1
+      @user.career_id = current_user.career_id
+    end
+
  		if @user.save
 	@user.save
   	  redirect_to users_path, :notice => "El usuario ha sido registrado!"
