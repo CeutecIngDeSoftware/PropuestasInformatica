@@ -7,9 +7,9 @@ class UsersController < ApplicationController
   def index
 	if current_user
     if current_user.role_id == 1
-        @users = User.where.not(:role_id => 2)
+        @users = User.where.not(:role_id => 2).order("role_id ASC")
     elsif current_user.role_id == 2
-      @users = User.all.where.not(:role_id => 3)
+        @users = User.all.order("role_id ASC")
 		else 
 			redirect_to requests_path
 		end
