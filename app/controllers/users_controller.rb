@@ -79,12 +79,14 @@ class UsersController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
 		
     def set_user 
-		if current_user 
-			u = current_user.id
-      @user = User.find(u)
-		else
-			redirect_to log_in_path
-		end
+		  if !current_user 
+	  		redirect_to log_in_path
+  		elsif userIsAdmin || userIsCoordinator
+        @user = User.find(params[:id])
+      else
+  			u = current_user.id
+        @user = User.find(u)
+  		end
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

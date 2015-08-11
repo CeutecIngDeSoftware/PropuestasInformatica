@@ -9,26 +9,26 @@
       </ul>
     </div>
   <% end %>
-	<% if current_user %>
+	<% if @user %>
 	<p>
     <%= f.label :Nombre_Completo %><br />
-    <%= f.hidden_field :name, {:value => current_user.name, :name => 'user[name]'} %>
-		<%= current_user.name %>
+    <%= f.hidden_field :name, {:value => @user.name, :name => 'user[name]'} %>
+		<%= @user.name %>
   </p>
 		<p>
 			<%= f.label :Email %><br />
-			<%= f.hidden_field :email, {:value => current_user.email, :name => 'user[email]'} %>				
-			<%= current_user.email %>
+			<%= f.hidden_field :email, {:value => @user.email, :name => 'user[email]'} %>				
+			<%= @user.email %>
 		</p>
 	<p>
     <%= f.label :Cuenta %><br />
-    <%= f.hidden_field :cuenta, {:value => current_user.cuenta, :name => 'user[cuenta]'} %>
-		<%= current_user.cuenta %>
+    <%= f.hidden_field :cuenta, {:value => @user.cuenta, :name => 'user[cuenta]'} %>
+		<%= @user.cuenta %>
   </p>
 	<p>
     <%= f.label :Carrera %><br />
-    <%= f.hidden_field :career_id, {:value => current_user.career_id, :name => 'user[career_id]'} %>
-		<%= current_user.career.name %>
+    <%= f.hidden_field :career_id, {:value => @user.career_id, :name => 'user[career_id]'} %>
+		<%= @user.career.name %>
   </p>
   <p>
     <%= f.label :Telefono %><br />

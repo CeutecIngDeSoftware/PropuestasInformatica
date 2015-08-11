@@ -7,8 +7,20 @@ helper_method :current_user
 
 private
 
-def current_user
-  @current_user ||= User.find(session[:user_id]) if session[:user_id]
-end
+  def current_user
+    @current_user ||= User.find(session[:user_id]) if session[:user_id]
+  end
+
+	def userIsCoordinator
+    return current_user.role_id == 1
+  end
+	
+	def userIsAdmin
+		return current_user.role_id == 2
+	end
+
+	def userIsStudent
+		return current_user.role_id == 3
+	end
 
 end
