@@ -30,7 +30,9 @@
 	<% end %>
         <td><%= link_to 'Mostrar', course %></td>
         <td><%= link_to 'Editar', edit_course_path(course) %></td>
-        <td><%= link_to 'Borrar', course, method: :delete, data: { confirm: '¿Borrar clase?' } %></td>
+        <%if userIsAdmin%>
+          <td><%= link_to 'Borrar', course, method: :delete, data: { confirm: '¿Borrar clase?' } %></td>
+        <%end%>
       </tr>
     <% end %>
   </tbody>

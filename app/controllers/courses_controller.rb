@@ -84,7 +84,7 @@ class CoursesController < ApplicationController
   # DELETE /courses/1
   # DELETE /courses/1.json
   def destroy
-		if current_user.role_id == 1 || current_user.role_id == 2
+		if userIsAdmin
 		  @course.destroy
 		  respond_to do |format|
 		    format.html { redirect_to courses_url }
