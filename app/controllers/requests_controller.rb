@@ -8,7 +8,7 @@ end
   # GET /requests
   # GET /requests.json
   def index
-    if User.where(role_id:1).count > 0
+    #if User.where(role_id:1).count > 0
       if current_user
         @propuestas_iniciales=[]
         User.where(role_id:1,career_id: current_user.career_id).each do |user|
@@ -83,10 +83,10 @@ end
           end
         end
 
-    else
-      @propuestas_iniciales = []
-      @propuestas_alumnos = []
-    end
+    #else
+    #  @propuestas_iniciales = []
+    #  @propuestas_alumnos = []
+    #end
   end
 
   # GET /requests/1
