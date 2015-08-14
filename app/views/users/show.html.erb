@@ -30,6 +30,16 @@
   <%= @user.informacion_adicional %>
 </p>
 
+<p>
+  <strong>Carrera:</strong>
+  <%= @user.career.name %>
+</p>
+
+<p>
+  <strong>Rol:</strong>
+  <%= @user.role.name %>
+</p>
+
 <%= link_to 'Editar', edit_user_path(@user) %> |
 <%= link_to 'Regresar', "/users" %>
 <% else %>

@@ -38,8 +38,9 @@
     <%= f.label :Informacion_Adicional %><br />
     <%= f.text_field :informacion_adicional %>
   </p>
-		Para hacer los cambios ingrese su contraseña (tambien la puede cambiar).
-	</p>
+ <% if @user == current_user %>
+	<b> ** Para hacer los cambios ingrese su contraseña (tambien la puede cambiar). ** </b>
+	<p>
     <%= f.label :Contraseña %><br />
     <%= f.password_field :password %>
   </p>
@@ -47,6 +48,40 @@
     <%= f.label :Confirmar_Contraseña%><br />
     <%= f.password_field :password_confirmation %>
   </p>
+  <% else %>
+  <b>** Asegurese de colocar el rol y la carrera antes de presionar el boton de 'Editar' **</b>
+  <p>
+    <%= f.label :Rol %><br />
+    <select name="user[role_id]">
+      <% if !userIsCoordinator %>
+        <% Role.all.each do |r| %>
+          <option value="<%= r.id %>"><%= r.name %></option>
+        <% end %> 
+      <% else %>
+        <% Role.where.not(id:2).each do |r| %>
+          <option value="<%= r.id %>"><%= r.name %></option>
+        <% end %> 
+      <% end %>
+    </select>
+  </p>
+  <% if userIsAdmin %>
+	<p>
+    <%= f.label :Carrera %><br />
+    <% if !userIsCoordinator %>
+      <select name="user[career_id]">
+        <% Career.all.each do |c| %>
+          <option value="<%= c.id %>"><%= c.name %></option>
+        <% end %>
+      </select>
+    <% else %>
+      <%= f.hidden_field :career_id, {:value => current_user.career_id, :name => 'user[career_id]'} %>				
+			<%= current_user.career.name %>
+    <% end %>
+  </p>
+  <% end %>
+    <%= f.hidden_field :password, {:value => @user.password, :name => 'user[password]'} %>
+    <%= f.hidden_field :password_confirmation, {:value => @user.password_confirmation, :name => 'user[password_confirmation]'} %>
+  <% end %>
 	<% end %>
   <p ><%= f.submit 'Editar' %></p>
   
