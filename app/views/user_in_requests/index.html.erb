@@ -17,8 +17,8 @@
   <tbody>
     <% @user_in_requests.each do |user_in_request| %>
       <tr>
-        <td><%= user_in_request.user.name %></td>
-        <td><%= user_in_request.request.course.name %></td>
+        <td><%= user_in_request.user_id %></td>
+        <td><%= user_in_request.request_id %></td>
         <td><%= link_to 'Mostrar', user_in_request %></td>
         <td><%= link_to 'Editar', edit_user_in_request_path(user_in_request) %></td>
         <td><%= link_to 'Borrar', user_in_request, method: :delete, data: { confirm: '¿Borrar usuario de la propuesta?' } %></td>
