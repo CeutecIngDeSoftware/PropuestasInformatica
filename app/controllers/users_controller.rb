@@ -83,6 +83,13 @@ class UsersController < ApplicationController
 	  		redirect_to log_in_path
   		elsif userIsAdmin || userIsCoordinator
         @user = User.find(params[:id])
+        if userIsCoordinator
+          if @user.career_id == current_user.career_id && @user.role_id != 2
+            @user = User.find(params[:id])
+          else
+            redirect_to users_path
+          end
+        end
       else
   			u = current_user.id
         @user = User.find(u)
