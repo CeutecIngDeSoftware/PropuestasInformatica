@@ -201,6 +201,13 @@ end
 		@schedule_id = params[:schedule_id]
 		@course_id = params[:course_id]
 		@request_id = params[:request_id]
+		@request = Request.find_by_id(@request_id)
+		if @request.state.id == 3
+      respond_to do |format|
+  			format.html { redirect_to "/requests/", notice: 'Error la Clase esta Cancelada' }
+      end
+			return
+		end
 		if ( (yaEstoyInscrito (@course_id.to_i))	|| (yaEstoyInscritoHorario(@schedule_id.to_i)) )
 			respond_to do |format|
   	  	format.html { redirect_to "/requests/", notice: 'Ya estas Registrado a esa Hora o en ese Curso!' }
