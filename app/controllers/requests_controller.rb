@@ -241,9 +241,9 @@ end
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_request
-			if current_user
-  		  if userIsAdmin || userIsCoordinator
-          @request = Request.find(params[:id])
+	if current_user
+	  @request = Request.find(params[:id])
+  	  if userIsAdmin || userIsCoordinator
           if userIsCoordinator
             if @request.course.career_id == current_user.career_id
               @request = Request.find(params[:id])
