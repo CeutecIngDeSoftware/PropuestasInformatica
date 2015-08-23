@@ -176,6 +176,7 @@ end
   # PATCH/PUT /requests/1
   # PATCH/PUT /requests/1.json
   def update
+  if !userIsStudent
     respond_to do |format|
       if @request.update(request_params)
         format.html { redirect_to @request, notice: 'La propuesta ha sido actualizada.' }
@@ -185,7 +186,11 @@ end
         format.json { render json: @request.errors, status: :unprocessable_entity }
       end
     end
+   else
+    redirect_to requests_path
+   end
   end
+
 
   # DELETE /requests/1
   # DELETE /requests/1.json
@@ -237,11 +242,21 @@ end
     # Use callbacks to share common setup or constraints between actions.
     def set_request
 			if current_user
-      @request = Request.find(params[:id])
+  		  if userIsAdmin || userIsCoordinator
+          @request = Request.find(params[:id])
+          if userIsCoordinator
+            if @request.course.career_id == current_user.career_id
+              @request = Request.find(params[:id])
+            else
+              redirect_to requests_path
+            end
+          end
+        end
 			else
 			redirect_to log_in_path
 			end
     end
+
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def request_params

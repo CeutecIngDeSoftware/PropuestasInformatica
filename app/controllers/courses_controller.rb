@@ -99,7 +99,16 @@ class CoursesController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_course
 			if current_user
-      @course = Course.find(params[:id])
+  		  if userIsAdmin || userIsCoordinator
+          @course = Course.find(params[:id])
+          if userIsCoordinator
+            if @course.career_id == current_user.career_id
+              @course = Course.find(params[:id])
+            else
+              redirect_to courses_path
+            end
+          end
+        end
 			else
 			redirect_to log_in_path
 			end
