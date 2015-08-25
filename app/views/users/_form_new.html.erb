@@ -9,25 +9,37 @@
       </ul>
     </div>
   <% end %>
-	<p>
-    <%= f.label :Nombre_Completo %><br />
-    <%= f.text_field :name %>
-  </p>
-	<p>
-    <%= f.label :Email %><br />
-    <%= f.text_field :email %>
-  </p>
-	<p>
-    <%= f.label :Cuenta %><br />
-    <%= f.text_field :cuenta %>
-  </p>
 
+<div class="row">
+            <!-- left column -->
+            <div class="col-md-6">	
+		<div class="box box-info">
+                <div class="box-header">
+                  <h3 class="title-box">Nuevo Usuario</h3>
+                </div>	
+	
+  	 <div class="box-body">
+		<div class="input-group">
+                    <span class="input-group-addon"><i class="fa fa-user"></i></span>
+		   <%= f.text_field :name, class:"form-control",:placeholder => "Nombre Completo" %>  		  
+	 	</div>
+	<br>
+  	<div class="input-group">
+                    <span class="input-group-addon"><i class="fa fa-envelope-o"></i></span>
+		   <%= f.text_field :email, class:"form-control",:placeholder => "Correo electronico" %>    		    
+		</div>
+	<br>
+	<div class="input-group">
+                    <span class="input-group-addon"><i class="fa fa-key"></i></span>
+		  <%= f.text_field :cuenta, class:"form-control",:placeholder => "Numero de Cuenta" %>    		   
+		</div>
+  	<br>
 <% @search = User.find_by_id(1) %>
 
 <% if !@search.blank? %>
 	<p>
     <%= f.label :Rol %><br />
-    <select name="user[role_id]">
+    <select name="user[role_id]", class="form-control">
       <% if !userIsCoordinator %>
         <% Role.all.each do |r| %>
           <option value="<%= r.id %>"><%= r.name %></option>
@@ -42,14 +54,18 @@
 	<p>
     <%= f.label :Carrera %><br />
     <% if !userIsCoordinator %>
-      <select name="user[career_id]">
+      <select name="user[career_id]", class="form-control">
         <% Career.all.each do |c| %>
           <option value="<%= c.id %>"><%= c.name %></option>
         <% end %>
       </select>
     <% else %>
-      <%= f.hidden_field :career_id, {:value => current_user.career_id, :name => 'user[career_id]'} %>				
-			<%= current_user.career.name %>
+	<div class="input-group">
+                    <span class="input-group-addon"><i class="fa fa-graduation-cap"></i></span>
+      		<%= f.hidden_field :career_id, {:value => current_user.career_id, :name => 'user[career_id]'} %>
+		<input class="form-control" placeholder="<%= @current_user.career.name %>" disabled="" type="text">
+  		</div>
+	<br>		 
     <% end %>
   </p>
 <% else %>
@@ -70,8 +86,9 @@
       </select>
   </p>
 <% end %>
-  <p><%= f.submit 'Registrar' %></p>
-  
+<div class="box-footer">
+  <p><%= f.submit 'Registrar',class: "btn btn-primary"  %></p>
+</div>  
 <% end %>
 
 </section>
