@@ -79,7 +79,7 @@
  
  <p>
     <%= f.label :Rol %><br />
-    <select name="user[role_id]">
+    <select name="user[role_id]", class="form-control">
       <% if !userIsCoordinator %>
         <% Role.all.each do |r| %>
           <% if r.id == @user.role_id %>
@@ -101,7 +101,7 @@
   </p>
 	<p>
     <%= f.label :Carrera %><br />
-      <select name="user[career_id]">
+      <select name="user[career_id]", class="form-control">
         <% Career.all.each do |c| %> 
           <% if c.id == @user.career_id %>
             <option value="<%= @user.career_id %>" selected><%= @user.career.name %>

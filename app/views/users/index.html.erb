@@ -1,67 +1,81 @@
 <div class="content-wrapper">
  <section class="content-header">
 <p id="notice"><%= notice %></p>
-<h1>Listado de usuarios</h1>
-
-<table>
-  <thead>
-    <tr>
+<div class="row">
+            <div class="col-xs-12">
+              <div class="box">
+                <div class="box-header">
+                  <h3 class="box-title">Listado de Usuarios</h3>
+<!-- search                   
+		<div class="box-tools">
+                    <div class="input-group">
+                      <input name="table_search" class="form-control input-sm pull-right" style="width: 150px;" placeholder="Search" type="text">
+                      <div class="input-group-btn">
+                        <button class="btn btn-sm btn-default"><i class="fa fa-search"></i></button>
+                      </div>
+                    </div>
+                  </div>
+	-->
+                </div><!-- /.box-header -->
+                <div class="box-body table-responsive no-padding">
+                  <table class="table table-hover">
+                    <tbody><tr>
 			<th>Nombre</th>
-      <th>Email</th>
-      <th>Cuenta</th>
+		        <th>Email</th>
+		        <th>Cuenta</th>
 			<th>Rol</th>
-      <% if !userIsCoordinator %>
+      			<% if !userIsCoordinator %>
 			<th>Carrera</th>
-      <% end %>
-      <th>Telefono</th>
-      <th>Informacion Adicional</th>
+      			<% end %>
+		        <th>Telefono</th>
+		        <th>Informacion Adicional</th>
 			<th></th>
 			<th></th>
-      <th></th>
-      <th></th>
-      <% if !userIsCoordinator %>
-      <th></th>
-      <% end %>
-      <th></th>
-      <th></th>
-    </tr>
-  </thead>
-
-  <tbody>
-   <% if userIsAdmin %>
-      <% @users.each do |user| %>
-      <tr>
-        <td><a href="/users/<%=user.id%>/edit"><%= user.name %></a></td>
-        <td><%= user.email %></td>
-        <td><%= user.cuenta %></td>
-        <td><%= user.role.name %></td>
-        <td><%= user.career.name %></td>
-        <td><%= user.telefono %></td>
-        <td><%= user.informacion_adicional %></td>
-        <td><%= link_to 'Mostrar', user %></td>
-        <td><%= link_to 'Editar', edit_user_path(user) %></td>
-       </tr>
-      <% end %>
-   <% else %>
-    <% @users.where(career_id: current_user.career_id).each do |user| %>
-      <tr>
-        <td><%= user.name %></td>
-        <td><%= user.email %></td>
-        <td><%= user.cuenta %></td>
-        <td><%= user.role.name %></td>
-        <% if !userIsCoordinator %>
-        <td><%= user.career.name %></td>
-        <% end %>
-        <td><%= user.telefono %></td>
-        <td><%= user.informacion_adicional %></td>
-        <td><%= link_to 'Mostrar', user %></td>
-        <td><%= link_to 'Editar', edit_user_path(user) %></td>
-       </tr>
-    <% end %>
-   <% end %>
-  </tbody>
-</table>
-
+		        <th></th>
+		        <th></th>
+	       <% if !userIsCoordinator %>
+		        <th></th>
+	        <% end %>
+		        <th></th>
+		        <th></th>
+		        </tr>
+	   	<% if userIsAdmin %>
+      		<% @users.each do |user| %>
+	      <tr>
+			<td><a href="/users/<%=user.id%>/edit"><%= user.name %></a></td>
+			<td><%= user.email %></td>
+			<td><%= user.cuenta %></td>
+			<td><%= user.role.name %></td>
+			<td><%= user.career.name %></td>
+			<td><%= user.telefono %></td>
+			<td><%= user.informacion_adicional %></td>
+			<td><%= link_to 'Mostrar', user %></td>
+			<td><%= link_to 'Editar', edit_user_path(user) %></td>
+		       </tr>
+		      <% end %>
+		   <% else %>
+		    <% @users.where(career_id: current_user.career_id).each do |user| %>
+		      <tr>
+			<td><%= user.name %></td>
+			<td><%= user.email %></td>
+			<td><%= user.cuenta %></td>
+			<td><%= user.role.name %></td>
+			<% if !userIsCoordinator %>
+			<td><%= user.career.name %></td>
+			<% end %>
+			<td><%= user.telefono %></td>
+			<td><%= user.informacion_adicional %></td>
+			<td><%= link_to 'Mostrar', user %></td>
+			<td><%= link_to 'Editar', edit_user_path(user) %></td>
+		       </tr>
+		    <% end %>
+		   <% end %>
+		  </tbody>
+		</table>
+		</div><!-- /.box-body -->
+              </div><!-- /.box -->
+            </div>
+          </div>
 <br>
 
 <%= link_to 'Nuevo Usuario', new_user_path %>
