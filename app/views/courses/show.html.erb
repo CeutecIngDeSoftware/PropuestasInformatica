@@ -2,28 +2,39 @@
 <div class="content-wrapper">
  <section class="content-header">
 
+
 <% if userIsCoordinator || userIsAdmin %>
-	<p id="notice"><%= notice %></p>
 
-	<p>
-		<strong>Clase:</strong>
-		<%= @course.name %>
-	</p>
+<p id="notice"><%= notice %></p>
+	<div class="row">
+            <!-- left column -->
+            <div class="col-md-6">	
+		<div class="box box-info">
+                <div class="box-header">
+                  <h3 class="title-box">Informacion de Clase</h3>
+                </div>
 
-	<p>
-		<strong>Requisitos:</strong>
-		<%= @course.requirements %>
-	</p>
-
-	<p>
-		<strong>Requisitos recomendados:</strong>
-		<%= @course.recommended_requirements %>
-	</p>
-	<p>
-		<strong>Carrera:</strong>
-		<%= @course.career.name %>
-	</p>
-
+	<div class="box-body">
+		<div class="input-group">
+                    <span class="input-group-addon"><i class="fa fa-book"></i></span>
+		    <input class="form-control" placeholder="<%= @course.name %>" disabled="" type="text">  		  
+	 	</div>
+	<br>
+	<div class="input-group">
+                    <span class="input-group-addon"><i class="fa fa-check-square-o"></i></span>
+		    <input class="form-control" placeholder="<%= @course.requirements %>" disabled="" type="text">
+	 	</div>
+	<br>
+	<div class="input-group">
+                    <span class="input-group-addon"><i class="fa fa-smile-o"></i></span>
+		    <input class="form-control" placeholder="<%= @course.recommended_requirements %>" disabled="" type="text">   
+	 	</div>
+	<br>
+	<div class="input-group">
+                    <span class="input-group-addon"><i class="fa fa-graduation-cap"></i></span>
+		<input class="form-control" placeholder="<%= @course.career.name %>" disabled="" type="text">
+  		</div>
+	<br>
 	<%= link_to 'Editar', edit_course_path(@course) %> |
 	<%= link_to 'Regresar', courses_path %>
 <% else %>
