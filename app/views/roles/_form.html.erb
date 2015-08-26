@@ -11,11 +11,22 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :Rol %><br>
-    <%= f.text_field :name %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+  <div class="row">
+            <!-- left column -->
+            <div class="col-md-6">	
+		<div class="box box-info">
+                <div class="box-header">
+                  <h3 class="title-box">Nuevo Rol</h3>
+                </div>	
+	
+  	 <div class="box-body">
+	  	<div class="input-group">
+                    <span class="input-group-addon"><i class="fa fa-sitemap"></i></span>
+		   <%= f.text_field :name, class:"form-control",:placeholder => "Ingrese Rol" %>  		  
+	 	</div>
+	      </div>
+
+  	<div class="box-footer">
+	  <p><%= f.submit 'Crear Rol', class: "btn btn-primary"  %></p>
+	  </div>
 <% end %>
