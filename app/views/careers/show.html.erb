@@ -4,11 +4,21 @@
 
 <% if userIsAdmin %>
 <p id="notice"><%= notice %></p>
+	<div class="row">
+            <!-- left column -->
+            <div class="col-md-6">	
+		<div class="box box-info">
+                <div class="box-header">
+                  <h3 class="title-box">Informacion de Carrera</h3>
+                </div>
 
-<p>
-  <strong>Carrera:</strong>
-  <%= @career.name %>
-</p>
+	<div class="box-body">
+	<div class="input-group">
+                    <span class="input-group-addon"><i class="fa fa-graduation-cap"></i></span>
+		    <input class="form-control" placeholder="<%= @career.name %>" disabled="" type="text">
+	 	</div>
+	<br>
+
 
 <%= link_to 'Editar', edit_career_path(@career) %> |
 <%= link_to 'Regresar', careers_path %>

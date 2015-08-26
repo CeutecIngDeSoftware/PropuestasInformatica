@@ -4,11 +4,20 @@
 
 <% if userIsAdmin %>
 	<p id="notice"><%= notice %></p>
+	<div class="row">
+            <!-- left column -->
+            <div class="col-md-6">	
+		<div class="box box-info">
+                <div class="box-header">
+                  <h3 class="title-box">Informacion de Horario</h3>
+                </div>
 
-	<p>
-		<strong>Horario:</strong>
-		<%= @schedule.name %>
-	</p>
+	<div class="box-body">
+	<div class="input-group">
+                    <span class="input-group-addon"><i class="fa fa-clock-o"></i></span>
+		    <input class="form-control" placeholder="<%= @schedule.name %>" disabled="" type="text">
+	 	</div>
+	<br>
 
 	<%= link_to 'Editar', edit_schedule_path(@schedule) %> |
 	<%= link_to 'Regresar', schedules_path %>
