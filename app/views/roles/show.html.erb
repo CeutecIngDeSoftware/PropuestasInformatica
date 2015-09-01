@@ -4,11 +4,21 @@
 
 <% if userIsAdmin %>
 <p id="notice"><%= notice %></p>
+	<div class="row">
+            <!-- left column -->
+            <div class="col-md-6">	
+		<div class="box box-info">
+                <div class="box-header">
+                  <h3 class="title-box">Informacion del Rol</h3>
+                </div>
 
-<p>
-  <strong>Rol:</strong>
-  <%= @role.name %>
-</p>
+	<div class="box-body">
+	<div class="input-group">
+                    <span class="input-group-addon"><i class="fa fa-sitemap"></i></span>
+		    <input class="form-control" placeholder="<%= @role.name %>" disabled="" type="text">
+	 	</div>
+	<br>
+
 
 <%= link_to 'Editar', edit_role_path(@role) %> |
 <%= link_to 'Regresar', roles_path %>

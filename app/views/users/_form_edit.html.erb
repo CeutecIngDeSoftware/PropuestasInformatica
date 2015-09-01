@@ -1,3 +1,4 @@
+<section class="content">
 <%= form_for @user do |f| %>
   <% if @user.errors.any? %>
     <div class="error_messages">
@@ -10,49 +11,75 @@
     </div>
   <% end %>
 	<% if @user %>
-	<p>
-    <%= f.label :Nombre_Completo %><br />
-    <%= f.hidden_field :name, {:value => @user.name, :name => 'user[name]'} %>
-		<%= @user.name %>
-  </p>
-		<p>
-			<%= f.label :Email %><br />
+<div class="row">
+            <!-- left column -->
+            <div class="col-md-6">	
+		<div class="box box-info">
+                <div class="box-header">
+                  <h3 class="box-title">Edita tu información y contraseña</h3>
+                </div>	
+
+	<div class="box-body">
+		<div class="input-group">
+                    <span class="input-group-addon"><i class="fa fa-user"></i></span>
+			  <%= f.hidden_field :name, {:value => @user.name, :name => 'user[name]'} %>                   
+		 <input class="form-control" placeholder="<%= @user.name %>" disabled="" type="text">
+                  </div>
+	<br>
+		<div class="input-group">
+                    <span class="input-group-addon"><i class="fa fa-envelope-o"></i></span>
 			<%= f.hidden_field :email, {:value => @user.email, :name => 'user[email]'} %>				
-			<%= @user.email %>
-		</p>
-	<p>
-    <%= f.label :Cuenta %><br />
-    <%= f.hidden_field :cuenta, {:value => @user.cuenta, :name => 'user[cuenta]'} %>
-		<%= @user.cuenta %>
-  </p>
-	<p>
-    <%= f.label :Carrera %><br />
-    <%= f.hidden_field :career_id, {:value => @user.career_id, :name => 'user[career_id]'} %>
-		<%= @user.career.name %>
-  </p>
-  <p>
-    <%= f.label :Telefono %><br />
-    <%= f.text_field :telefono %>
-  </p>
-  <p>
-    <%= f.label :Informacion_Adicional %><br />
-    <%= f.text_field :informacion_adicional %>
-  </p>
+			<input class="form-control" placeholder="<%= @user.email %>" disabled="" type="text">
+		 </div>
+	<br>
+	<div class="input-group">
+                    <span class="input-group-addon"><i class="fa fa-key"></i></span>
+    		     <%= f.hidden_field :cuenta, {:value => @user.cuenta, :name => 'user[cuenta]'} %>
+			<input class="form-control" placeholder="<%= @user.cuenta %>" disabled="" type="text">
+   		</div>
+	<br>	
+	<div class="input-group">
+                    <span class="input-group-addon"><i class="fa fa-graduation-cap"></i></span>
+    			<%= f.hidden_field :career_id, {:value => @user.career_id, :name => 'user[career_id]'} %>
+			<input class="form-control" placeholder="<%= @user.career.name %>" disabled="" type="text">
+  		</div>
+	<br>
+	<div class="input-group">
+                    <span class="input-group-addon"><i class="fa fa-phone"></i></span>
+    			<%= f.text_field :telefono, class:"form-control",:placeholder => "Telefono o Celular" %>			
+  		</div>
+	<br>
+  	<div class="input-group">
+                  <span class="input-group-addon"><i class="fa fa-pencil-square-o"></i></span>
+    	  <%= f.text_field :informacion_adicional, class:"form-control",:placeholder => "Informacion Adicional" %>			
+  		</div>
+	<br>
+</div>	
+</div>
  <% if @user == current_user %>
-	<b> ** Para hacer los cambios ingrese su contraseña (tambien la puede cambiar). ** </b>
-	<p>
-    <%= f.label :Contraseña %><br />
-    <%= f.password_field :password %>
-  </p>
-  <p>
-    <%= f.label :Confirmar_Contraseña%><br />
-    <%= f.password_field :password_confirmation %>
-  </p>
+
+
+              <!-- general form elements -->
+              <div class="box box-primary">
+                <div class="box-header">
+                  <h3 class="box-title">Ingrese su contraseña (para hacer cambios)</h3>
+                </div><!-- /.box-header -->
+    		<form role="form">
+                  <div class="box-body">
+		    <label for="exampleInputPassword1">Constraseña</label>
+		    <%= f.password_field :password, id: "exampleInputPassword1", class: "form-control" %>
+		  </div>
+  		<form role="form">
+                  <div class="box-body">
+ 		   <label for="exampleInputPassword1">Confirmar Constraseña</label>
+  		  <%= f.password_field :password_confirmation, id: "exampleInputPassword1", class: "form-control" %>
+  		</div>
   <% else %>
   <b>** Asegurese de colocar el rol y la carrera antes de presionar el boton de 'Editar' **</b>
-  <p>
+ 
+ <p>
     <%= f.label :Rol %><br />
-    <select name="user[role_id]">
+    <select name="user[role_id]", class="form-control">
       <% if !userIsCoordinator %>
         <% Role.all.each do |r| %>
           <% if r.id == @user.role_id %>
@@ -74,7 +101,7 @@
   </p>
 	<p>
     <%= f.label :Carrera %><br />
-      <select name="user[career_id]">
+      <select name="user[career_id]", class="form-control">
         <% Career.all.each do |c| %> 
           <% if c.id == @user.career_id %>
             <option value="<%= @user.career_id %>" selected><%= @user.career.name %>
@@ -88,8 +115,11 @@
     <%= f.hidden_field :password_confirmation, {:value => @user.password_confirmation, :name => 'user[password_confirmation]'} %>
   <% end %>
 	<% end %>
-  <p ><%= f.submit 'Editar' %></p>
-  
+	<div class="box-footer">
+	  <p ><%= f.submit 'Editar',class: "btn btn-primary" %></p>
+	  </div>
+        </form>
+      </div><!-
 <% end %>
 
 </section>

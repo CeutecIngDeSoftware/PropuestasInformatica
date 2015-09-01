@@ -1,3 +1,4 @@
+ <section class="content-header">
 <% if current_user %>
 <div class="content-wrapper">
  <section class="content-header">
@@ -28,41 +29,57 @@
   <strong>Estado:</strong>
   <%= @request.state.name %>
 </p>
-
-<table>
-  <thead>
-    <tr>
-      <th>Email</th>
-      <th>Nombre</th>
-      <th>Cuenta</th>
-      <%if userIsCoordinator == true%>
-      <th>Telefono</th>
-      <% end %>
-      <th>Informacion Adicional</th>
-      <th></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% UserInRequest.where(:request_id => @request.id).each do |uir| %>
-			<% u = User.find_by_id(uir.user_id) %>
-	<% if u.role_id != 1 %>      
-  <tr>
-        <td><%= u.email %></td>
-        <td><%= u.name %></td>
-        <td><%= u.cuenta %></td>
-        <%if userIsCoordinator == true%>
-        <td><%= u.telefono %></td>
-        <% end %>
-        <td><%= u.informacion_adicional %></td>
-        <% if userIsCoordinator || userIsAdmin %>
-          <td><%= link_to 'Quitar Alumno', uir, method: :delete, data: { confirm: '¿Borrar alumno de la propuesta?' } %></td>
-        <% end %>
-			</tr>
-	<% end %>
-    <% end %>
-  </tbody>
-</table>
+<div class="row">
+            <div class="col-xs-12">
+              <div class="box">
+                <div class="box-header">
+                  <h3 class="box-title">Listado de Alumnos</h3>
+<!-- search                   
+		<div class="box-tools">
+                    <div class="input-group">
+                      <input name="table_search" class="form-control input-sm pull-right" style="width: 150px;" placeholder="Search" type="text">
+                      <div class="input-group-btn">
+                        <button class="btn btn-sm btn-default"><i class="fa fa-search"></i></button>
+                      </div>
+                    </div>
+                  </div>
+	-->
+                </div><!-- /.box-header -->
+                <div class="box-body table-responsive no-padding">
+                  <table class="table table-hover">
+                    <tbody><tr>
+		      <th>Email</th>
+		      <th>Nombre</th>
+		      <th>Cuenta</th>
+		      <%if userIsCoordinator == true%>
+		      <th>Telefono</th>
+		      <% end %>
+		      <th>Informacion Adicional</th>
+		      <th></th>
+		    </tr>
+		    <% UserInRequest.where(:request_id => @request.id).each do |uir| %>
+					<% u = User.find_by_id(uir.user_id) %>
+			<% if u.role_id != 1 %>      
+		  <tr>
+			<td><%= u.email %></td>
+			<td><%= u.name %></td>
+			<td><%= u.cuenta %></td>
+			<%if userIsCoordinator == true%>
+			<td><%= u.telefono %></td>
+			<% end %>
+			<td><%= u.informacion_adicional %></td>
+			<% if userIsCoordinator || userIsAdmin %>
+			  <td><%= link_to 'Quitar Alumno', uir, method: :delete, data: { confirm: '¿Borrar alumno de la propuesta?' } %></td>
+			<% end %>
+					</tr>
+			<% end %>
+		    <% end %>
+		  </tbody>
+		</table>
+		</div><!-- /.box-body -->
+              </div><!-- /.box -->
+            </div>
+          </div>
 
 <% if userIsCoordinator %>
 	<%= link_to 'Editar', edit_request_path(@request) %> |

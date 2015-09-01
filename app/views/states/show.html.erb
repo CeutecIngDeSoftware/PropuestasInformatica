@@ -4,11 +4,20 @@
 
 <% if userIsAdmin %>
 	<p id="notice"><%= notice %></p>
+	<div class="row">
+            <!-- left column -->
+            <div class="col-md-6">	
+		<div class="box box-info">
+                <div class="box-header">
+                  <h3 class="title-box">Informacion de Estado</h3>
+                </div>
 
-	<p>
-		<strong>Estado:</strong>
-		<%= @state.name %>
-	</p>
+	<div class="box-body">
+	<div class="input-group">
+                    <span class="input-group-addon"><i class="fa fa-check-square-o"></i></span>
+		    <input class="form-control" placeholder="<%= @state.name %>" disabled="" type="text">
+	 	</div>
+	<br>
 
 	<%= link_to 'Editar', edit_state_path(@state) %> |
 	<%= link_to 'Regresar', states_path %>
