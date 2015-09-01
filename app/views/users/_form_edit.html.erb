@@ -56,7 +56,7 @@
 	<br>
 </div>	
 </div>
- <% if @user == current_user %>
+
 
 
               <!-- general form elements -->
@@ -74,7 +74,7 @@
  		   <label for="exampleInputPassword1">Confirmar Constraseña</label>
   		  <%= f.password_field :password_confirmation, id: "exampleInputPassword1", class: "form-control" %>
   		</div>
-  <% else %>
+  <% if userIsCoordinator || userIsAdmin %>
   <b>** Asegurese de colocar el rol y la carrera antes de presionar el boton de 'Editar' **</b>
  
  <p>
