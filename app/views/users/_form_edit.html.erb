@@ -66,12 +66,12 @@
                 </div><!-- /.box-header -->
     		<form role="form">
                   <div class="box-body">
-		    <label for="exampleInputPassword1">Constraseña</label>
+		    <label for="exampleInputPassword1">Contraseña</label>
 		    <%= f.password_field :password, id: "exampleInputPassword1", class: "form-control" %>
 		  </div>
   		<form role="form">
                   <div class="box-body">
- 		   <label for="exampleInputPassword1">Confirmar Constraseña</label>
+ 		   <label for="exampleInputPassword1">Confirmar Contraseña</label>
   		  <%= f.password_field :password_confirmation, id: "exampleInputPassword1", class: "form-control" %>
   		</div>
   <% if userIsCoordinator || userIsAdmin %>
@@ -111,8 +111,6 @@
         <% end %>
       </select>
   </p>
-    <%= f.hidden_field :password, {:value => @user.password, :name => 'user[password]'} %>
-    <%= f.hidden_field :password_confirmation, {:value => @user.password_confirmation, :name => 'user[password_confirmation]'} %>
   <% end %>
 	<% end %>
 	<div class="box-footer">
