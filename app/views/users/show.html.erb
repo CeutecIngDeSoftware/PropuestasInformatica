@@ -14,7 +14,7 @@
                 </div>	
 
 	<div class="box-body">
-		
+		<%= image_tag @user.avatar_url(:thumb) if @user.avatar? %><br><br>
 	<div class="input-group">
                     <span class="input-group-addon"><i class="fa fa-envelope-o"></i></span>			
 			<input class="form-control" placeholder="<%= @user.email %>" disabled="" type="text">
@@ -49,6 +49,8 @@
                     <span class="input-group-addon"><i class="fa fa-sitemap"></i></span>
 			<input class="form-control" placeholder="<%= @user.role.name %>" disabled="" type="text">
   		</div>
+	<br>
+	<br>
 	<br>
 		
 

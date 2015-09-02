@@ -20,6 +20,7 @@
                 </div>	
 
 	<div class="box-body">
+		<%= image_tag @user.avatar_url(:thumb) if @user.avatar? %><br><br>
 		<div class="input-group">
                     <span class="input-group-addon"><i class="fa fa-user"></i></span>
 			  <%= f.hidden_field :name, {:value => @user.name, :name => 'user[name]'} %>                   
@@ -47,17 +48,20 @@
 	<div class="input-group">
                     <span class="input-group-addon"><i class="fa fa-phone"></i></span>
     			<%= f.text_field :telefono, class:"form-control",:placeholder => "Telefono o Celular" %>			
-  		</div>
+  		</div> 
 	<br>
   	<div class="input-group">
                   <span class="input-group-addon"><i class="fa fa-pencil-square-o"></i></span>
     	  <%= f.text_field :informacion_adicional, class:"form-control",:placeholder => "Informacion Adicional" %>			
   		</div>
 	<br>
+  	<div class="input-group">
+                  <span class="input-group-addon"><i class="fa fa-file-image-o"></i></span>
+    	  <%= f.file_field :avatar, class:"form-control"%>			
+  		</div>
+	<br>
 </div>	
 </div>
-
-
 
               <!-- general form elements -->
               <div class="box box-primary">
@@ -74,9 +78,9 @@
  		   <label for="exampleInputPassword1">Confirmar Contraseña</label>
   		  <%= f.password_field :password_confirmation, id: "exampleInputPassword1", class: "form-control" %>
   		</div>
+<div class="box-body">
   <% if userIsCoordinator || userIsAdmin %>
   <b>** Asegurese de colocar el rol y la carrera antes de presionar el boton de 'Editar' **</b>
- 
  <p>
     <%= f.label :Rol %><br />
     <select name="user[role_id]", class="form-control">
@@ -113,6 +117,7 @@
   </p>
   <% end %>
 	<% end %>
+</div>
 	<div class="box-footer">
 	  <p ><%= f.submit 'Editar',class: "btn btn-primary" %></p>
 	  </div>
