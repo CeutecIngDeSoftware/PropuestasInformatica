@@ -5,17 +5,18 @@ class UsersController < ApplicationController
  # GET /users
   # GET /users.json
   def index
-	if current_user
-    if current_user.role_id == 1
-        @users = User.where.not(:role_id => 2).order("role_id ASC")
-    elsif current_user.role_id == 2
-        @users = User.all.order("role_id ASC", "career_id ASC")
-		else 
-			redirect_to requests_path
-		end
-	else
-	redirect_to log_in_path
-	end
+    @table_search = params["table_search"]
+  	if current_user
+      if current_user.role_id == 1
+          @users = User.where("name LIKE ?" , "%#{@table_search}%").where.not(:role_id => 2).order("role_id ASC")
+      elsif current_user.role_id == 2
+          @users = User.where("name LIKE ?" , "%#{@table_search}%").order("role_id ASC", "career_id ASC")
+		  else 
+			  redirect_to requests_path
+    end
+    else
+      redirect_to log_in_path
+    end
   end
 
   # GET /users/1
