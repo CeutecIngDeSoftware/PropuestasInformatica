@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150722001356) do
+ActiveRecord::Schema.define(version: 20150902183741) do
 
   create_table "careers", force: true do |t|
     t.string   "name"
@@ -73,6 +73,7 @@ ActiveRecord::Schema.define(version: 20150722001356) do
     t.string   "name"
     t.integer  "role_id"
     t.integer  "career_id"
+    t.string   "avatar"
   end
 
 end

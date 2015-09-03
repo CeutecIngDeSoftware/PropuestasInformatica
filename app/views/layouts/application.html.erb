@@ -40,7 +40,7 @@
               <!-- Tasks: style can be found in dropdown.less -->
               <li class="dropdown tasks-menu">
                 <a href="http://goo.gl/forms/KW9VvES0pj" class="dropdown-toggle" data-toggle="dropdown">
-                  <i class="fa fa-file-text-o"></i>
+                  <i class="fa fa-file-text-o"> Encuesta </i>
                   <span class="label label-danger"></span>
                 </a>
               </li>
@@ -66,6 +66,7 @@
           <div class="user-panel">           
             <div class="pull-left info">              
 	<% if current_user %>
+        <p><%= image_tag @current_user.avatar_url(:thumb) if current_user.avatar? %></p>
             		<p><%= current_user.email %></p>
                 <% if userIsCoordinator || userIsStudent %>
                   <p><%= current_user.career.name %></p>
