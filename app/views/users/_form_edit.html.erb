@@ -79,7 +79,7 @@
   		  <%= f.password_field :password_confirmation, id: "exampleInputPassword1", class: "form-control" %>
   		</div>
 <div class="box-body">
-  <% if userIsCoordinator || userIsAdmin %>
+  <% if @user != current_user %>
   <b>** Asegurese de colocar el rol y la carrera antes de presionar el boton de 'Editar' **</b>
  <p>
     <%= f.label :Rol %><br />
