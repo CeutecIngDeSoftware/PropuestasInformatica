@@ -10,7 +10,7 @@
 		              <div class="box-tools">
 <form role="form" accept-charset="UTF-8" action="/users" method="get" class="nifty_form">
                     <div class="input-group">
-                      <input name="table_search" class="form-control input-sm pull-right" style="width: 150px;" placeholder="Search" type="text">
+                      <input name="table_search" class="form-control input-sm pull-right" style="width: 150px;" placeholder="Buscar" type="text">
                       <div class="input-group-btn">
                         <button class="btn btn-sm btn-default"><i class="fa fa-search"></i></button>
                       </div>
@@ -60,7 +60,8 @@
 		   <% else %>
 		    <% @users.where(career_id: current_user.career_id).each do |user| %>
 		      <tr>
-			<td><%= user.name %></td>
+      <td><%= image_tag user.avatar_url(:small_thumb) if user.avatar? %></td>
+			<td><a href="/users/<%=user.id%>/edit"><%= user.name %></a></td>
 			<td><%= user.email %></td>
 			<td><%= user.cuenta %></td>
 			<td><%= user.role.name %></td>
