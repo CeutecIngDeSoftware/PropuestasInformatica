@@ -40,7 +40,15 @@
 			<tr>
 			  <td><%= request.course.name %></td>
 			  <td><%= request.schedule.name %></td>
-			  <td><%= request.state.name %></td>
+                          <%if request.state.id==1%>
+			    <td><span class="label label-warning"><%= request.state.name %></span> </td>
+                          <%elsif request.state.id==2%>
+			    <td><span class="label label-success"><%= request.state.name %></span></td>
+                          <%elsif request.state.id==3%>
+			    <td><span class="label label-danger"><%= request.state.name %></span></td>
+                          <%else%>
+			    <td><%= request.state.name %></td>
+                          <%end%>
 			  <td><%= (UserInRequest.where(:request_id => request.id).count) -1%></td>
 			<% if userIsAdmin %>
 			  <td><%= request.course.career.name %></td>
@@ -105,7 +113,15 @@
 		<tr>
 		  	<td><%= request.course.name %></td>
 		  	<td><%= request.schedule.name %></td>
-		  	<td><%= request.state.name %></td>
+		  	<%if request.state.id==1%>
+			    <td><span class="label label-warning"><%= request.state.name %></span> </td>
+                          <%elsif request.state.id==2%>
+			    <td><span class="label label-success"><%= request.state.name %></span></td>
+                          <%elsif request.state.id==3%>
+			    <td><span class="label label-danger"><%= request.state.name %></span></td>
+                          <%else%>
+			    <td><%= request.state.name %></td>
+                          <%end%>
 		<%
 		    es_inicial = false
 		    UserInRequest.where(request_id: request.id).each do |uir|
@@ -180,7 +196,15 @@
 		      <tr>
 			<td><%= request.course.name %></td>
 			<td><%= request.schedule.name %></td>
-			<td><%= request.state.name %></td>
+			<%if request.state.id==1%>
+			    <td><span class="label label-warning"><%= request.state.name %></span> </td>
+                          <%elsif request.state.id==2%>
+			    <td><span class="label label-success"><%= request.state.name %></span></td>
+                          <%elsif request.state.id==3%>
+			    <td><span class="label label-danger"><%= request.state.name %></span></td>
+                          <%else%>
+			    <td><%= request.state.name %></td>
+                          <%end%>
 			<td><%= (UserInRequest.where(:request_id => request.id).count) %></td>
 			<% if userIsAdmin %>
 			  <td><%= request.course.career.name %></td>
@@ -251,7 +275,15 @@
 		      <% @requestito = Request.where(id: inicial.request_id).each do |request| %>
 			<tr>
 			  <td><%= request.course.name %></td>
-			  <td><%= request.schedule.name %></td>
+			  <%if request.state.id==1%>
+			    <td><span class="label label-warning"><%= request.state.name %></span> </td>
+                          <%elsif request.state.id==2%>
+			    <td><span class="label label-success"><%= request.state.name %></span></td>
+                          <%elsif request.state.id==3%>
+			    <td><span class="label label-danger"><%= request.state.name %></span></td>
+                          <%else%>
+			    <td><%= request.state.name %></td>
+                          <%end%>
 			  <td><%= request.state.name %></td>
 		    <td><%= (UserInRequest.where(:request_id => request.id).count) -1%></td>
 		    <td><%= request.course.career.name %></td>
@@ -294,7 +326,15 @@
 		      <tr>
 			<td><%= request.course.name %></td>
 			<td><%= request.schedule.name %></td>
-			<td><%= request.state.name %></td>
+			<%if request.state.id==1%>
+			    <td><span class="label label-warning"><%= request.state.name %></span> </td>
+                          <%elsif request.state.id==2%>
+			    <td><span class="label label-success"><%= request.state.name %></span></td>
+                          <%elsif request.state.id==3%>
+			    <td><span class="label label-danger"><%= request.state.name %></span></td>
+                          <%else%>
+			    <td><%= request.state.name %></td>
+                          <%end%>
 		  <td><%= (UserInRequest.where(:request_id => request.id).count) %></td>
 		  <td><%= request.course.career.name %></td> 
 		      </tr>
