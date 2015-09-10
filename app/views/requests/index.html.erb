@@ -345,7 +345,7 @@
                           <%else%>
 			    <td><%= request.state.name %></td>
                           <%end%>
-			<td><%= (UserInRequest.where(:request_id => request.id).count) %></td>  
+			  
 		    <td><%= request.course.career.name %></td>
 			<td>
 				<% u = (UserInRequest.where(:request_id => request.id).count) -1%>
@@ -419,8 +419,8 @@
 		  <td><%= (UserInRequest.where(:request_id => request.id).count) %></td>
 		  <td><%= request.course.career.name %></td> 
 		    <td>
-				<% if u < 5 %>
 				<% u = (UserInRequest.where(:request_id => request.id).count) -1%>
+				<% if u < 5 %>
 				 <div class="progress progress-xs">
                           		<div class="progress-bar progress-bar-danger" style="width: <%= u*10%>%"></div>
                         	 </div>	
