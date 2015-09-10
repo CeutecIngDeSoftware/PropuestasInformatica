@@ -4,10 +4,14 @@ class SchedulesController < ApplicationController
   # GET /schedules
   # GET /schedules.json
   def index
-		if current_user.id == 1
+		if current_user
+		if current_user.role_id == 2
 	    @schedules = Schedule.all
 		else
 			redirect_to requests_path
+		end
+		else
+		redirect_to log_in_path
 		end
   end
 
@@ -18,10 +22,14 @@ class SchedulesController < ApplicationController
 
   # GET /schedules/new
   def new
-		if current_user.id == 1
+		if current_user
+		if current_user.role_id == 2
     	@schedule = Schedule.new
 		else
 			redirect_to requests_path
+		end
+		else
+		redirect_to log_in_path
 		end
   end
 
@@ -32,7 +40,7 @@ class SchedulesController < ApplicationController
   # POST /schedules
   # POST /schedules.json
   def create
-		if current_user.id == 1
+		if current_user.role_id == 2
 		  @schedule = Schedule.new(schedule_params)
 
 		  respond_to do |format|
@@ -52,7 +60,7 @@ class SchedulesController < ApplicationController
   # PATCH/PUT /schedules/1
   # PATCH/PUT /schedules/1.json
   def update
-		if current_user.id == 1
+		if current_user.role_id == 2
 		  respond_to do |format|
 		    if @schedule.update(schedule_params)
 		      format.html { redirect_to @schedule, notice: 'El horario ha sido actualizado.' }
@@ -70,7 +78,7 @@ class SchedulesController < ApplicationController
   # DELETE /schedules/1
   # DELETE /schedules/1.json
   def destroy
-		if current_user.id == 1
+		if current_user.role_id == 2
 		  @schedule.destroy
 		  respond_to do |format|
 		    format.html { redirect_to schedules_url }
@@ -84,7 +92,11 @@ class SchedulesController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_schedule
+			if current_user
       @schedule = Schedule.find(params[:id])
+			else
+			redirect_to log_in_path
+			end
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

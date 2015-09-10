@@ -1,8 +1,15 @@
+<% if current_user %>
 <div class="content-wrapper">
  <section class="content-header">
 
-<% if userIsCoordinator %>
-	<h1>Editando horario</h1>
+<% if userIsAdmin %>
+	<div class="row">
+            <!-- left column -->
+            <div class="col-md-6">	
+		<div class="box box-info">
+                <div class="box-header">
+                  <h3 class="title-box">Editando Horarios</h3>
+                </div>
 
 	<%= render 'form' %>
 
@@ -14,3 +21,6 @@
 
 </section>
 </div>
+<% else %>
+<%= controller.redirect_to log_in_path %>
+<% end %>

@@ -4,11 +4,15 @@ class UserInRequestsController < ApplicationController
   # GET /user_in_requests
   # GET /user_in_requests.json
   def index
-		if current_user.id == 1
+	if current_user
+		if current_user.role_id == 2
     	@user_in_requests = UserInRequest.all
 		else
 			redirect_to requests_path
 		end
+	else
+		redirect_to log_in_path
+	end
   end
 
   # GET /user_in_requests/1
@@ -18,10 +22,14 @@ class UserInRequestsController < ApplicationController
 
   # GET /user_in_requests/new
   def new
-		if current_user.id == 1
+		if current_user
+		if current_user.role_id == 2
 	    @user_in_request = UserInRequest.new
 		else
 			redirect_to requests_path
+		end
+		else
+		redirect_to log_in_path
 		end
   end
 
@@ -32,7 +40,7 @@ class UserInRequestsController < ApplicationController
   # POST /user_in_requests
   # POST /user_in_requests.json
   def create
-		if current_user.id == 1
+		if current_user.role_id == 2
 		  @user_in_request = UserInRequest.new(user_in_request_params)
 
 		  respond_to do |format|
@@ -52,7 +60,7 @@ class UserInRequestsController < ApplicationController
   # PATCH/PUT /user_in_requests/1
   # PATCH/PUT /user_in_requests/1.json
   def update
-		if current_user.id == 1
+		if current_user.role_id == 2
 		  respond_to do |format|
 		    if @user_in_request.update(user_in_request_params)
 		      format.html { redirect_to @user_in_request, notice: 'La propuesta del usuario ha sido actualizada.' }
@@ -70,7 +78,7 @@ class UserInRequestsController < ApplicationController
   # DELETE /user_in_requests/1
   # DELETE /user_in_requests/1.json
   def destroy
-		if current_user.id == 1
+		if current_user.role_id == 1 || current_user.role_id == 2
 		  @user_in_request.destroy
 		  respond_to do |format|
 		    format.html { redirect_to user_in_requests_url }
@@ -84,7 +92,11 @@ class UserInRequestsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_user_in_request
+			if current_user
       @user_in_request = UserInRequest.find(params[:id])
+			else
+			redirect_to log_in_path
+			end
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

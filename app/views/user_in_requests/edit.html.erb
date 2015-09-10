@@ -1,4 +1,7 @@
-<% if userIsCoordinator %>
+<div class="content-wrapper">
+ <section class="content-header">
+ <% if current_user %>
+<% if userIsAdmin %>
 	<h1>Editando la propuesta del usuario</h1>
 
 	<%= render 'form' %>
@@ -8,3 +11,8 @@
 <% else %>
 	<%= controller.redirect_to requests_path %>
 <% end %>
+<% else %>
+<%= controller.redirect_to log_in_path %>
+<% end %>
+</section>
+</div>

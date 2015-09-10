@@ -10,14 +10,18 @@
       </ul>
     </div>
   <% end %>
+		
+	
+  	 <div class="box-body">
+	  	<div class="input-group">
+                    <span class="input-group-addon"><i class="fa fa-clock-o"></i></span>
+		   <%= f.text_field :name, class:"form-control",:placeholder => "Ingrese Horario" %>  		  
+	 	</div>
+	      </div>
 
-  <div class="field">
-    <%= f.label :Horario %><br>
-    <%= f.text_field :name %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+  	<div class="box-footer">
+	  <p><%= f.submit 'Crear Horario', class: "btn btn-primary"  %></p>
+	  </div>
 <% end %>
 
 </section>

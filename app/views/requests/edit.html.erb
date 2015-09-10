@@ -1,9 +1,16 @@
+<% if current_user %>
+<% if !userIsStudent %>
 <div class="content-wrapper">
  <section class="content-header">
 
-<h1>Editando propuesta</h1>
+
+
 
 <%= render 'form_edit' %>
-
 <%= link_to 'Mostrar', @request %> |
 <%= link_to 'Regresar', requests_path %>
+<% else %>
+<%= controller.redirect_to requests_path %>
+<% end %><% else %>
+<%= controller.redirect_to log_in_path %>
+<% end %>

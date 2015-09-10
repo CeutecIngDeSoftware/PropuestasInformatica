@@ -1,5 +1,15 @@
-<% if userIsCoordinator %>
-	<h1>Editando clase</h1>
+<div class="content-wrapper">
+ <section class="content-header">
+ <% if current_user %>
+<% if userIsCoordinator || userIsAdmin %>
+	<div class="row">
+            <!-- left column -->
+            <div class="col-md-6">	
+		<div class="box box-info">
+                <div class="box-header">
+                  <h3 class="title-box">Editando Clase</h3>
+                </div>	
+
 
 	<%= render 'form' %>
 
@@ -8,3 +18,8 @@
 <% else %>
 	<%= controller.redirect_to requests_path %>
 <% end %>
+<% else %>
+<%= controller.redirect_to log_in_path %>
+<% end %>
+</section>
+</div>

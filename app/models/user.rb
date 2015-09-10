@@ -1,6 +1,9 @@
 
 class User < ActiveRecord::Base
-  attr_accessible :email, :password, :password_confirmation, :cuenta, :telefono, :informacion_adicional, :name
+  attr_accessible :email, :password, :password_confirmation, :cuenta, :telefono, :informacion_adicional, :name, :career_id, :role_id, :avatar
+  mount_uploader :avatar, AvatarUploader
+	belongs_to :role
+	belongs_to :career
   
   attr_accessor :password
   before_save :encrypt_password

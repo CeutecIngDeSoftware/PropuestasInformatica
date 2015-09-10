@@ -1,10 +1,92 @@
 class RequestsController < ApplicationController
   before_action :set_request, only: [:show, :edit, :update, :destroy]
 
+def rooturl
+	redirect_to requests_path
+end
+
   # GET /requests
   # GET /requests.json
   def index
-    @requests = Request.all
+    #if User.where(role_id:1).count > 0
+      if current_user
+        @propuestas_iniciales=[]
+        User.where(role_id:1,career_id: current_user.career_id).each do |user|
+          UserInRequest.where(user_id:user.id).each do |uir|
+            @propuestas_iniciales.push(uir)
+          end
+        end
+
+        @propuestas_alumnos=[]
+        Request.all.each do |request|
+          if request.course.career == current_user.career
+            es_inicial = false
+            UserInRequest.where(request_id: request.id).each do |uir|
+              User.where(role_id:1).each do |u|
+                if uir.user_id == u.id
+                  es_inicial = true
+                end
+              end
+            end
+            if es_inicial == false
+              @propuestas_alumnos.push(request)
+            end
+          end
+        end
+
+      else
+        @propuestas_iniciales=[]
+        User.where(role_id:1).order("career_id ASC").each do |user|
+          UserInRequest.where(user_id:user.id).each do |uir|
+            @propuestas_iniciales.push(uir)
+          end
+        end
+
+        @propuestas_alumnos = []
+          Request.all.each do |request|
+            es_inicial = false
+            UserInRequest.where(request_id: request.id).each do |uir|
+              User.where(role_id:1).each do |u|
+                if uir.user_id == u.id
+                  es_inicial = true
+                end
+              end
+            end
+            if es_inicial == false
+              @propuestas_alumnos.push(request)
+            end
+         end
+      end
+
+# si el usuario es admin puede ver todos los requests
+       if current_user && current_user.role_id == 2
+         @propuestas_iniciales=[]
+         User.where(role_id:1).order("career_id ASC").each do |user|
+           UserInRequest.where(user_id:user.id).each do |uir|
+             @propuestas_iniciales.push(uir)
+           end
+         end
+
+         @propuestas_alumnos = []
+          Request.all.each do |request|
+            es_inicial = false
+            UserInRequest.where(request_id: request.id).each do |uir|
+              User.where(role_id:1).each do |u|
+                if uir.user_id == u.id
+                  es_inicial = true
+                end
+              end
+            end
+            if es_inicial == false
+              @propuestas_alumnos.push(request)
+            end
+          end
+        end
+
+    #else
+    #  @propuestas_iniciales = []
+    #  @propuestas_alumnos = []
+    #end
   end
 
   # GET /requests/1
@@ -14,7 +96,12 @@ class RequestsController < ApplicationController
 
   # GET /requests/new
   def new
-    @request = Request.new
+    if current_user
+      @request = Request.new
+      @courses = Course.where(career_id: current_user.career_id)
+    else
+      redirect_to log_in_path
+    end
   end
 
   # GET /requests/1/edit
@@ -22,7 +109,7 @@ class RequestsController < ApplicationController
   end
 
 	def yaEstoyInscrito course_id
-		if current_user.id != 1
+		if current_user.role_id != 1
 		clases = UserInRequest.where(:user_id => current_user.id)
 		clases.each do|clase|
 			if Request.find_by_id(clase.request_id).course_id == course_id
@@ -34,7 +121,7 @@ class RequestsController < ApplicationController
 	end	
 
 	def yaEstoyInscritoHorario schedule_id
-		if current_user.id != 1
+		if current_user.role_id != 1
 		clases = UserInRequest.where(:user_id => current_user.id)
 		clases.each do|clase|
 			if Request.find_by_id(clase.request_id).schedule_id == schedule_id
@@ -89,6 +176,7 @@ class RequestsController < ApplicationController
   # PATCH/PUT /requests/1
   # PATCH/PUT /requests/1.json
   def update
+  if !userIsStudent
     respond_to do |format|
       if @request.update(request_params)
         format.html { redirect_to @request, notice: 'La propuesta ha sido actualizada.' }
@@ -98,7 +186,11 @@ class RequestsController < ApplicationController
         format.json { render json: @request.errors, status: :unprocessable_entity }
       end
     end
+   else
+    redirect_to requests_path
+   end
   end
+
 
   # DELETE /requests/1
   # DELETE /requests/1.json
@@ -114,6 +206,13 @@ class RequestsController < ApplicationController
 		@schedule_id = params[:schedule_id]
 		@course_id = params[:course_id]
 		@request_id = params[:request_id]
+		@request = Request.find_by_id(@request_id)
+		if @request.state.id == 3
+      respond_to do |format|
+  			format.html { redirect_to "/requests/", notice: 'Error la Clase esta Cancelada' }
+      end
+			return
+		end
 		if ( (yaEstoyInscrito (@course_id.to_i))	|| (yaEstoyInscritoHorario(@schedule_id.to_i)) )
 			respond_to do |format|
   	  	format.html { redirect_to "/requests/", notice: 'Ya estas Registrado a esa Hora o en ese Curso!' }
@@ -136,14 +235,28 @@ class RequestsController < ApplicationController
 		u.destroy
 		u.save
 		end
-		redirect_to "/requests/"
+		redirect_to "/requests/", notice: 'Quitado de la propuesta'
 	end
 
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_request
-      @request = Request.find(params[:id])
+	if current_user
+	  @request = Request.find(params[:id])
+  	  if userIsAdmin || userIsCoordinator
+          if userIsCoordinator
+            if @request.course.career_id == current_user.career_id
+              @request = Request.find(params[:id])
+            else
+              redirect_to requests_path
+            end
+          end
+        end
+			else
+			redirect_to log_in_path
+			end
     end
+
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def request_params

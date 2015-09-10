@@ -4,10 +4,16 @@ class CoursesController < ApplicationController
   # GET /courses
   # GET /courses.json
   def index
-		if current_user.id == 1
-    	@courses = Course.all
+		if current_user
+		if current_user.role_id == 1
+    	@courses = Course.where(career_id: current_user.career_id).all
+    elsif current_user.role_id == 2
+      @courses = Course.all.order("career_id ASC")
 		else
 			redirect_to requests_path
+		end
+		else
+		redirect_to log_in_path
 		end
   end
 
@@ -18,10 +24,14 @@ class CoursesController < ApplicationController
 
   # GET /courses/new
   def new
-		if current_user.id == 1
+		if current_user
+		if current_user.role_id == 1 || current_user.role_id == 2
     	@course = Course.new
 		else
 			redirect_to requests_path
+		end
+		else
+		redirect_to log_in_path
 		end
   end
 
@@ -32,8 +42,12 @@ class CoursesController < ApplicationController
   # POST /courses
   # POST /courses.json
   def create
-		if current_user.id == 1
+		if current_user.role_id == 1 || current_user.role_id == 2
 		  @course = Course.new(course_params)
+      
+      if current_user.role_id == 1
+      @course.career_id = current_user.career_id
+      end
 
 		  respond_to do |format|
 		    if @course.save
@@ -52,7 +66,7 @@ class CoursesController < ApplicationController
   # PATCH/PUT /courses/1
   # PATCH/PUT /courses/1.json
   def update
-		if current_user.id == 1
+		if current_user.role_id == 1 || current_user.role_id == 2
 		  respond_to do |format|
 		    if @course.update(course_params)
 		      format.html { redirect_to @course, notice: 'La clase ha sido actualizada.' }
@@ -70,7 +84,7 @@ class CoursesController < ApplicationController
   # DELETE /courses/1
   # DELETE /courses/1.json
   def destroy
-		if current_user.id == 1
+		if userIsAdmin
 		  @course.destroy
 		  respond_to do |format|
 		    format.html { redirect_to courses_url }
@@ -84,11 +98,24 @@ class CoursesController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_course
-      @course = Course.find(params[:id])
+			if current_user
+  		  if userIsAdmin || userIsCoordinator
+          @course = Course.find(params[:id])
+          if userIsCoordinator
+            if @course.career_id == current_user.career_id
+              @course = Course.find(params[:id])
+            else
+              redirect_to courses_path
+            end
+          end
+        end
+			else
+			redirect_to log_in_path
+			end
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def course_params
-      params.require(:course).permit(:name, :requirements, :recommended_requirements)
+      params.require(:course).permit(:name, :requirements, :recommended_requirements, :career_id)
     end
 end

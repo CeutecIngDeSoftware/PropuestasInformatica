@@ -3,6 +3,14 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 
+iframe {
+	position: absolute;
+	top: calc(10% - 140px);
+	left: calc(30% - 800px);
+	padding: 10px;
+	z-index: 2;
+} 
+
 .body{
 	margin: 0;
 	padding: 0;

@@ -1,4 +1,14 @@
+class AuthConstraint
+  def matches?(request)
+    request.session['user_id'].present?
+  end
+end
+
 Myapp::Application.routes.draw do
+
+  resources :careers
+
+  resources :roles
 
   get "requests/registrarme" => "requests#registrarme"
   get "requests/quitarme" => "requests#quitarme"
@@ -23,6 +33,11 @@ get "log_out" => "sessions#destroy", :as => "log_out"
 get "log_in" => "sessions#new", :as => "log_in"
 get "sign_up" => "users#new", :as => "sign_up"
 get "users/usuario" => "users#usuario", :as => "usuario"
+
+constraints(AuthConstraint.new) do
+	root :to => 'requests#rooturl', :as => "authenticated_root"
+end
+
 root :to => "sessions#new"
 resources :users
 resources :sessions
