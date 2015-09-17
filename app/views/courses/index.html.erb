@@ -40,7 +40,7 @@
 			<% end %>
 			<td><%= link_to 'Mostrar', course %></td>
 			<td><%= link_to 'Editar', edit_course_path(course) %></td>
-			<%if userIsAdmin%>
+			<%if userIsAdmin || userIsCoordinator%>
 			  <td><%= link_to 'Borrar', course, method: :delete, data: { confirm: '¿Borrar clase?' } %></td>
 			<%end%>
 		      </tr>

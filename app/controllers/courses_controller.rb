@@ -84,7 +84,15 @@ class CoursesController < ApplicationController
   # DELETE /courses/1
   # DELETE /courses/1.json
   def destroy
-		if userIsAdmin
+		if userIsAdmin || userIsCoordinator
+      @course.requests.each do |r|
+        r.user_in_requests.each do |uir|
+          uir.destroy
+          uir.save
+        end
+        r.destroy
+        r.save
+      end
 		  @course.destroy
 		  respond_to do |format|
 		    format.html { redirect_to courses_url }

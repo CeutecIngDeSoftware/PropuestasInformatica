@@ -3,4 +3,5 @@ class Request < ActiveRecord::Base
   belongs_to :schedule
   belongs_to :state
   belongs_to :course
+  has_many :user_in_requests
 end

@@ -195,6 +195,10 @@ end
   # DELETE /requests/1
   # DELETE /requests/1.json
   def destroy
+    @request.user_in_requests.each do |uir|
+      uir.destroy
+      uir.save
+    end
     @request.destroy
     respond_to do |format|
       format.html { redirect_to requests_url }
