@@ -4,11 +4,12 @@ class CoursesController < ApplicationController
   # GET /courses
   # GET /courses.json
   def index
+    @table_search = params["table_search"]
 		if current_user
 		if current_user.role_id == 1
-    	@courses = Course.where(career_id: current_user.career_id).all
+    	@courses = Course.where("name LIKE ?" , "%#{@table_search}%").where(career_id: current_user.career_id).all
     elsif current_user.role_id == 2
-      @courses = Course.all.order("career_id ASC")
+      @courses = Course.all.where("name LIKE ?" , "%#{@table_search}%").order("career_id ASC")
 		else
 			redirect_to requests_path
 		end

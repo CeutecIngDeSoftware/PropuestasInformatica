@@ -4,6 +4,8 @@ class SessionsController < ApplicationController
   end
   def create
     user = User.authenticate(params[:email], params[:password])
+    user_existe = User.where(:email => params[:email]).exists?
+
     if user
       session[:user_id] = user.id
       if params[:password] == user.cuenta.to_s
@@ -11,8 +13,10 @@ class SessionsController < ApplicationController
       else
         redirect_to "/requests", :notice => "Conectado!"
       end
+    elsif !user_existe
+      redirect_to root_url, :notice => "Usuario no existe, crea una cuenta con tu coordinador."
     else
-      redirect_to root_url, :notice => "Correo o contraseña incorrecto!"
+      redirect_to root_url, :notice => "Correo o contraseña incorrecta! Si has olvidado tu contraseña, la puedes reestablecer con tu coordinador."
     end
   end
   def destroy

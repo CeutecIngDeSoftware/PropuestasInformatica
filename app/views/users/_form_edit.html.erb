@@ -78,9 +78,20 @@
  		   <label for="exampleInputPassword1">Confirmar Contraseña</label>
   		  <%= f.password_field :password_confirmation, id: "exampleInputPassword1", class: "form-control" %>
   		</div>
-<div class="box-body">
+</div>
+              
   <% if @user != current_user %>
-  <b>** Asegurese de colocar el rol y la carrera antes de presionar el boton de 'Editar' **</b>
+<!--  <b>** Asegurese de colocar el rol y la carrera antes de presionar el boton de 'Editar' **</b> -->
+<!-- general form elements -->
+              <div class="box box-primary">
+                <div class="box-header">
+                  <% if current_user.career_id != 3 %>
+                    <h3 class="box-title">Cambia el rol y la carrera</h3>
+                  <% else %>
+                    <h3 class="box-title">Cambia el rol</h3>
+                  <% end %>
+                </div><!-- /.box-header -->
+<div class="box-body">
  <p>
     <%= f.label :Rol %><br />
     <select name="user[role_id]", class="form-control">
@@ -103,21 +114,22 @@
       <% end %>
     </select>
   </p>
-	<p>
-    <%= f.label :Carrera %><br />
-      <select name="user[career_id]", class="form-control">
-        <% Career.all.each do |c| %> 
-          <% if c.id == @user.career_id %>
-            <option value="<%= @user.career_id %>" selected><%= @user.career.name %>
+	  <% if current_user.career_id != 3 %>
+     <p>
+       <%= f.label :Carrera %><br />
+        <select name="user[career_id]", class="form-control">
+          <% Career.all.each do |c| %> 
+            <% if c.id == @user.career_id %>
+              <option value="<%= @user.career_id %>" selected><%= @user.career.name %>
+            <% end %>
+            <% next if c.id == @user.career_id %>
+            <option value="<%= c.id %>"><%= c.name %></option>
           <% end %>
-          <% next if c.id == @user.career_id %>
-          <option value="<%= c.id %>"><%= c.name %></option>
-        <% end %>
-      </select>
-  </p>
+        </select>
+      </p>
+    <% end %>
   <% end %>
 	<% end %>
-</div>
 	<div class="box-footer">
 	  <p ><%= f.submit 'Editar',class: "btn btn-primary" %></p>
 	  </div>
@@ -127,3 +139,4 @@
 
 </section>
 </div>
+
