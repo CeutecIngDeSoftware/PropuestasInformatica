@@ -416,7 +416,7 @@
                           <%else%>
 			    <td><%= request.state.name %></td>
                           <%end%>
-		  <td><%= (UserInRequest.where(:request_id => request.id).count)-1 %></td>
+		  <td><%= (UserInRequest.where(:request_id => request.id).count)%></td>
 		  <td><%= request.course.career.name %></td> 
 		    <td>
 				<% u = (UserInRequest.where(:request_id => request.id).count) -1%>
