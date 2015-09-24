@@ -1,4 +1,4 @@
-/*
+@charset "UTF-8";/*
  * This is a manifest file that'll be compiled into application.css, which will include all the files
  * listed below.
  *
@@ -8,8 +8,8 @@
  * You're free to add application-wide styles to this file and they'll appear at the top of the
  * compiled file, but it's generally better to create a new file per style scope.
  *
- *= require_self
- *= require_tree .
+
+
  */
 
 
@@ -20,6 +20,7 @@
  */
 
 /*! normalize.css v3.0.2 | MIT License | git.io/normalize */
+
 html {
   font-family: sans-serif;
   -webkit-text-size-adjust: 100%;
@@ -5637,9 +5638,8 @@ a.list-group-item-danger.active:focus {
 .embed-responsive {
   position: relative;
   display: block;
-  height: 100%;
-  width: 100%;
-  
+  height: 0;
+  padding: 0;
   overflow: hidden;
 }
 .embed-responsive .embed-responsive-item,
@@ -5654,13 +5654,9 @@ a.list-group-item-danger.active:focus {
   width: 100%;
   height: 100%;
   border: 0;
-
 }
 .embed-responsive.embed-responsive-16by9 {
   padding-bottom: 56.25%;
-	max-height: 700px;
-
-
 }
 .embed-responsive.embed-responsive-4by3 {
   padding-bottom: 75%;
@@ -9348,13 +9344,13 @@ table.text-center th {
 .login-box,
 .register-box {
   width: 360px;
-  margin: 3% auto;
+  margin: 7% auto;
 }
 @media (max-width: 768px) {
   .login-box,
   .register-box {
     width: 90%;
-    margin-top: 10px;
+    margin-top: 20px;
   }
 }
 .login-box-body,
@@ -9661,9 +9657,8 @@ fieldset[disabled] .btn-dropbox.active {
   background-color: #ffffff;
 }
 .btn-facebook {
-  color: #F5FFFA;
-  background-color: #B0E0E6;
-  text-align: center;
+  color: #ffffff;
+  background-color: #3b5998;
   border-color: rgba(0, 0, 0, 0.2);
 }
 .btn-facebook:hover,
@@ -9673,8 +9668,7 @@ fieldset[disabled] .btn-dropbox.active {
 .btn-facebook.active,
 .open > .dropdown-toggle.btn-facebook {
   color: #ffffff;
-  background-color: #AFEEEE;
-  
+  background-color: #2d4373;
   border-color: rgba(0, 0, 0, 0.2);
 }
 .btn-facebook:active,
@@ -11526,3 +11520,256 @@ Gradient Background colors
   border-bottom-left-radius: 0 !important;
 }
 
+
+/* line 1, /home/jamc96/Desktop/Diseño de sistemas/PropuestasInformatica/app/assets/stylesheets/scaffolds.css.scss */
+body {
+  background-color: #fff;
+  color: #333;
+  font-family: verdana, arial, helvetica, sans-serif;
+  font-size: 13px;
+  line-height: 18px;
+}
+
+/* line 9, /home/jamc96/Desktop/Diseño de sistemas/PropuestasInformatica/app/assets/stylesheets/scaffolds.css.scss */
+p, ol, ul, td {
+  font-family: verdana, arial, helvetica, sans-serif;
+  font-size: 13px;
+  line-height: 18px;
+}
+
+/* line 15, /home/jamc96/Desktop/Diseño de sistemas/PropuestasInformatica/app/assets/stylesheets/scaffolds.css.scss */
+pre {
+  background-color: #eee;
+  padding: 10px;
+  font-size: 11px;
+}
+
+/* line 21, /home/jamc96/Desktop/Diseño de sistemas/PropuestasInformatica/app/assets/stylesheets/scaffolds.css.scss */
+a {
+  color: #000;
+}
+/* line 23, /home/jamc96/Desktop/Diseño de sistemas/PropuestasInformatica/app/assets/stylesheets/scaffolds.css.scss */
+a:visited {
+  color: #666;
+}
+/* line 26, /home/jamc96/Desktop/Diseño de sistemas/PropuestasInformatica/app/assets/stylesheets/scaffolds.css.scss */
+a:hover {
+  color: #fff;
+  background-color: #000;
+}
+
+/* line 33, /home/jamc96/Desktop/Diseño de sistemas/PropuestasInformatica/app/assets/stylesheets/scaffolds.css.scss */
+div.field, div.actions {
+  margin-bottom: 10px;
+}
+
+/* line 38, /home/jamc96/Desktop/Diseño de sistemas/PropuestasInformatica/app/assets/stylesheets/scaffolds.css.scss */
+#notice {
+  color: green;
+}
+
+/* line 42, /home/jamc96/Desktop/Diseño de sistemas/PropuestasInformatica/app/assets/stylesheets/scaffolds.css.scss */
+.field_with_errors {
+  padding: 2px;
+  background-color: red;
+  display: table;
+}
+
+/* line 48, /home/jamc96/Desktop/Diseño de sistemas/PropuestasInformatica/app/assets/stylesheets/scaffolds.css.scss */
+#error_explanation {
+  width: 450px;
+  border: 2px solid red;
+  padding: 7px;
+  padding-bottom: 0;
+  margin-bottom: 20px;
+  background-color: #f0f0f0;
+}
+/* line 55, /home/jamc96/Desktop/Diseño de sistemas/PropuestasInformatica/app/assets/stylesheets/scaffolds.css.scss */
+#error_explanation h2 {
+  text-align: left;
+  font-weight: bold;
+  padding: 5px 5px 5px 15px;
+  font-size: 12px;
+  margin: -7px;
+  margin-bottom: 0px;
+  background-color: #c00;
+  color: #fff;
+}
+/* line 65, /home/jamc96/Desktop/Diseño de sistemas/PropuestasInformatica/app/assets/stylesheets/scaffolds.css.scss */
+#error_explanation ul li {
+  font-size: 12px;
+  list-style: square;
+}
+
+/* line 6, /home/jamc96/Desktop/Diseño de sistemas/PropuestasInformatica/app/assets/stylesheets/sessions.css.scss */
+iframe {
+  position: absolute;
+  top: calc(10% - 140px);
+  left: calc(30% - 800px);
+  padding: 10px;
+  z-index: 2;
+}
+
+/* line 14, /home/jamc96/Desktop/Diseño de sistemas/PropuestasInformatica/app/assets/stylesheets/sessions.css.scss */
+.body {
+  margin: 0;
+  padding: 0;
+  background: #fff;
+  color: #fff;
+  font-family: Arial;
+  font-size: 12px;
+}
+
+/* line 24, /home/jamc96/Desktop/Diseño de sistemas/PropuestasInformatica/app/assets/stylesheets/sessions.css.scss */
+.body {
+  position: absolute;
+  top: -20px;
+  left: -20px;
+  right: -40px;
+  bottom: -40px;
+  width: auto;
+  height: auto;
+  background-image: url("fondo.jpg");
+  background-size: cover;
+  -webkit-filter: blur(5px);
+  z-index: 0;
+}
+
+/* line 38, /home/jamc96/Desktop/Diseño de sistemas/PropuestasInformatica/app/assets/stylesheets/sessions.css.scss */
+.grad {
+  position: absolute;
+  top: -20px;
+  left: -20px;
+  right: -40px;
+  bottom: -40px;
+  width: auto;
+  height: auto;
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, rgba(0, 0, 0, 0)), color-stop(100%, rgba(0, 0, 0, 0.65)));
+  /* Chrome,Safari4+ */
+  z-index: 1;
+  opacity: 0.7;
+}
+
+/* line 51, /home/jamc96/Desktop/Diseño de sistemas/PropuestasInformatica/app/assets/stylesheets/sessions.css.scss */
+.header {
+  position: absolute;
+  top: calc(20% - 35px);
+  left: calc(55% - 255px);
+  z-index: 2;
+}
+
+/* line 58, /home/jamc96/Desktop/Diseño de sistemas/PropuestasInformatica/app/assets/stylesheets/sessions.css.scss */
+.header div {
+  float: left;
+  color: #fff;
+  font-family: 'Exo', sans-serif;
+  font-size: 50px;
+  font-weight: 200;
+}
+
+/* line 66, /home/jamc96/Desktop/Diseño de sistemas/PropuestasInformatica/app/assets/stylesheets/sessions.css.scss */
+.subheader {
+  position: absolute;
+  top: calc(40% - 35px);
+  left: calc(78% - 255px);
+  z-index: 2;
+}
+
+/* line 73, /home/jamc96/Desktop/Diseño de sistemas/PropuestasInformatica/app/assets/stylesheets/sessions.css.scss */
+.subheader span {
+  font-size: 30px;
+  color: #5379fa;
+}
+
+/* line 80, /home/jamc96/Desktop/Diseño de sistemas/PropuestasInformatica/app/assets/stylesheets/sessions.css.scss */
+.login {
+  position: absolute;
+  top: calc(55% - 75px);
+  left: calc(60% - 50px);
+  height: 150px;
+  width: 350px;
+  padding: 10px;
+  z-index: 2;
+}
+
+/* line 90, /home/jamc96/Desktop/Diseño de sistemas/PropuestasInformatica/app/assets/stylesheets/sessions.css.scss */
+.login input[type=text] {
+  width: 250px;
+  height: 30px;
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  border-radius: 2px;
+  color: #fff;
+  font-family: 'Exo', sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  padding: 4px;
+}
+
+/* line 103, /home/jamc96/Desktop/Diseño de sistemas/PropuestasInformatica/app/assets/stylesheets/sessions.css.scss */
+.login input[type=password] {
+  width: 250px;
+  height: 30px;
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  border-radius: 2px;
+  color: #fff;
+  font-family: 'Exo', sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  padding: 4px;
+  margin-top: 10px;
+}
+
+/* line 117, /home/jamc96/Desktop/Diseño de sistemas/PropuestasInformatica/app/assets/stylesheets/sessions.css.scss */
+.button input {
+  width: 260px;
+  height: 35px;
+  background: #fff;
+  border: 1px solid #fff;
+  cursor: pointer;
+  border-radius: 2px;
+  color: #a18d6c;
+  font-family: 'Exo', sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  padding: 6px;
+  margin-top: 10px;
+}
+
+/* line 132, /home/jamc96/Desktop/Diseño de sistemas/PropuestasInformatica/app/assets/stylesheets/sessions.css.scss */
+.button input:hover {
+  opacity: 0.8;
+}
+
+/* line 136, /home/jamc96/Desktop/Diseño de sistemas/PropuestasInformatica/app/assets/stylesheets/sessions.css.scss */
+.button input:active {
+  opacity: 0.6;
+}
+
+/* line 140, /home/jamc96/Desktop/Diseño de sistemas/PropuestasInformatica/app/assets/stylesheets/sessions.css.scss */
+.login input[type=text]:focus {
+  outline: none;
+  border: 1px solid rgba(255, 255, 255, 0.9);
+}
+
+/* line 145, /home/jamc96/Desktop/Diseño de sistemas/PropuestasInformatica/app/assets/stylesheets/sessions.css.scss */
+.login input[type=password]:focus {
+  outline: none;
+  border: 1px solid rgba(255, 255, 255, 0.9);
+}
+
+/* line 150, /home/jamc96/Desktop/Diseño de sistemas/PropuestasInformatica/app/assets/stylesheets/sessions.css.scss */
+.button input:focus {
+  outline: none;
+}
+
+/* line 154, /home/jamc96/Desktop/Diseño de sistemas/PropuestasInformatica/app/assets/stylesheets/sessions.css.scss */
+::-webkit-input-placeholder {
+  color: rgba(255, 255, 255, 0.6);
+}
+
+/* line 158, /home/jamc96/Desktop/Diseño de sistemas/PropuestasInformatica/app/assets/stylesheets/sessions.css.scss */
+::-moz-input-placeholder {
+  color: rgba(255, 255, 255, 0.6);
+}

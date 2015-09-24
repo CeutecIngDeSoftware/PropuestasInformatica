@@ -249,7 +249,7 @@
 			  <td><%= request.course.career.name %></td>
 			<% end %>
 			<td>
-				<% u = (UserInRequest.where(:request_id => request.id).count) -1%>
+				<% u = (UserInRequest.where(:request_id => request.id).count)%>
 				<% if u < 5 %>
 				 <div class="progress progress-xs">
                           		<div class="progress-bar progress-bar-danger" style="width: <%= u*10%>%"></div>
@@ -412,14 +412,14 @@
                           <%elsif request.state.id==2%>
 			    <td><span class="label label-success"><%= request.state.name %></span></td>
                           <%elsif request.state.id==3%>
-			    <td><span class="label label-danger"><%= request.state.name %></span></td>
+			    <td><span class="label label-danger"><%= request.state.name %></span></td> 
                           <%else%>
 			    <td><%= request.state.name %></td>
                           <%end%>
-		  <td><%= (UserInRequest.where(:request_id => request.id).count)%></td>
-		  <td><%= request.course.career.name %></td> 
-		    <td>
-				<% u = (UserInRequest.where(:request_id => request.id).count) -1%>
+		  <td><%= (UserInRequest.where(:request_id => request.id).count) %></td>
+		     <td><%= request.course.career.name %></td>
+			<td>
+				<% u = (UserInRequest.where(:request_id => request.id).count)%>
 				<% if u < 5 %>
 				 <div class="progress progress-xs">
                           		<div class="progress-bar progress-bar-danger" style="width: <%= u*10%>%"></div>
