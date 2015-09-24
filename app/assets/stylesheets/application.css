@@ -5637,8 +5637,9 @@ a.list-group-item-danger.active:focus {
 .embed-responsive {
   position: relative;
   display: block;
-  height: 0;
-  padding: 0;
+  height: 100%;
+  width: 100%;
+  
   overflow: hidden;
 }
 .embed-responsive .embed-responsive-item,
@@ -5647,15 +5648,19 @@ a.list-group-item-danger.active:focus {
 .embed-responsive object,
 .embed-responsive video {
   position: absolute;
-  top: 0;
+  top: 0s;
   bottom: 0;
   left: 0;
   width: 100%;
   height: 100%;
   border: 0;
+
 }
 .embed-responsive.embed-responsive-16by9 {
   padding-bottom: 56.25%;
+	max-height: 700px;
+
+
 }
 .embed-responsive.embed-responsive-4by3 {
   padding-bottom: 75%;
@@ -9343,13 +9348,13 @@ table.text-center th {
 .login-box,
 .register-box {
   width: 360px;
-  margin: 7% auto;
+  margin: 3% auto;
 }
 @media (max-width: 768px) {
   .login-box,
   .register-box {
     width: 90%;
-    margin-top: 20px;
+    margin-top: 10px;
   }
 }
 .login-box-body,
@@ -9656,8 +9661,9 @@ fieldset[disabled] .btn-dropbox.active {
   background-color: #ffffff;
 }
 .btn-facebook {
-  color: #ffffff;
-  background-color: #3b5998;
+  color: #F5FFFA;
+  background-color: #B0E0E6;
+  text-align: center;
   border-color: rgba(0, 0, 0, 0.2);
 }
 .btn-facebook:hover,
@@ -9667,7 +9673,8 @@ fieldset[disabled] .btn-dropbox.active {
 .btn-facebook.active,
 .open > .dropdown-toggle.btn-facebook {
   color: #ffffff;
-  background-color: #2d4373;
+  background-color: #AFEEEE;
+  
   border-color: rgba(0, 0, 0, 0.2);
 }
 .btn-facebook:active,

@@ -1,30 +1,49 @@
-<div class="body">
-</div>
-<div class="grad">
-</div>
-<div class="header">
-  <div>Propuestas CEUTEC</div>
-</div>
-<div class ="subheader">
-  <span>Iniciar Sesion </span>
-</div>
-<br>
-<%= form_tag sessions_path do %>
-  <div class="login">
-    <%= text_field_tag :email,params[:email], type: "text", :placeholder => "email"%>
-    <%= password_field_tag :password,nil,:placeholder => "password"%>
-    <p class="button"><%= submit_tag "Iniciar sesion" %></p>
-    <p><%= notice %></p>
-    <a href="../../requests">
-      <button  type="button"> Ver Propuestas </button>
-    </a>
-    <iframe width="560" height="315" src="https://www.youtube.com/embed/SxAz1jgTkVw" frameborder="0" allowfullscreen></iframe>
-    <br></br>
-    <% @search = User.find_by_id(1) %>
-    <% if @search.blank? %>
-      <a href="../../sign_up">
-        <button type="button"> Crear Administrador </button>
-      </a>
-    <% end %>
-  </div>
-<% end %>
+<div class="login-box">
+      <div class="login-logo">
+        <a href="../../sign_up"><b>Propuestas</b>Ceutec</a>
+      </div>
+	<div class="login-box-body">
+		<p class="login-box-msg">Iniciar Sesion</p>			
+		<%= form_tag sessions_path do %>
+		  <div class="form-group has-feedback">
+		    <%= text_field_tag :email,params[:email], type: "text", :placeholder => "email",class: "form-control"%>
+		  </div>
+		  <div class="form-group has-feedback"> 
+		   <%= password_field_tag :password,nil,:placeholder => "password",class: "form-control"%>
+		  </div>
+			
+		<div class="row">  
+		  <div class="col-xs-8">    
+			  <div class="checkbox icheck">
+			      <!-- REMEMBER ME   
+				<label>
+				  <input type="checkbox"> Remember Me
+				</label> --> 
+			      </div>                        
+			    </div>
+			<div class="col-xs-4">
+			  <p><%= submit_tag "Ingresar",class: "btn btn-primary btn-block btn-flat" %></p>
+			 </div>
+		</div>
+		<div class="social-auth-links text-center">		  
+		  <p><%= notice %></p>
+		    <p>- O	 -</p>
+			<a href="../../requests" class="btn btn-block btn-social btn-facebook btn-flat">Ver Propuestas </a>	
+		    <% @search = User.find_by_id(1) %>
+		    <% if @search.blank? %>
+		      <a href="../../sign_up">
+			<button type="button"> Crear Administrador </button>
+		      </a>
+			<a href="../../sign_up" class="btn btn-block btn-social btn-facebook btn-flat">Crear Administrador </a>
+		    <% end %>
+		<% end %>
+			</div>		
+		</div>		
+      </div><!-- /.login-box-body -->	
+    </div>	
+	<div class="container" >	
+	<div class="embed-responsive embed-responsive-16by9">
+  			<iframe width="560" height="315" src="https://www.youtube.com/embed/SxAz1jgTkVw" frameborder="0" allowfullscreen></iframe>
+			</div>
+	<br>
+	</div>
