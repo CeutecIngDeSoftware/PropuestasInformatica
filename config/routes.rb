@@ -12,10 +12,7 @@ Myapp::Application.routes.draw do
 
   get "requests/registrarme" => "requests#registrarme"
   get "requests/quitarme" => "requests#quitarme"
-<<<<<<< HEAD
   get "requests/cambioestado" => "requests#cambioestado"
-=======
->>>>>>> a5f1ba1c4f2c4b2568e44ddf5d7d0cb2049196f2
 
   resources :user_in_requests
 

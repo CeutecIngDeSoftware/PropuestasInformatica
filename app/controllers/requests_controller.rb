@@ -192,7 +192,6 @@ end
   end
 
 
-<<<<<<< HEAD
   def cambioestado
     @temp = params[:request_id]
     r = Request.find(@temp)
@@ -212,8 +211,7 @@ end
         end
     end
   end
-=======
->>>>>>> a5f1ba1c4f2c4b2568e44ddf5d7d0cb2049196f2
+
   # DELETE /requests/1
   # DELETE /requests/1.json
   def destroy

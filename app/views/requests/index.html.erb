@@ -40,7 +40,6 @@
 			<tr>
 			  <td><%= request.course.name %></td>
 			  <td><%= request.schedule.name %></td>
-<<<<<<< HEAD
           <%if request.state.id==1%>
 			      <td><span class="label label-warning">
             <% if userIsAdmin || userIsCoordinator %>
@@ -69,17 +68,6 @@
               <td><%= request.state.name %></td>
             <% end %>
           <%end%>
-=======
-                          <%if request.state.id==1%>
-			    <td><span class="label label-warning"><%= request.state.name %></span> </td>
-                          <%elsif request.state.id==2%>
-			    <td><span class="label label-success"><%= request.state.name %></span></td>
-                          <%elsif request.state.id==3%>
-			    <td><span class="label label-danger"><%= request.state.name %></span></td>
-                          <%else%>
-			    <td><%= request.state.name %></td>
-                          <%end%>
->>>>>>> a5f1ba1c4f2c4b2568e44ddf5d7d0cb2049196f2
 			  <td><%= (UserInRequest.where(:request_id => request.id).count) -1%></td>
 			<% if userIsAdmin %>
 			  <td><%= request.course.career.name %></td>
