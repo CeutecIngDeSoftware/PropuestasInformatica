@@ -1,0 +1,46 @@
+<div class="content-wrapper">
+ <section class="content-header">
+<div class="row">
+            <div class="col-xs-12">
+              <div class="box">
+                <div class="box-header">
+                  <h3 class="box-title">Listado de Horarios Disponibles</h3>
+<!-- search                   
+		<div class="box-tools">
+                    <div class="input-group">
+                      <input name="table_search" class="form-control input-sm pull-right" style="width: 150px;" placeholder="Search" type="text">
+                      <div class="input-group-btn">
+                        <button class="btn btn-sm btn-default"><i class="fa fa-search"></i></button>
+                      </div>
+                    </div>
+                  </div>
+	-->
+                </div><!-- /.box-header -->
+                <div class="box-body table-responsive no-padding">
+                  <table class="table table-hover">
+                    <tbody><tr>
+		      <th>Horario</th>
+		      <th></th>
+		      <th></th>
+		      <th></th>
+		    </tr>
+		    <% @schedules.each do |schedule| %>
+		      <tr>
+			<td><%= schedule.name %></td>
+			<td><%= link_to 'Mostrar', schedule %></td>
+			<td><%= link_to 'Editar', edit_schedule_path(schedule) %></td>
+			<td><%= link_to 'Borrar', schedule, method: :delete, data: { confirm: '¿Borrar horario?' } %></td>
+		      </tr>
+		    <% end %>
+		  </tbody>
+		</table>
+		</div><!-- /.box-body -->
+              </div><!-- /.box -->
+            </div>
+          </div>
+
+<div class="box-footer">
+<%= link_to 'Nuevo horario', new_schedule_path, class: "btn btn-primary" %>
+</div>
+</section>
+</div>

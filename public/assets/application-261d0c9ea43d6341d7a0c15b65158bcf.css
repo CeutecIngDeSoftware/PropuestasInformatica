@@ -1,0 +1,315 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or vendor/assets/stylesheets of plugins, if any, can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the top of the
+ * compiled file, but it's generally better to create a new file per style scope.
+ *
+
+
+ */
+
+
+/*!
+ * Bootstrap v3.3.2 (http://getbootstrap.com)
+ * Copyright 2011-2015 Twitter, Inc.
+ * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
+ */
+
+/*! normalize.css v3.0.2 | MIT License | git.io/normalize */
+
+
+
+/* line 5, /home/turupawn/Clases/IngDeSoftware/app/assets/stylesheets/requests.css.scss */
+table {
+  color: #333;
+  font-family: Helvetica, Arial, sans-serif;
+  width: 640px;
+  border-collapse: collapse;
+}
+
+/* line 7, /home/turupawn/Clases/IngDeSoftware/app/assets/stylesheets/requests.css.scss */
+td, th {
+  border: 1px solid transparent;
+  height: 30px;
+}
+
+/* line 9, /home/turupawn/Clases/IngDeSoftware/app/assets/stylesheets/requests.css.scss */
+th {
+  background: #D3D3D3;
+  font-weight: bold;
+  text-align: center;
+}
+
+/* line 11, /home/turupawn/Clases/IngDeSoftware/app/assets/stylesheets/requests.css.scss */
+td {
+  background: #FAFAFA;
+  text-align: center;
+}
+
+/* line 13, /home/turupawn/Clases/IngDeSoftware/app/assets/stylesheets/requests.css.scss */
+tr:nth-child(even) td {
+  background: #F1F1F1;
+}
+
+/* line 15, /home/turupawn/Clases/IngDeSoftware/app/assets/stylesheets/requests.css.scss */
+tr:nth-child(odd) td {
+  background: #FEFEFE;
+}
+
+/* line 16, /home/turupawn/Clases/IngDeSoftware/app/assets/stylesheets/requests.css.scss */
+tr td:hover {
+  background: #666;
+  color: #FFF;
+}
+
+/* line 18, /home/turupawn/Clases/IngDeSoftware/app/assets/stylesheets/requests.css.scss */
+h1 {
+  font-weight: bold;
+  text-align: center;
+}
+/* line 1, /home/turupawn/Clases/IngDeSoftware/app/assets/stylesheets/scaffolds.css.scss */
+body {
+  background-color: #fff;
+  color: #333;
+  font-family: verdana, arial, helvetica, sans-serif;
+  font-size: 13px;
+  line-height: 18px;
+}
+
+/* line 9, /home/turupawn/Clases/IngDeSoftware/app/assets/stylesheets/scaffolds.css.scss */
+p, ol, ul, td {
+  font-family: verdana, arial, helvetica, sans-serif;
+  font-size: 13px;
+  line-height: 18px;
+}
+
+/* line 15, /home/turupawn/Clases/IngDeSoftware/app/assets/stylesheets/scaffolds.css.scss */
+pre {
+  background-color: #eee;
+  padding: 10px;
+  font-size: 11px;
+}
+
+/* line 21, /home/turupawn/Clases/IngDeSoftware/app/assets/stylesheets/scaffolds.css.scss */
+a {
+  color: #000;
+}
+/* line 23, /home/turupawn/Clases/IngDeSoftware/app/assets/stylesheets/scaffolds.css.scss */
+a:visited {
+  color: #666;
+}
+/* line 26, /home/turupawn/Clases/IngDeSoftware/app/assets/stylesheets/scaffolds.css.scss */
+a:hover {
+  color: #fff;
+  background-color: #000;
+}
+
+/* line 33, /home/turupawn/Clases/IngDeSoftware/app/assets/stylesheets/scaffolds.css.scss */
+div.field, div.actions {
+  margin-bottom: 10px;
+}
+
+/* line 38, /home/turupawn/Clases/IngDeSoftware/app/assets/stylesheets/scaffolds.css.scss */
+#notice {
+  color: green;
+}
+
+/* line 42, /home/turupawn/Clases/IngDeSoftware/app/assets/stylesheets/scaffolds.css.scss */
+.field_with_errors {
+  padding: 2px;
+  background-color: red;
+  display: table;
+}
+
+/* line 48, /home/turupawn/Clases/IngDeSoftware/app/assets/stylesheets/scaffolds.css.scss */
+#error_explanation {
+  width: 450px;
+  border: 2px solid red;
+  padding: 7px;
+  padding-bottom: 0;
+  margin-bottom: 20px;
+  background-color: #f0f0f0;
+}
+/* line 55, /home/turupawn/Clases/IngDeSoftware/app/assets/stylesheets/scaffolds.css.scss */
+#error_explanation h2 {
+  text-align: left;
+  font-weight: bold;
+  padding: 5px 5px 5px 15px;
+  font-size: 12px;
+  margin: -7px;
+  margin-bottom: 0px;
+  background-color: #c00;
+  color: #fff;
+}
+/* line 65, /home/turupawn/Clases/IngDeSoftware/app/assets/stylesheets/scaffolds.css.scss */
+#error_explanation ul li {
+  font-size: 12px;
+  list-style: square;
+}
+/* line 6, /home/turupawn/Clases/IngDeSoftware/app/assets/stylesheets/sessions.css.scss */
+.body {
+  margin: 0;
+  padding: 0;
+  background: #fff;
+  color: #fff;
+  font-family: Arial;
+  font-size: 12px;
+}
+
+/* line 16, /home/turupawn/Clases/IngDeSoftware/app/assets/stylesheets/sessions.css.scss */
+.body {
+  position: absolute;
+  top: -20px;
+  left: -20px;
+  right: -40px;
+  bottom: -40px;
+  width: auto;
+  height: auto;
+  background-image: url("fondo.jpg");
+  background-size: cover;
+  -webkit-filter: blur(5px);
+  z-index: 0;
+}
+
+/* line 30, /home/turupawn/Clases/IngDeSoftware/app/assets/stylesheets/sessions.css.scss */
+.grad {
+  position: absolute;
+  top: -20px;
+  left: -20px;
+  right: -40px;
+  bottom: -40px;
+  width: auto;
+  height: auto;
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, rgba(0, 0, 0, 0)), color-stop(100%, rgba(0, 0, 0, 0.65)));
+  /* Chrome,Safari4+ */
+  z-index: 1;
+  opacity: 0.7;
+}
+
+/* line 43, /home/turupawn/Clases/IngDeSoftware/app/assets/stylesheets/sessions.css.scss */
+.header {
+  position: absolute;
+  top: calc(20% - 35px);
+  left: calc(55% - 255px);
+  z-index: 2;
+}
+
+/* line 50, /home/turupawn/Clases/IngDeSoftware/app/assets/stylesheets/sessions.css.scss */
+.header div {
+  float: left;
+  color: #fff;
+  font-family: 'Exo', sans-serif;
+  font-size: 50px;
+  font-weight: 200;
+}
+
+/* line 58, /home/turupawn/Clases/IngDeSoftware/app/assets/stylesheets/sessions.css.scss */
+.subheader {
+  position: absolute;
+  top: calc(40% - 35px);
+  left: calc(78% - 255px);
+  z-index: 2;
+}
+
+/* line 65, /home/turupawn/Clases/IngDeSoftware/app/assets/stylesheets/sessions.css.scss */
+.subheader span {
+  font-size: 30px;
+  color: #5379fa;
+}
+
+/* line 72, /home/turupawn/Clases/IngDeSoftware/app/assets/stylesheets/sessions.css.scss */
+.login {
+  position: absolute;
+  top: calc(55% - 75px);
+  left: calc(60% - 50px);
+  height: 150px;
+  width: 350px;
+  padding: 10px;
+  z-index: 2;
+}
+
+/* line 82, /home/turupawn/Clases/IngDeSoftware/app/assets/stylesheets/sessions.css.scss */
+.login input[type=text] {
+  width: 250px;
+  height: 30px;
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  border-radius: 2px;
+  color: #fff;
+  font-family: 'Exo', sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  padding: 4px;
+}
+
+/* line 95, /home/turupawn/Clases/IngDeSoftware/app/assets/stylesheets/sessions.css.scss */
+.login input[type=password] {
+  width: 250px;
+  height: 30px;
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  border-radius: 2px;
+  color: #fff;
+  font-family: 'Exo', sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  padding: 4px;
+  margin-top: 10px;
+}
+
+/* line 109, /home/turupawn/Clases/IngDeSoftware/app/assets/stylesheets/sessions.css.scss */
+.button input {
+  width: 260px;
+  height: 35px;
+  background: #fff;
+  border: 1px solid #fff;
+  cursor: pointer;
+  border-radius: 2px;
+  color: #a18d6c;
+  font-family: 'Exo', sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  padding: 6px;
+  margin-top: 10px;
+}
+
+/* line 124, /home/turupawn/Clases/IngDeSoftware/app/assets/stylesheets/sessions.css.scss */
+.button input:hover {
+  opacity: 0.8;
+}
+
+/* line 128, /home/turupawn/Clases/IngDeSoftware/app/assets/stylesheets/sessions.css.scss */
+.button input:active {
+  opacity: 0.6;
+}
+
+/* line 132, /home/turupawn/Clases/IngDeSoftware/app/assets/stylesheets/sessions.css.scss */
+.login input[type=text]:focus {
+  outline: none;
+  border: 1px solid rgba(255, 255, 255, 0.9);
+}
+
+/* line 137, /home/turupawn/Clases/IngDeSoftware/app/assets/stylesheets/sessions.css.scss */
+.login input[type=password]:focus {
+  outline: none;
+  border: 1px solid rgba(255, 255, 255, 0.9);
+}
+
+/* line 142, /home/turupawn/Clases/IngDeSoftware/app/assets/stylesheets/sessions.css.scss */
+.button input:focus {
+  outline: none;
+}
+
+/* line 146, /home/turupawn/Clases/IngDeSoftware/app/assets/stylesheets/sessions.css.scss */
+::-webkit-input-placeholder {
+  color: rgba(255, 255, 255, 0.6);
+}
+
+/* line 150, /home/turupawn/Clases/IngDeSoftware/app/assets/stylesheets/sessions.css.scss */
+::-moz-input-placeholder {
+  color: rgba(255, 255, 255, 0.6);
+}

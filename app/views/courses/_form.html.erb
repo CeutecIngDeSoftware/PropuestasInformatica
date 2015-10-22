@@ -1,0 +1,55 @@
+
+<%= form_for(@course) do |f| %>
+  <% if @course.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@course.errors.count, "error") %> prohibited this course from being saved:</h2>
+
+      <ul>
+      <% @course.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+		
+		<div class="box-body">
+	    	    <div class="input-group">
+                    <span class="input-group-addon"><i class="fa fa-book"></i></span>
+		    <%= f.text_field :name,:required => "Necesario",  class:"form-control",:placeholder => "Ingrese Clase" %>  		  
+	 	</div>
+	<br>
+		<div class="input-group">
+                    <span class="input-group-addon"><i class="fa fa-check-square-o"></i></span>
+		    <%= f.text_field :requirements, class:"form-control",:placeholder => "Ingrese Requisitos" %>  		  
+	 	</div>
+	<br>
+		<div class="input-group">
+                    <span class="input-group-addon"><i class="fa fa-smile-o"></i></span>
+		    <%= f.text_field :recommended_requirements, class:"form-control",:placeholder => "Ingrese Requisitos Recomendados" %>  		  
+	 	</div>
+	<br>
+		
+    <% if !userIsAdmin %>
+      <div class="input-group">
+                    <span class="input-group-addon"><i class="fa fa-graduation-cap"></i></span>
+      		<%= f.hidden_field :career_id, {:value => current_user.career_id, :name => 'user[career_id]'} %>
+		<input class="form-control" placeholder="<%= current_user.career.name %>" disabled="" type="text">
+  		</div>
+	<br>
+    <% else %>
+      <select name="course[career_id]", class="form-control">
+        <% Career.all.each do |c| %>
+          <option value="<%= c.id %>"><%= c.name %></option>
+        <% end %>
+      </select>
+    <% end %>
+  </p>
+
+  <div class="actions">
+    <p><%= f.submit 'Crear Clase', class: "btn btn-primary"  %></p>
+  </div>
+<% end %>
+
+</section>
+</div>

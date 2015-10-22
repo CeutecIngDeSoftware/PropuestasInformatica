@@ -1,0 +1,38 @@
+<%= form_for(@request) do |f| %>
+  <% if @request.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@request.errors.count, "error") %> prohibited this request from being saved:</h2>
+
+      <ul>
+      <% @request.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+
+<div class="row">
+            <!-- left column -->
+            <div class="col-md-6">	
+		<div class="box box-info">
+                <div class="box-header">
+                  <h3 class="title-box">Editando Propuesta</h3>
+                </div>	
+<div class="box-body">
+    <%= f.label :Estado %><br>
+    <select name="request[state_id]", class="form-control">
+      <% State.all.each do |e| %>
+        <option value="<%= e.id %>"><%= e.name %></option>
+      <% end %>
+    </select>
+  </div>
+  <div class="box-footer">
+  <p><%= f.submit 'Actualizar', class: "btn btn-primary"  %></p>
+</div>  
+<% end %>
+
+
+
+</section>
+</div>

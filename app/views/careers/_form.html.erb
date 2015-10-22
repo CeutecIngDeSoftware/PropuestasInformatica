@@ -1,0 +1,23 @@
+<%= form_for(@career) do |f| %>
+  <% if @career.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@career.errors.count, "error") %> prohibited this career from being saved:</h2>
+
+      <ul>
+      <% @career.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  	 <div class="box-body">
+	  	<div class="input-group">
+                    <span class="input-group-addon"><i class="fa fa-graduation-cap"></i></span>
+		   <%= f.text_field :name, class:"form-control",:placeholder => "Ingrese Carrera" %>  		  
+	 	</div>
+	      </div>
+	  <div class="box-footer">
+	  <p><%= f.submit 'Crear Carrera', class: "btn btn-primary"  %></p>
+	  </div>
+<% end %>

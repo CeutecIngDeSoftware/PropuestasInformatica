@@ -1,0 +1,26 @@
+<div class="content-wrapper">
+ <section class="content-header">
+ <% if current_user %>
+<% if userIsAdmin %>
+	<p id="notice"><%= notice %></p>
+
+	<p>
+		<strong>Usuario:</strong>
+		<%= @user_in_request.user_id %>
+	</p>
+
+	<p>
+		<strong>Propuesta:</strong>
+		<%= @user_in_request.request_id %>
+	</p>
+
+	<%= link_to 'Editar', edit_user_in_request_path(@user_in_request) %> |
+	<%= link_to 'Regresar', user_in_requests_path %>
+<% else %>
+	<%= controller.redirect_to requests_path %>
+<% end %>
+<% else %>
+<%= controller.redirect_to log_in_path %>
+<% end %>
+</section>
+</div>

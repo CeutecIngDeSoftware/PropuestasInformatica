@@ -1,0 +1,67 @@
+<% if current_user %>
+<div class="content-wrapper">
+ <section class="content-header">
+
+<% if userIsCoordinator || userIsAdmin %>
+<p id="notice"><%= notice %></p>
+
+<div class="row">
+            <!-- left column -->
+            <div class="col-md-6">	
+		<div class="box box-info">
+                <div class="box-header">
+                  <h3 class="box-title">Informacion del Usuario</h3>
+                </div>	
+
+	<div class="box-body">
+		<%= image_tag @user.avatar_url(:thumb) if @user.avatar? %><br><br>
+	<div class="input-group">
+                    <span class="input-group-addon"><i class="fa fa-envelope-o"></i></span>			
+			<input class="form-control" placeholder="<%= @user.email %>" disabled="" type="text">
+		 </div>
+	<br>
+		<div class="input-group">
+                    <span class="input-group-addon"><i class="fa fa-user"></i></span>                   
+		 <input class="form-control" placeholder="<%= @user.name %>" disabled="" type="text">
+                  </div>
+	<br>
+		<div class="input-group">
+                    <span class="input-group-addon"><i class="fa fa-key"></i></span>
+			<input class="form-control" placeholder="<%= @user.cuenta %>" disabled="" type="text">
+   		</div>
+	<br>	
+		<div class="input-group">
+                    <span class="input-group-addon"><i class="fa fa-phone"></i></span>
+    			<input class="form-control" placeholder="<%= @user.telefono %>" disabled="" type="text">			
+  		</div>
+	<br>
+		<div class="input-group">
+                  <span class="input-group-addon"><i class="fa fa-pencil-square-o"></i></span>
+    	  		<input class="form-control" placeholder="<%= @user.informacion_adicional %>" disabled="" type="text">
+  		</div>
+	<br>
+		<div class="input-group">
+                    <span class="input-group-addon"><i class="fa fa-graduation-cap"></i></span>
+			<input class="form-control" placeholder="<%= @user.career.name %>" disabled="" type="text">
+  		</div>
+	<br>
+		<div class="input-group">
+                    <span class="input-group-addon"><i class="fa fa-sitemap"></i></span>
+			<input class="form-control" placeholder="<%= @user.role.name %>" disabled="" type="text">
+  		</div>
+	<br>
+	<br>
+	<br>
+		
+
+<%= link_to 'Editar', edit_user_path(@user) %> |
+<%= link_to 'Regresar', "/users" %>
+<% else %>
+	<%= controller.redirect_to requests_path %>
+<% end %>
+<% else %>
+<%= controller.redirect_to log_in_path %>
+<% end %>
+
+</section>
+</div>

@@ -1,0 +1,26 @@
+<% if current_user %>
+<div class="content-wrapper">
+ <section class="content-header">
+
+<% if userIsAdmin %>
+	<div class="row">
+            <!-- left column -->
+            <div class="col-md-6">	
+		<div class="box box-info">
+                <div class="box-header">
+                  <h3 class="title-box">Editando Horarios</h3>
+                </div>
+
+	<%= render 'form' %>
+
+	<%= link_to 'Mostrar', @schedule %> |
+	<%= link_to 'Regresar', schedules_path %>
+<% else %>
+	<%= controller.redirect_to requests_path %>
+<% end %>
+
+</section>
+</div>
+<% else %>
+<%= controller.redirect_to log_in_path %>
+<% end %>
