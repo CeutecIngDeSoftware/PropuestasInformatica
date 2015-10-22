@@ -40,15 +40,34 @@
 			<tr>
 			  <td><%= request.course.name %></td>
 			  <td><%= request.schedule.name %></td>
-                          <%if request.state.id==1%>
-			    <td><span class="label label-warning"><%= request.state.name %></span> </td>
-                          <%elsif request.state.id==2%>
-			    <td><span class="label label-success"><%= request.state.name %></span></td>
-                          <%elsif request.state.id==3%>
-			    <td><span class="label label-danger"><%= request.state.name %></span></td>
-                          <%else%>
-			    <td><%= request.state.name %></td>
-                          <%end%>
+          <%if request.state.id==1%>
+			      <td><span class="label label-warning">
+            <% if userIsAdmin || userIsCoordinator %>
+              <%= link_to request.state.name, '/requests/cambioestado?request_id='+request.id.to_s, {:style => 'color: #FFFFFF'} %></span> </td>
+            <% else %>
+              <%= request.state.name %></span></td>
+            <% end %>
+          <%elsif request.state.id==2%>
+			    <td><span class="label label-success">
+            <% if userIsAdmin || userIsCoordinator %>
+              <%= link_to request.state.name, '/requests/cambioestado?request_id='+request.id.to_s, {:style => 'color: #FFFFFF'} %></span></td>
+            <% else %>
+              <%= request.state.name %></span></td>
+            <% end %>
+          <%elsif request.state.id==3%>
+			    <td><span class="label label-danger">
+            <% if userIsAdmin || userIsCoordinator %>
+              <%= link_to request.state.name, '/requests/cambioestado?request_id='+request.id.to_s, {:style => 'color: #FFFFFF'} %></span></td>
+            <% else %>
+              <%= request.state.name %></span></td>
+            <% end %>
+          <%else%>
+            <% if userIsAdmin || userIsCoordinator %>
+			        <td><%= link_to request.state.name, '/requests/cambioestado?request_id='+request.id.to_s %></td>
+            <% else %>
+              <td><%= request.state.name %></td>
+            <% end %>
+          <%end%>
 			  <td><%= (UserInRequest.where(:request_id => request.id).count) -1%></td>
 			<% if userIsAdmin %>
 			  <td><%= request.course.career.name %></td>

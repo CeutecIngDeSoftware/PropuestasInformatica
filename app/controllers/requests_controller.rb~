@@ -199,19 +199,20 @@ end
         if r.state_id == 1
           r.state_id = 2
           r.save
-			    redirect_to requests_path
-        elsif r.state_id == 2
-          r.state_id = 3
+			respond_to do |format|
+  	  	format.html { redirect_to "/requests/", notice: 'Registrado Exitosamente' }
+          end
+        elsif r.state.id == 2
+          r.state.id = 3
           r.save
           redirect_to requests_path
         else
-          r.state_id = 1
+          r.state.id = 1
           r.save
           redirect_to requests_path
         end
     end
   end
-
   # DELETE /requests/1
   # DELETE /requests/1.json
   def destroy
