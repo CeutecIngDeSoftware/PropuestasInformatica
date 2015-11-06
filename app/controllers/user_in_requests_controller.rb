@@ -89,6 +89,14 @@ class UserInRequestsController < ApplicationController
 		end
   end
 
+  def borrar_todo
+    Request.destroy_all
+    UserInRequest.destroy_all
+    ActiveRecord::Base.connection.execute("DELETE from sqlite_sequence where name = 'requests'")
+    ActiveRecord::Base.connection.execute("DELETE from sqlite_sequence where name = 'user_in_requests'")
+    redirect_to "/requests"
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_user_in_request

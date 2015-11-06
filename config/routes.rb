@@ -13,6 +13,7 @@ Myapp::Application.routes.draw do
   get "requests/registrarme" => "requests#registrarme"
   get "requests/quitarme" => "requests#quitarme"
   get "requests/cambioestado" => "requests#cambioestado"
+  get "user_in_requests/borrar_todo" => "user_in_requests#borrar_todo"
 
   resources :user_in_requests
 
