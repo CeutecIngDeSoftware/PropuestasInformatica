@@ -46,7 +46,7 @@
         <% end %> 
       <% else %>
         <% Role.where.not(id:2).each do |r| %>
-          <option value="<%= r.id %>"><%= r.name %></option>
+           <option value="<%= r.id %>"selected="<%= Role.where(id:3)[0].name %>"><%= r.name %></option>
         <% end %> 
       <% end %>
     </select>
@@ -71,7 +71,7 @@
 <% else %>
 	<p>
     <%= f.label :Rol %><br />
-    <select name="user[role_id]">
+    <select name="user[role_id]", class="form-control">
         <% Role.where.not(id: [1,3]).each do |r| %>
           <option value="<%= r.id %>"><%= r.name %></option>
         <% end %> 
@@ -79,7 +79,7 @@
   </p>
 	<p>
     <%= f.label :Carrera %><br />
-      <select name="user[career_id]">
+      <select name="user[career_id]", class="form-control">
         <% Career.all.each do |c| %>
           <option value="<%= c.id %>"><%= c.name %></option>
         <% end %>
