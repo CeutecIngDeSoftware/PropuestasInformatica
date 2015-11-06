@@ -7,6 +7,11 @@
               <div class="box">
                 <div class="box-header">
                   <h3 class="box-title">Propuestas Iniciales</h3>
+
+<% if userIsCoordinator || userIsAdmin %>
+  <button class="btn btn-sm btn-default pull-right"><a href="../../user_in_requests/borrar_todo">Borrar todas las Propuestas</a></button>
+<% end %>
+
 <!-- search                   
 		<div class="box-tools">
                     <div class="input-group">
