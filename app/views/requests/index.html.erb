@@ -2,15 +2,40 @@
  <section class="content-header">
   <p id="notice"><%= notice %></p>
   <% if current_user %>
+        <% if userIsAdmin %> 
+          <div class="row">
+            <div class="col-xs-12">
+              <div class="box">
+                <div class="box-header">
+                  <h3 class="box-title">Borrar Todas Las Propuestas</h3>
+                  <div class="box-body table-responsive no-padding">
+                    <table class="table table-hover">
+                      <tbody><tr>
+                        <th><button class="btn btn-sm btn-default"><a href="../../user_in_requests/borrar_todo?career_id=1">Informatica Plan Viejo</a></button></th>
+                        <th><button class="btn btn-sm btn-default"><a href="../../user_in_requests/borrar_todo?career_id=2">Informatica Plan Nuevo</a></button></th>
+                        <th><button class="btn btn-sm btn-default"><a href="../../user_in_requests/borrar_todo?career_id=3">Diseño Gráfico</a></button></th>
+                        <th><button class="btn btn-sm btn-default"><a href="../../user_in_requests/borrar_todo?career_id=0">TODO</a></button></th>
+                      </tr></tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        <% end %>
+
+
+
    <div class="row">
             <div class="col-xs-12">
               <div class="box">
                 <div class="box-header">
                   <h3 class="box-title">Propuestas Iniciales</h3>
 
-<% if userIsCoordinator || userIsAdmin %>
+<% if userIsCoordinator%>
   <button class="btn btn-sm btn-default pull-right"><a href="../../user_in_requests/borrar_todo">Borrar todas las Propuestas</a></button>
 <% end %>
+
 
 <!-- search                   
 		<div class="box-tools">
