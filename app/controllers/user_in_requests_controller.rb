@@ -90,12 +90,38 @@ class UserInRequestsController < ApplicationController
   end
 
   def borrar_todo
-    Request.destroy_all
-    UserInRequest.destroy_all
-    ActiveRecord::Base.connection.execute("DELETE from sqlite_sequence where name = 'requests'")
-    ActiveRecord::Base.connection.execute("DELETE from sqlite_sequence where name = 'user_in_requests'")
+    if userIsCoordinator
+      Request.all.each do |request|
+        if request.course.career == current_user.career
+          UserInRequest.where(request_id: request.id).each do |uir|
+            uir.destroy
+          end
+          request.destroy
+        end
+      end
+    end
+    
+    if userIsAdmin
+      @temp = params[:career_id].to_i
+      Request.all.each do |request|
+        if request.course.career.id == @temp
+          UserInRequest.where(request_id: request.id).each do |uir|
+            uir.destroy
+          end
+          request.destroy
+        end
+      end
+
+      if @temp == 0
+        Request.destroy_all
+        UserInRequest.destroy_all
+        ActiveRecord::Base.connection.execute("DELETE from sqlite_sequence where name = 'requests'")
+        ActiveRecord::Base.connection.execute("DELETE from sqlite_sequence where name = 'user_in_requests'")
+      end
+    end
     redirect_to "/requests"
   end
+
 
   private
     # Use callbacks to share common setup or constraints between actions.
