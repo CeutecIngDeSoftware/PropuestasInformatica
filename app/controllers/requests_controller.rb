@@ -9,6 +9,9 @@ end
   # GET /requests.json
   def index
     #if User.where(role_id:1).count > 0
+    @table_search1 = params["table_search1"]
+    @table_search2 = params["table_search2"]
+
       if current_user
         @propuestas_iniciales=[]
         User.where(role_id:1,career_id: current_user.career_id).each do |user|
@@ -18,7 +21,7 @@ end
         end
 
         @propuestas_alumnos=[]
-        Request.all.each do |request|
+        Request.joins(:course).where("courses.name LIKE ?" , "%#{@table_search2}%").each do |request|
           if request.course.career == current_user.career
             es_inicial = false
             UserInRequest.where(request_id: request.id).each do |uir|
@@ -43,7 +46,7 @@ end
         end
 
         @propuestas_alumnos = []
-          Request.all.each do |request|
+          Request.joins(:course).where("courses.name LIKE ?" , "%#{@table_search2}%").all.each do |request|
             es_inicial = false
             UserInRequest.where(request_id: request.id).each do |uir|
               User.where(role_id:1).each do |u|
@@ -68,7 +71,7 @@ end
          end
 
          @propuestas_alumnos = []
-          Request.all.each do |request|
+          Request.joins(:course).where("courses.name LIKE ?" , "%#{@table_search2}%").all.each do |request|
             es_inicial = false
             UserInRequest.where(request_id: request.id).each do |uir|
               User.where(role_id:1).each do |u|

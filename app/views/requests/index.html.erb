@@ -2,7 +2,7 @@
  <section class="content-header">
   <p id="notice"><%= notice %></p>
   <% if current_user %>
-        <% if userIsAdmin %> 
+        <% if userIsAdmin || userIsCoordinator %> 
           <div class="row">
             <div class="col-xs-12">
               <div class="box">
@@ -11,10 +11,14 @@
                   <div class="box-body table-responsive no-padding">
                     <table class="table table-hover">
                       <tbody><tr>
-                        <th><button class="btn btn-sm btn-default"><a href="../../user_in_requests/borrar_todo?career_id=1">Informatica Plan Viejo</a></button></th>
-                        <th><button class="btn btn-sm btn-default"><a href="../../user_in_requests/borrar_todo?career_id=2">Informatica Plan Nuevo</a></button></th>
-                        <th><button class="btn btn-sm btn-default"><a href="../../user_in_requests/borrar_todo?career_id=3">Diseño Gráfico</a></button></th>
-                        <th><button class="btn btn-sm btn-default"><a href="../../user_in_requests/borrar_todo?career_id=0">TODO</a></button></th>
+                        <% if userIsAdmin %>
+                          <th><button class="btn btn-sm btn-default"><a href="../../user_in_requests/borrar_todo?career_id=1">Informatica Plan Viejo</a></button></th>
+                          <th><button class="btn btn-sm btn-default"><a href="../../user_in_requests/borrar_todo?career_id=2">Informatica Plan Nuevo</a></button></th>
+                          <th><button class="btn btn-sm btn-default"><a href="../../user_in_requests/borrar_todo?career_id=3">Diseño Gráfico</a></button></th>
+                          <th><button class="btn btn-sm btn-default"><a href="../../user_in_requests/borrar_todo?career_id=0">TODO</a></button></th>
+                        <% elsif userIsCoordinator %>
+                          <th><button class="btn btn-sm btn-default"><a href="../../user_in_requests/borrar_todo">Borrar</a></button></th>
+                        <% end %>
                       </tr></tbody>
                     </table>
                   </div>
@@ -31,22 +35,24 @@
               <div class="box">
                 <div class="box-header">
                   <h3 class="box-title">Propuestas Iniciales</h3>
-
+<!--
 <% if userIsCoordinator%>
   <button class="btn btn-sm btn-default pull-right"><a href="../../user_in_requests/borrar_todo">Borrar todas las Propuestas</a></button>
 <% end %>
+-->
 
-
-<!-- search                   
+<!-- 
 		<div class="box-tools">
                     <div class="input-group">
-                      <input name="table_search" class="form-control input-sm pull-right" style="width: 150px;" placeholder="Search" type="text">
+<form role="form" accept-charset="UTF-8" action="/requests" method="get" class="nifty_form">
+                      <input name="table_search1" class="form-control input-sm pull-right" style="width: 150px;" placeholder="Search" type="text">
                       <div class="input-group-btn">
                         <button class="btn btn-sm btn-default"><i class="fa fa-search"></i></button>
                       </div>
-                    </div>
+                    </div></form>
                   </div>
-	-->
+-->
+
                 </div><!-- /.box-header -->
                 <div class="box-body table-responsive no-padding">
                   <table class="table table-hover">
@@ -254,16 +260,16 @@
               <div class="box">
                 <div class="box-header">
                   <h3 class="box-title">Propuestas por los Alumnos</h3>
-<!-- search           
-       		<div class="box-tools">
+<div class="box-tools">
                     <div class="input-group">
-                      <input name="table_search" class="form-control input-sm pull-right" style="width: 150px;" placeholder="Search" type="text">
-                      <div class="input-group-btn">
+                      <form role="form" accept-charset="UTF-8" action="/requests" method="get" class="nifty_form">
+                        <input name="table_search2" class="form-control input-sm pull-right" style="width: 150px;" placeholder="Search" type="text">
+                          <div class="input-group-btn">
                         <button class="btn btn-sm btn-default"><i class="fa fa-search"></i></button>
-                      </div>
-                    </div>
-                  </div>
--->                
+                          </div>
+                        </div>
+                      </form>
+                  </div>                
 		</div><!-- /.box-header -->
                 <div class="box-body table-responsive no-padding">
                   <table class="table table-hover">
@@ -431,16 +437,18 @@
               <div class="box">
                 <div class="box-header">
                   <h3 class="box-title">Propuestas por los Alumnos</h3>
-<!-- search                   
+      
 		<div class="box-tools">
                     <div class="input-group">
-                      <input name="table_search" class="form-control input-sm pull-right" style="width: 150px;" placeholder="Search" type="text">
+                      <form role="form" accept-charset="UTF-8" action="/requests" method="get" class="nifty_form">
+                      <input name="table_search2" class="form-control input-sm pull-right" style="width: 150px;" placeholder="Search" type="text">
                       <div class="input-group-btn">
                         <button class="btn btn-sm btn-default"><i class="fa fa-search"></i></button>
                       </div>
                     </div>
+                    </form>
                   </div>
-	-->
+	
                 </div><!-- /.box-header -->
                 <div class="box-body table-responsive no-padding">
                   <table class=	"table table-hover">
