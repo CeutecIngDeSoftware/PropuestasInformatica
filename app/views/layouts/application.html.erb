@@ -124,6 +124,7 @@
                 
               </a>
             </li>
+
 <% if userIsCoordinator || userIsAdmin %>
 
          <li class="treeview">
@@ -188,9 +189,16 @@
             <li><a href="/roles"><i class="fa fa-sitemap"></i> Roles</a></li>
             <li><a href="/careers"><i class="fa fa-graduation-cap"></i> Carreras</a></li>
      <% end %>   
-	  <li><a href="/users/<%=current_user.id%>/edit"><i class="fa fa-edit"></i> Editar Informacion</a></li>
+	  <li><a href="/users/<%=current_user.id%>/edit"><i class="fa fa-edit"></i> Editar Información</a></li>
           </ul>
-<% end %>	
+<% else %>
+  <li class="treeview active">
+    <a href="../../log_in">
+      <i class="fa fa-sign-in"></i>
+      <span>Iniciar Sesión</span>
+    </a>
+  </li>	</ul>
+<% end %>
       	  </section>
         <!-- /.sidebar -->
       </aside>
