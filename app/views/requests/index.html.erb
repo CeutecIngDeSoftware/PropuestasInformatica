@@ -41,17 +41,17 @@
 <% end %>
 -->
 
-<!-- 
+ 
 		<div class="box-tools">
                     <div class="input-group">
 <form role="form" accept-charset="UTF-8" action="/requests" method="get" class="nifty_form">
-                      <input name="table_search1" class="form-control input-sm pull-right" style="width: 150px;" placeholder="Search" type="text">
+                      <input name="table_search1" class="form-control input-sm pull-right" style="width: 150px;" placeholder="Buscar" type="text">
                       <div class="input-group-btn">
                         <button class="btn btn-sm btn-default"><i class="fa fa-search"></i></button>
                       </div>
                     </div></form>
                   </div>
--->
+
 
                 </div><!-- /.box-header -->
                 <div class="box-body table-responsive no-padding">
@@ -72,7 +72,7 @@
 		      <th></th>
 		    </tr>
 		    <% @propuestas_iniciales.each do |inicial| %>
-		      <% @requestito = Request.where(id: inicial.request_id).each do |request| %>
+		      <% @requestito = Request.joins(:course).where("courses.name LIKE ?" , "%#{@table_search1}%").where(id: inicial.request_id).each do |request| %>
 			<tr>
 			  <td><%= request.course.name %></td>
 			  <td><%= request.schedule.name %></td>
@@ -263,7 +263,7 @@
 <div class="box-tools">
                     <div class="input-group">
                       <form role="form" accept-charset="UTF-8" action="/requests" method="get" class="nifty_form">
-                        <input name="table_search2" class="form-control input-sm pull-right" style="width: 150px;" placeholder="Search" type="text">
+                        <input name="table_search2" class="form-control input-sm pull-right" style="width: 150px;" placeholder="Buscar" type="text">
                           <div class="input-group-btn">
                         <button class="btn btn-sm btn-default"><i class="fa fa-search"></i></button>
                           </div>
@@ -365,16 +365,18 @@
               <div class="box">
                 <div class="box-header">
                   <h3 class="box-title">Propuestas Iniciales</h3>
-<!-- search                   
+                   
 		<div class="box-tools">
                     <div class="input-group">
-                      <input name="table_search" class="form-control input-sm pull-right" style="width: 150px;" placeholder="Search" type="text">
+                      <form role="form" accept-charset="UTF-8" action="/requests" method="get" class="nifty_form">
+                      <input name="table_search1" class="form-control input-sm pull-right" style="width: 150px;" placeholder="Buscar" type="text">
                       <div class="input-group-btn">
                         <button class="btn btn-sm btn-default"><i class="fa fa-search"></i></button>
                       </div>
                     </div>
+                    </form>
                   </div>
-	-->
+
                 </div><!-- /.box-header -->
                 <div class="box-body table-responsive no-padding">
                   <table class="table table-hover">
@@ -387,7 +389,7 @@
 		      <th>Progreso</th>
 		    </tr>
 		    <% @propuestas_iniciales.each do |inicial| %>
-		      <% @requestito = Request.where(id: inicial.request_id).each do |request| %>
+		      <% @requestito = Request.joins(:course).where("courses.name LIKE ?" , "%#{@table_search1}%").where(id: inicial.request_id).each do |request| %>
 			<tr>
 			  <td><%= request.course.name %></td>
 			  <td><%= request.schedule.name %></td>
@@ -441,7 +443,7 @@
 		<div class="box-tools">
                     <div class="input-group">
                       <form role="form" accept-charset="UTF-8" action="/requests" method="get" class="nifty_form">
-                      <input name="table_search2" class="form-control input-sm pull-right" style="width: 150px;" placeholder="Search" type="text">
+                      <input name="table_search2" class="form-control input-sm pull-right" style="width: 150px;" placeholder="Buscar" type="text">
                       <div class="input-group-btn">
                         <button class="btn btn-sm btn-default"><i class="fa fa-search"></i></button>
                       </div>
