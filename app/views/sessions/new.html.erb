@@ -28,7 +28,7 @@
 		<div class="social-auth-links text-center">		  
 		  <p><%= notice %></p>
 		    <p>- O	 -</p>
-			<a href="../../requests" class="btn btn-block btn-social btn-facebook btn-flat">Ver Propuestas </a>	
+			<a href="../../requests?career_id=0" class="btn btn-block btn-social btn-facebook btn-flat">Ver Propuestas </a>	
 		    <% @search = User.find_by_id(1) %>
 		    <% if @search.blank? %>
 		      <!--<a href="../../sign_up">

@@ -12,6 +12,8 @@ end
     @table_search1 = params["table_search1"]
     @table_search2 = params["table_search2"]
 
+    @career_id = params[:career_id].to_i
+
       if current_user
         @propuestas_iniciales=[]
         User.where(role_id:1,career_id: current_user.career_id).each do |user|
@@ -38,27 +40,105 @@ end
         end
 
       else
-        @propuestas_iniciales=[]
-        User.where(role_id:1).order("career_id ASC").each do |user|
-          UserInRequest.where(user_id:user.id).each do |uir|
-            @propuestas_iniciales.push(uir)
+        
+        if @career_id == 0
+          @propuestas_iniciales=[]
+          User.where(role_id:1).order("career_id ASC").each do |user|
+            UserInRequest.where(user_id:user.id).each do |uir|
+              @propuestas_iniciales.push(uir)
+            end
           end
-        end
 
-        @propuestas_alumnos = []
-          Request.joins(:course).where("courses.name LIKE ?" , "%#{@table_search2}%").all.each do |request|
-            es_inicial = false
-            UserInRequest.where(request_id: request.id).each do |uir|
-              User.where(role_id:1).each do |u|
-                if uir.user_id == u.id
-                  es_inicial = true
+          @propuestas_alumnos = []
+            Request.all.each do |request|
+              es_inicial = false
+              UserInRequest.where(request_id: request.id).each do |uir|
+                User.where(role_id:1).each do |u|
+                  if uir.user_id == u.id
+                    es_inicial = true
+                  end
+                end
+              end
+              if es_inicial == false
+                @propuestas_alumnos.push(request)
+              end
+           end
+        
+        elsif @career_id == 1
+          @propuestas_iniciales=[]
+          User.where(role_id:1,career_id:1).order("career_id ASC").each do |user|
+            UserInRequest.where(user_id:user.id).each do |uir|
+              @propuestas_iniciales.push(uir)
+            end
+          end
+
+          @propuestas_alumnos = []
+            Request.all.each do |request|
+              es_inicial = false
+              UserInRequest.where(request_id: request.id).each do |uir|
+                User.where(role_id:1).each do |u|
+                  if uir.user_id == u.id
+                    es_inicial = true
+                  end
+                end
+              end
+              if es_inicial == false
+                if request.course.career_id == 1
+                  @propuestas_alumnos.push(request)
+                end
+              end
+           end
+
+        elsif @career_id == 2
+          @propuestas_iniciales=[]
+          User.where(role_id:1,career_id:2).order("career_id ASC").each do |user|
+            UserInRequest.where(user_id:user.id).each do |uir|
+              @propuestas_iniciales.push(uir)
+            end
+          end
+
+          @propuestas_alumnos = []
+            Request.all.each do |request|
+              es_inicial = false
+              UserInRequest.where(request_id: request.id).each do |uir|
+                User.where(role_id:1).each do |u|
+                  if uir.user_id == u.id
+                    es_inicial = true
+                  end
+                end
+              end
+              if es_inicial == false
+                if request.course.career_id == 2
+                  @propuestas_alumnos.push(request)
+                end
+              end
+           end
+
+        elsif @career_id == 3
+          @propuestas_iniciales=[]
+          User.where(role_id:1,career_id:3).order("career_id ASC").each do |user|
+            UserInRequest.where(user_id:user.id).each do |uir|
+              @propuestas_iniciales.push(uir)
+            end
+          end
+
+          @propuestas_alumnos = []
+            Request.all.each do |request|
+              es_inicial = false
+              UserInRequest.where(request_id: request.id).each do |uir|
+                User.where(role_id:1).each do |u|
+                  if uir.user_id == u.id
+                    es_inicial = true
+                  end
+                end
+              end
+              if es_inicial == false
+                if request.course.career_id == 3
+                  @propuestas_alumnos.push(request)
                 end
               end
             end
-            if es_inicial == false
-              @propuestas_alumnos.push(request)
-            end
-         end
+        end
       end
 
 # si el usuario es admin puede ver todos los requests
