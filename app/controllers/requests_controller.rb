@@ -73,7 +73,7 @@ end
           end
 
           @propuestas_alumnos = []
-            Request.joins(:course).where("courses.name LIKE ?" , "%#{@table_search2}%").all.each do |request|
+            Request.all.each do |request|
               es_inicial = false
               UserInRequest.where(request_id: request.id).each do |uir|
                 User.where(role_id:1).each do |u|
@@ -98,7 +98,7 @@ end
           end
 
           @propuestas_alumnos = []
-            Request.joins(:course).where("courses.name LIKE ?" , "%#{@table_search2}%").all.each do |request|
+            Request.all.each do |request|
               es_inicial = false
               UserInRequest.where(request_id: request.id).each do |uir|
                 User.where(role_id:1).each do |u|
@@ -123,7 +123,7 @@ end
           end
 
           @propuestas_alumnos = []
-            Request.joins(:course).where("courses.name LIKE ?" , "%#{@table_search2}%").all.each do |request|
+            Request.all.each do |request|
               es_inicial = false
               UserInRequest.where(request_id: request.id).each do |uir|
                 User.where(role_id:1).each do |u|

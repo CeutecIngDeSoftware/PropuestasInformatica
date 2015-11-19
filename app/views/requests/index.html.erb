@@ -366,6 +366,7 @@
                 <div class="box-header">
                   <h3 class="box-title">Propuestas Iniciales</h3>
                    
+<!-- search box
 		<div class="box-tools">
                     <div class="input-group">
                       <form role="form" accept-charset="UTF-8" action="/requests" method="get" class="nifty_form">
@@ -376,7 +377,7 @@
                     </div>
                     </form>
                   </div>
-
+-->
                 </div><!-- /.box-header -->
                 <div class="box-body table-responsive no-padding">
                   <table class="table table-hover">
@@ -388,8 +389,9 @@
 		      <th>Carrera</th>
 		      <th>Progreso</th>
 		    </tr>
+<% @temp = params[:career_id].to_i %>
 		    <% @propuestas_iniciales.each do |inicial| %>
-		      <% @requestito = Request.joins(:course).where("courses.name LIKE ?" , "%#{@table_search1}%").where(id: inicial.request_id).each do |request| %>
+		      <% @requestito = Request.where(id: inicial.request_id).each do |request| %>
 			<tr>
 			  <td><%= request.course.name %></td>
 			  <td><%= request.schedule.name %></td>
@@ -440,6 +442,7 @@
                 <div class="box-header">
                   <h3 class="box-title">Propuestas por los Alumnos</h3>
       
+<!-- search box
 		<div class="box-tools">
                     <div class="input-group">
                       <form role="form" accept-charset="UTF-8" action="/requests" method="get" class="nifty_form">
@@ -450,7 +453,7 @@
                     </div>
                     </form>
                   </div>
-	
+-->	
                 </div><!-- /.box-header -->
                 <div class="box-body table-responsive no-padding">
                   <table class=	"table table-hover">
