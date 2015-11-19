@@ -53,6 +53,7 @@
 			<td><%= user.career.name %></td>
 			<td><%= user.telefono %></td>
 			<td><%= user.informacion_adicional %></td>
+			<td><%= link_to 'Borrar', '/users/destroy/'+user.id.to_s %></td>
 			<td><%= link_to 'Mostrar', user %></td>
 			<td><%= link_to 'Editar', edit_user_path(user) %></td>
 		       </tr>
@@ -70,6 +71,7 @@
 			<% end %>
 			<td><%= user.telefono %></td>
 			<td><%= user.informacion_adicional %></td>
+			<td><%= link_to 'Borrar', '/users/destroy/'+user.id.to_s %></td>
 			<td><%= link_to 'Mostrar', user %></td>
 			<td><%= link_to 'Editar', edit_user_path(user) %></td>
 		       </tr>

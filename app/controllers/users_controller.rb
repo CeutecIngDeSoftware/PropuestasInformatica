@@ -77,6 +77,20 @@ class UsersController < ApplicationController
   	  end
   end
 
+  def destroy
+    @user = User.find_by_id(params[:id])
+		if (userIsCoordinator || userIsAdmin) && current_user.id != @user.id
+		  @user.destroy
+      UserInRequest.where(:user_id=>@user.id).destroy_all
+		  respond_to do |format|
+		    format.html { redirect_to states_url }
+		    format.json { head :no_content }
+		  end
+		else
+			redirect_to requests_path
+		end
+  end
+
 	private
     # Use callbacks to share common setup or constraints between actions.
 		

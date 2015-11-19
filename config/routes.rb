@@ -28,6 +28,7 @@ Myapp::Application.routes.draw do
 
   get "sessions/new"
   get "users/new"
+  get '/users/destroy/:id', to: 'users#destroy'
   get "home/index"
 	get "users/usuario"
 
