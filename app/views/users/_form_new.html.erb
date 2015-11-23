@@ -38,7 +38,8 @@
 
 <% if !@search.blank? %>
 	<p>
-    <%= f.label :Rol %><br />
+  <% if !userIsAssistant %>
+   <%= f.label :Rol %><br />
     <select name="user[role_id]", class="form-control">
       <% if !userIsCoordinator %>
         <% Role.all.each do |r| %>
@@ -46,14 +47,27 @@
         <% end %> 
       <% else %>
         <% Role.where.not(id:2).each do |r| %>
-           <option value="<%= r.id %>"selected="<%= Role.where(id:3)[0].name %>"><%= r.name %></option>
+          <% if r.id == 3 %>
+            <option value="<%= r.id %>"selected><%= r.name %></option>
+          <% end %>
+          <% next if r.id == 3 %>
+            <option value="<%= r.id %>"><%= r.name %></option>
         <% end %> 
       <% end %>
     </select>
+  <% else %>
+   <%= f.label :Rol%><br />
+	  <div class="input-group">
+      <span class="input-group-addon"><i class="fa fa-sitemap"></i></span>
+      <%= f.hidden_field :role_id, {:value => Role.find_by_id(3).id, :name => 'user[role_id]'} %>
+		  <input class="form-control" placeholder="<%= Role.find_by_id(3).name %>" disabled="" type="text">
+  	</div>
+	<br>		
+  <% end %>
   </p>
 	<p>
     <%= f.label :Carrera %><br />
-    <% if !userIsCoordinator %>
+    <% if !userIsCoordinator && (!userIsAssistant) %>
       <select name="user[career_id]", class="form-control">
         <% Career.all.each do |c| %>
           <option value="<%= c.id %>"><%= c.name %></option>

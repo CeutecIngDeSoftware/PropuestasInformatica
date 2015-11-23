@@ -69,7 +69,7 @@
 	<% if current_user %>
         <p><%= image_tag @current_user.avatar_url(:thumb) if current_user.avatar? %></p>
             		<p><%= current_user.email %></p>
-                <% if userIsCoordinator || userIsStudent %>
+                <% if !userIsAdmin %>
                   <p><%= current_user.career.name %></p>
                 <% end %>
                 <p><%= current_user.role.name %></p>
@@ -126,23 +126,23 @@
               </a>
             </li>
 
-<% if userIsCoordinator || userIsAdmin %>
-
-         <li class="treeview">
-              <a href="/users/new">
-                <i class="fa fa-user-plus"></i>
-                <span>Crear usuario</span>
-              </a>  
-                
-            </li>
+      <% if !userIsStudent %>
+        <li class="treeview">
+          <a href="/users/new">
+            <i class="fa fa-user-plus"></i>
+            <span>Crear usuario</span>
+          </a>  
+        </li>
 
 				<li class="treeview">
-              <a href="/users">
-                <i class="fa fa-users"></i>
-                <span>Usuarios</span>
-              </a>
-            </li>
+          <a href="/users">
+            <i class="fa fa-users"></i>
+            <span>Usuarios</span>
+          </a>
+        </li>
+      <% end %>
 
+<% if userIsCoordinator || userIsAdmin %>
          <li class="treeview">
               <a href="/courses">
                 <i class="fa fa-book"></i>
