@@ -22,5 +22,9 @@ private
 	def userIsStudent
 		return current_user.role_id == 3
 	end
+  
+  def userIsAssistant
+    return current_user.role_id == 4
+  end
 
 end

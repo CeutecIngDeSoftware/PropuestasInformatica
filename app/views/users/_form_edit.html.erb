@@ -84,26 +84,28 @@
 <!-- general form elements -->
               <div class="box box-primary">
                 <div class="box-header">
-                  <h3 class="box-title">Cambia el rol y la carrera</h3>
-                  <!-- <% if current_user.career_id != 3 %>
+                  <% if userIsAdmin %>
                     <h3 class="box-title">Cambia el rol y la carrera</h3>
-                  <% else %>
+                  <% end %>
+                  <% if userIsCoordinator %>
                     <h3 class="box-title">Cambia el rol</h3>
-                  <% end %> -->
+                  <% end %> 
                 </div><!-- /.box-header -->
+
+<% if !userIsAssistant %>
 <div class="box-body">
  <p>
     <%= f.label :Rol %><br />
-    <select name="user[role_id]", class="form-control">
-      <% if !userIsCoordinator %>
-        <% Role.all.each do |r| %>
-          <% if r.id == @user.role_id %>
-            <option value="<%= @user.role_id %>" selected><%= @user.role.name %>
-          <% end %>
-          <% next if r.id == @user.role_id %>
-          <option value="<%= r.id %>"><%= r.name %></option>
-        <% end %> 
-      <% else %>
+      <select name="user[role_id]", class="form-control">
+        <% if !userIsCoordinator %>
+          <% Role.all.each do |r| %>
+            <% if r.id == @user.role_id %>
+              <option value="<%= @user.role_id %>" selected><%= @user.role.name %>
+            <% end %>
+            <% next if r.id == @user.role_id %>
+              <option value="<%= r.id %>"><%= r.name %></option>
+          <% end %> 
+        <% else %>
         <% Role.where.not(id:2).each do |r| %>
           <% if r.id == @user.role_id %>
             <option value="<%= @user.role_id %>" selected><%= @user.role.name %>
@@ -113,7 +115,8 @@
         <% end %> 
       <% end %>
     </select>
-  </p>
+ </p>
+    <% if userIsAdmin %>
      <p>
        <%= f.label :Carrera %><br />
         <select name="user[career_id]", class="form-control">
@@ -126,9 +129,11 @@
           <% end %>
         </select>
       </p>
+    <% end %>
 </div>
   <% end %>
 	<% end %> 
+<% end %>
 	<div class="box-footer">
 	  <p ><%= f.submit 'Editar',class: "btn btn-primary" %></p>
 	  </div>

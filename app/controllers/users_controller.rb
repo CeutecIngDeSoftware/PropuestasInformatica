@@ -7,9 +7,9 @@ class UsersController < ApplicationController
   def index
     @table_search = params["table_search"]
   	if current_user
-      if current_user.role_id == 1
+      if userIsCoordinator || userIsAssistant
           @users = User.where("name LIKE ?" , "%#{@table_search}%").where.not(:role_id => 2).order("role_id ASC")
-      elsif current_user.role_id == 2
+      elsif userIsAdmin
           @users = User.where("name LIKE ?" , "%#{@table_search}%").order("role_id ASC", "career_id ASC")
 		  else 
 			  redirect_to requests_path
@@ -28,20 +28,20 @@ class UsersController < ApplicationController
 	end
 
 	def new
-	@search = User.find_by_id(1)
-	if @search.blank?
-		@user = User.new
-	else
-		if current_user
-			if current_user.role_id == 1 || current_user.role_id == 2
-  			@user = User.new
-			else
-				redirect_to requests_path
-			end
-		else
-			redirect_to log_in_path
-		end
-	end
+	  @search = User.find_by_id(1)
+	  if @search.blank?
+		  @user = User.new
+	  else
+		  if current_user
+		  	if !userIsStudent
+  	  		@user = User.new
+		  	else
+		  		redirect_to requests_path
+		  	end
+		  else
+			  redirect_to log_in_path
+		  end
+	  end
 	end
 
 	def create
@@ -58,7 +58,7 @@ class UsersController < ApplicationController
     end
 
  		if @user.save
-	@user.save
+	    @user.save
   	  redirect_to users_path, :notice => "El usuario ha sido registrado!"
   	else
     	render "new"
@@ -68,7 +68,7 @@ class UsersController < ApplicationController
 	def update
   	  respond_to do |format|
   	    if @user.update(user_params)
-  	      format.html { redirect_to @user, notice: 'El usuario ha sido actualizado.' }
+  	      format.html { redirect_to users_path, notice: 'El usuario ha sido actualizado.' }
   	      format.json { head :no_content }
   	    else
   	      format.html { render action: 'edit' }
@@ -83,7 +83,7 @@ class UsersController < ApplicationController
 		  @user.destroy
       UserInRequest.where(:user_id=>@user.id).destroy_all
 		  respond_to do |format|
-		    format.html { redirect_to states_url }
+		    format.html { redirect_to users_path }
 		    format.json { head :no_content }
 		  end
 		else
@@ -97,7 +97,7 @@ class UsersController < ApplicationController
     def set_user 
 		  if !current_user 
 	  		redirect_to log_in_path
-  		elsif userIsAdmin || userIsCoordinator
+  		elsif !userIsStudent
         @user = User.find(params[:id])
         if userIsCoordinator
           if @user.career_id == current_user.career_id && @user.role_id != 2

@@ -10,6 +10,10 @@ module ApplicationHelper
 	def userIsStudent
 		return current_user.role_id == 3
 	end
+  
+  def userIsAssistant
+    return current_user.role_id == 4
+  end
 	
 	def stateCancelado request
 		return request.state.id == 3
