@@ -79,7 +79,17 @@ class UsersController < ApplicationController
 
   def destroy
     @user = User.find_by_id(params[:id])
-		if (userIsCoordinator || userIsAdmin) && current_user.id != @user.id
+    if userIsCoordinator && (@user.role_id == 1 || @user.role_id == 2)
+			redirect_to requests_path
+      return
+    end
+
+    if userIsAssistant && (@user.role_id == 1 || @user.role_id == 2 || @user.role_id == 4)
+			redirect_to requests_path
+      return
+    end
+
+    if !userIsStudent
 		  @user.destroy
       UserInRequest.where(:user_id=>@user.id).destroy_all
 		  respond_to do |format|

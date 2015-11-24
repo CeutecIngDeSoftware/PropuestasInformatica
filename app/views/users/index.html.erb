@@ -71,7 +71,7 @@
 			<% end %>
 			<td><%= user.telefono %></td>
 			<td><%= user.informacion_adicional %></td>
-    <% if userIsCoordinator || userIsAdmin %>
+    <% if !userIsStudent && (user.role_id != 1 && user.role_id != 4)%>
 			<td><%= link_to 'Borrar', '/users/destroy/'+user.id.to_s %></td>
     <% end %>
     <% if (userIsAssistant && (user.role_id != 1)) || userIsCoordinator %>
