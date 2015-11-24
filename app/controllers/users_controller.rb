@@ -8,7 +8,7 @@ class UsersController < ApplicationController
     @table_search = params["table_search"]
   	if current_user
       if userIsCoordinator || userIsAssistant
-          @users = User.where("name LIKE ?" , "%#{@table_search}%").where.not(:role_id => 2).order("role_id ASC")
+          @users = User.where("name LIKE ?" , "%#{@table_search}%").where.not(:role_id => 2).order("role_id ASC","name ASC")
       elsif userIsAdmin
           @users = User.where("name LIKE ?" , "%#{@table_search}%").order("role_id ASC", "career_id ASC")
 		  else 
