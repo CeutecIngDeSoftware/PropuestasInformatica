@@ -1,5 +1,10 @@
 <div class="content-wrapper">
  <section class="content-header">
+
+<!--
+  <%= render "countdown" , :locals => {:final_date => Date.tomorrow} %>
+-->
+
   <p id="notice"><%= notice %></p>
   <% if current_user %>
         <% if userIsAdmin || userIsCoordinator %> 
