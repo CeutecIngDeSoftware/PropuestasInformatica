@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Career:</strong>
+  <%= @requests_closure.career_id %>
+</p>
+
+<p>
+  <strong>Final date:</strong>
+  <%= @requests_closure.final_date %>
+</p>
+
+<%= link_to 'Edit', edit_requests_closure_path(@requests_closure) %> |
+<%= link_to 'Back', requests_closures_path %>

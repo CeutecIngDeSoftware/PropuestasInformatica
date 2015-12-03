@@ -1,9 +1,13 @@
 <div class="content-wrapper">
  <section class="content-header">
 
-<!--
-  <%= render "countdown" , :locals => {:final_date => Date.tomorrow} %>
--->
+  <%if current_user%>
+    <%request_closure = RequestsClosure.where(:career_id=>current_user.career_id)%>
+    <%if request_closure[0]%>
+      <%= render "countdown" , :locals => {:final_date => request_closure[0].final_date} %>
+    <%end%>
+  <%end%>
+
 
   <p id="notice"><%= notice %></p>
   <% if current_user %>
@@ -352,16 +356,17 @@
             </div>
           </div>
 <br>
-
 <% if !userIsAdmin && (!userIsAssistant) %>
-<div class="actions">
-	<a href="../../requests/new">
-	<% if current_user.telefono.blank? %>
-    <input type= "submit" value="Nueva propuesta" class="btn btn-primary" Submit onClick="alert('No olvide ingresar su numero de telefono para mejores resultados');"></a>
-	<% else %>
-    <input type= "submit" value="Nueva propuesta" class="btn btn-primary" Submit onClick="alert('No olvide ingresar su numero de telefono para mejores resultados');"></a>
-	<%end %>
-</div>
+  <% if !isTimeOver (RequestsClosure.where(:career_id=>current_user.career_id)[0].final_date)%>
+    <div class="actions">
+  	  <a href="../../requests/new">
+  	  <% if current_user.telefono.blank? %>
+        <input type= "submit" value="Nueva propuesta" class="btn btn-primary" Submit onClick="alert('No olvide ingresar su numero de telefono para mejores resultados');"></a>
+  	  <% else %>
+        <input type= "submit" value="Nueva propuesta" class="btn btn-primary" Submit onClick="alert('No olvide ingresar su numero de telefono para mejores resultados');"></a>
+  	  <%end %>
+    </div>
+  <% end %>
 <% end %>
 
 <% else %>

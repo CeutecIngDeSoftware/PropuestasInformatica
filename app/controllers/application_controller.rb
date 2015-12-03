@@ -27,4 +27,7 @@ private
     return current_user.role_id == 4
   end
 
+  def isTimeOver final_date
+    return Time.parse(final_date.to_s).utc.to_i*1000 < Time.parse(DateTime.now.to_s).utc.to_i*1000
+  end
 end

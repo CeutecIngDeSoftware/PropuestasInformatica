@@ -6,6 +6,8 @@ end
 
 Myapp::Application.routes.draw do
 
+  resources :requests_closures
+
   resources :careers
 
   resources :roles

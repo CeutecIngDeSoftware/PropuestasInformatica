@@ -18,4 +18,8 @@ module ApplicationHelper
 	def stateCancelado request
 		return request.state.id == 3
 	end
+
+  def isTimeOver final_date
+    return Time.parse(final_date.to_s).utc.to_i*1000 < Time.parse(DateTime.now.to_s).utc.to_i*1000
+  end
 end

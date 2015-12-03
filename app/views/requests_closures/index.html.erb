@@ -1,0 +1,29 @@
+<h1>Listing requests_closures</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Career</th>
+      <th>Final date</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @requests_closures.each do |requests_closure| %>
+      <tr>
+        <td><%= requests_closure.career_id %></td>
+        <td><%= requests_closure.final_date %></td>
+        <td><%= link_to 'Show', requests_closure %></td>
+        <td><%= link_to 'Edit', edit_requests_closure_path(requests_closure) %></td>
+        <td><%= link_to 'Destroy', requests_closure, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Requests closure', new_requests_closure_path %>

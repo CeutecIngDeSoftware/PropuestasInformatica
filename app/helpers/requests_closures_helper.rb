@@ -1,0 +1,2 @@
+module RequestsClosuresHelper
+end

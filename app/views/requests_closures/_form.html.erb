@@ -1,0 +1,26 @@
+<%= form_for(@requests_closure) do |f| %>
+  <% if @requests_closure.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@requests_closure.errors.count, "error") %> prohibited this requests_closure from being saved:</h2>
+
+      <ul>
+      <% @requests_closure.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label "Carrera" %><br>
+    <%=current_user.career.name%>
+    <%= f.number_field :career_id, :value=>current_user.career_id, :type=>"hidden" %>
+  </div>
+  <div class="field">
+    <%= f.label :final_date %><br>
+    <%= f.date_select :final_date %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

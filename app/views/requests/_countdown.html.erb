@@ -1,5 +1,5 @@
 <%@time_end = Time.parse(locals[:final_date].to_s).utc.to_i*1000%>
-<% @time_over = @time_end < Time.parse(DateTime.now.to_s).utc.to_i*1000%>
+<% @time_over = isTimeOver locals[:final_date]%>
 
 <style>
 body{
