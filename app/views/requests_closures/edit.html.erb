@@ -1,6 +1,21 @@
-<h1>Editing requests_closure</h1>
+<% if current_user %>
 
-<%= render 'form' %>
+<div class="content-wrapper">
+ <section class="content-header">
+   
+  <div class="row">
+    <!-- left column -->
+      <div class="col-md-6">	
+		    <div class="box box-info">
+          <div class="box-header">
+            <h3 class="title-box">Editando Fecha Tope</h3>
+          </div>	
+          
+  <%= render 'form' %>
 
-<%= link_to 'Show', @requests_closure %> |
-<%= link_to 'Back', requests_closures_path %>
+</section>
+</div>
+
+<% else %>
+  <%= controller.redirect_to log_in_path %>
+<% end %>

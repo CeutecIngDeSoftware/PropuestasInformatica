@@ -11,16 +11,25 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label "Carrera" %><br>
-    <%=current_user.career.name%>
-    <%= f.number_field :career_id, :value=>current_user.career_id, :type=>"hidden" %>
-  </div>
-  <div class="field">
-    <%= f.label :final_date %><br>
-    <%= f.date_select :final_date %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+  <div class="box-body">
+    <div class="input-group">
+      <span class="input-group-addon"><i class="fa fa-graduation-cap"></i></span>
+      <%= f.hidden_field :career_id, {:value => current_user.career_id, :name => 'requests_closure[career_id]'} %>
+      <input class="form-control" placeholder="<%= current_user.career.name %>" disabled="" type="text">
+	 	</div>
+    <br>
+    <div class="input-group">
+      <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+      <%= f.date_select :final_date, class:"form-control" %>
+	 	</div>
+    <br>
+	</div>
+
+  <div class="box-footer">
+    <% if !firstClosure current_user.career_id %>
+	    <p><%= f.submit 'Crear Fecha Tope', class: "btn btn-primary"  %></p>
+    <% else %>
+	    <p><%= f.submit 'Editar Fecha Tope', class: "btn btn-primary"  %></p>
+    <% end %>
+	</div>
 <% end %>

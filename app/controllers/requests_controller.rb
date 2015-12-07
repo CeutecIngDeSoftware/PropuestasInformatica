@@ -179,11 +179,13 @@ end
 
   # GET /requests/new
   def new
-    if current_user
+    if current_user && (!isTimeOver (RequestsClosure.where(:career_id=>current_user.career_id)[0].final_date))
       @request = Request.new
       @courses = Course.where(career_id: current_user.career_id)
-    else
+    elsif !current_user
       redirect_to log_in_path
+    else
+      redirect_to requests_path, notice: 'El tiempo ha finalizado!'
     end
   end
 
@@ -310,39 +312,47 @@ end
   end
 
   def registrarme
-		@schedule_id = params[:schedule_id]
-		@course_id = params[:course_id]
-		@request_id = params[:request_id]
-		@request = Request.find_by_id(@request_id)
-		if @request.state.id == 3
-      respond_to do |format|
-  			format.html { redirect_to "/requests/", notice: 'Error la Clase esta Cancelada' }
+    if !isTimeOver (RequestsClosure.where(:career_id=>current_user.career_id)[0].final_date)
+		  @schedule_id = params[:schedule_id]
+		  @course_id = params[:course_id]
+		  @request_id = params[:request_id]
+		  @request = Request.find_by_id(@request_id)
+		  if @request.state.id == 3
+        respond_to do |format|
+    			format.html { redirect_to "/requests/", notice: 'Error la Clase esta Cancelada' }
+        end
+			  return
+		  end
+		  if ( (yaEstoyInscrito (@course_id.to_i))	|| (yaEstoyInscritoHorario(@schedule_id.to_i)) )
+			  respond_to do |format|
+    	  	format.html { redirect_to "/requests/", notice: 'Ya estas Registrado a esa Hora o en ese Curso!' }
+			  end
+		  else
+	     	uir = UserInRequest.new
+   	  	uir.user_id = current_user.id
+   	  	uir.request_id = @request_id
+   	  	uir.save
+			  respond_to do |format|
+    	  	format.html { redirect_to "/requests/", notice: 'Registrado Exitosamente' }
+			  end
       end
-			return
-		end
-		if ( (yaEstoyInscrito (@course_id.to_i))	|| (yaEstoyInscritoHorario(@schedule_id.to_i)) )
-			respond_to do |format|
-  	  	format.html { redirect_to "/requests/", notice: 'Ya estas Registrado a esa Hora o en ese Curso!' }
-			end
-		else
-	   	uir = UserInRequest.new
- 	  	uir.user_id = current_user.id
- 	  	uir.request_id = @request_id
- 	  	uir.save
-			respond_to do |format|
-  	  	format.html { redirect_to "/requests/", notice: 'Registrado Exitosamente' }
-			end
+    else
+      redirect_to requests_path, notice: 'El tiempo ha finalizado!'
     end
   end
 
 	def quitarme
-		@request_id = params[:request_id]
-		u = UserInRequest.where(:user_id => current_user.id, :request_id => @request_id)[0]
-		if u != nil
-		u.destroy
-		u.save
-		end
-		redirect_to "/requests/", notice: 'Quitado de la propuesta'
+    if !isTimeOver (RequestsClosure.where(:career_id=>current_user.career_id)[0].final_date)
+		  @request_id = params[:request_id]
+		  u = UserInRequest.where(:user_id => current_user.id, :request_id => @request_id)[0]
+		  if u != nil
+		  u.destroy
+		  u.save
+		  end
+		  redirect_to "/requests/", notice: 'Quitado de la propuesta'
+    else
+      redirect_to requests_path, notice: 'El tiempo ha finalizado!'
+    end
 	end
 
   private
