@@ -18,7 +18,7 @@
               </tr>
               <% @requests_closures.each do |requests_closure| %>
               <tr>
-                <td><%= requests_closure.career_id %></td>
+                <td><%= requests_closure.career.name %></td>
                 <td><%= requests_closure.final_date %></td>
                 <td><%= link_to 'Mostrar', requests_closure %></td>
                 <td><%= link_to 'Editar', edit_requests_closure_path(requests_closure) %></td>

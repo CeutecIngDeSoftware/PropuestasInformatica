@@ -14,8 +14,8 @@
   <div class="box-body">
     <div class="input-group">
       <span class="input-group-addon"><i class="fa fa-graduation-cap"></i></span>
-      <%= f.hidden_field :career_id, {:value => current_user.career_id, :name => 'requests_closure[career_id]'} %>
-      <input class="form-control" placeholder="<%= current_user.career.name %>" disabled="" type="text">
+      <%= f.hidden_field :career_id, {:value => @requests_closure.career_id, :name => 'requests_closure[career_id]'} %>
+      <input class="form-control" placeholder="<%= @requests_closure.career.name %>" disabled="" type="text">
 	 	</div>
     <br>
     <div class="input-group">
@@ -26,6 +26,6 @@
 	</div>
 
   <div class="box-footer">
-	    <p><%= f.submit 'Crear Fecha Tope', class: "btn btn-primary"  %></p>
+	    <p><%= f.submit 'Editar Fecha Tope', class: "btn btn-primary"  %></p>
 	</div>
 <% end %>

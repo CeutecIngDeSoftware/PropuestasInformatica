@@ -5,9 +5,7 @@ class RequestsClosuresController < ApplicationController
   # GET /requests_closures.json
   def index
     if current_user && userIsCoordinator
-      @requests_closures = RequestsClosure.all
-    elsif !current_user
-      redirect_to log_in_path
+      @requests_closures = RequestsClosure.where(:career_id => current_user.career_id).all
     else
       redirect_to requests_path
     end
@@ -22,8 +20,6 @@ class RequestsClosuresController < ApplicationController
   def new
     if current_user && userIsCoordinator
       @requests_closure = RequestsClosure.new
-    elsif !current_user
-      redirect_to log_in_path
     else
       redirect_to requests_path
     end
@@ -53,8 +49,6 @@ class RequestsClosuresController < ApplicationController
           format.json { render json: @requests_closure.errors, status: :unprocessable_entity }
         end
       end
-    elsif !current_user
-      redirect_to log_in_path
     else
       redirect_to requests_path
     end
@@ -64,19 +58,19 @@ class RequestsClosuresController < ApplicationController
   # PATCH/PUT /requests_closures/1.json
   def update
     if current_user && userIsCoordinator
-      respond_to do |format|
-        if @requests_closure.update(requests_closure_params)
-          format.html { redirect_to @requests_closure, notice: 'La fecha tope ha sido actualizada.' }
-          format.json { head :no_content }
-        else
-          format.html { render action: 'edit' }
-          format.json { render json: @requests_closure.errors, status: :unprocessable_entity }
+      if @requests_closure.career == current_user.career
+        respond_to do |format|
+          if @requests_closure.update(requests_closure_params)
+            format.html { redirect_to @requests_closure, notice: 'La fecha tope ha sido actualizada.' }
+            format.json { head :no_content }
+          else
+            format.html { render action: 'edit' }
+            format.json { render json: @requests_closure.errors, status: :unprocessable_entity }
+          end
         end
+      else
+        redirect_to requests_path
       end
-    elsif !current_user
-      redirect_to log_in_path
-    else
-      redirect_to requests_path
     end
   end
 
@@ -84,15 +78,15 @@ class RequestsClosuresController < ApplicationController
   # DELETE /requests_closures/1.json
   def destroy
     if current_user && userIsCoordinator
-      @requests_closure.destroy
-      respond_to do |format|
-        format.html { redirect_to requests_url }
-        format.json { head :no_content }
+      if @requests_closure.career == current_user.career
+        @requests_closure.destroy
+        respond_to do |format|
+          format.html { redirect_to requests_url }
+          format.json { head :no_content }
+        end
+      else
+        redirect_to requests_path
       end
-    elsif !current_user
-      redirect_to log_in_path
-    else
-      redirect_to requests_path
     end
   end
 
@@ -101,9 +95,6 @@ class RequestsClosuresController < ApplicationController
     def set_requests_closure
       if current_user && userIsCoordinator
         @requests_closure = RequestsClosure.find(params[:id])
-        if @requests_closure.career == current_user.career #fix this
-          @requests_closure = RequestsClosure.find(params[:id])
-        end
       elsif !current_user
         redirect_to log_in_path
       else

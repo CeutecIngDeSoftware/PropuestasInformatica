@@ -1,4 +1,5 @@
 <% if current_user && userIsCoordinator %>
+  <% if @requests_closure.career == current_user.career %>
 
 <div class="content-wrapper">
  <section class="content-header">
@@ -27,6 +28,9 @@
 
 <%= link_to 'Editar', edit_requests_closure_path(@requests_closure) %>
 
+  <% else %>
+    <%= controller.redirect_to requests_path %>
+  <% end %>
 <% else %>
   <%= controller.redirect_to log_in_path %>
 <% end %>
