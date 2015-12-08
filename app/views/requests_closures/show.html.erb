@@ -1,14 +1,36 @@
-<p id="notice"><%= notice %></p>
+<% if current_user && userIsCoordinator %>
+  <% if @requests_closure.career == current_user.career %>
 
-<p>
-  <strong>Career:</strong>
-  <%= @requests_closure.career_id %>
-</p>
+<div class="content-wrapper">
+ <section class="content-header">
 
-<p>
-  <strong>Final date:</strong>
-  <%= @requests_closure.final_date %>
-</p>
+  <p id="notice"><%= notice %></p>
 
-<%= link_to 'Edit', edit_requests_closure_path(@requests_closure) %> |
-<%= link_to 'Back', requests_closures_path %>
+	<div class="row">
+            <!-- left column -->
+            <div class="col-md-6">	
+		<div class="box box-info">
+                <div class="box-header">
+                  <h3 class="title-box">Informacion de la Fecha Tope</h3>
+                </div>
+
+	<div class="box-body">
+	<div class="input-group">
+                    <span class="input-group-addon"><i class="fa fa-graduation-cap"></i></span>
+		    <input class="form-control" placeholder="<%= @requests_closure.career.name %>" disabled="" type="text">
+	 	</div>
+	<br>
+	<div class="input-group">
+                    <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+		    <input class="form-control" placeholder="<%= @requests_closure.final_date %>" disabled="" type="text">
+	 	</div>
+	<br>
+
+<%= link_to 'Editar', edit_requests_closure_path(@requests_closure) %>
+
+  <% else %>
+    <%= controller.redirect_to requests_path %>
+  <% end %>
+<% else %>
+  <%= controller.redirect_to log_in_path %>
+<% end %>

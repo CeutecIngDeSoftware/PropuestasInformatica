@@ -1,29 +1,40 @@
-<h1>Listing requests_closures</h1>
+<div class="content-wrapper">
+ <section class="content-header">
 
-<table>
-  <thead>
-    <tr>
-      <th>Career</th>
-      <th>Final date</th>
-      <th></th>
-      <th></th>
-      <th></th>
-    </tr>
-  </thead>
+	  <div class="row">
+      <div class="col-xs-12">
+        <div class="box">
+          <div class="box-header">
+            <h3 class="box-title">Listado de Fechas Tope</h3>
+          </div><!-- /.box-header -->
+          <div class="box-body table-responsive no-padding">
+            <table class="table table-hover">
+              <tbody><tr>
+                <th>Carrera</th>
+                <th>Fecha Tope</th>
+                <th></th>
+                <th></th>
+                <th></th>
+              </tr>
+              <% @requests_closures.each do |requests_closure| %>
+              <tr>
+                <td><%= requests_closure.career.name %></td>
+                <td><%= requests_closure.final_date %></td>
+                <td><%= link_to 'Mostrar', requests_closure %></td>
+                <td><%= link_to 'Editar', edit_requests_closure_path(requests_closure) %></td>
+                <td><%= link_to 'Borrar', requests_closure, method: :delete, data: { confirm: 'Borrar la Fecha Final?' } %></td>
+              </tr>
+              <% end %>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
 
-  <tbody>
-    <% @requests_closures.each do |requests_closure| %>
-      <tr>
-        <td><%= requests_closure.career_id %></td>
-        <td><%= requests_closure.final_date %></td>
-        <td><%= link_to 'Show', requests_closure %></td>
-        <td><%= link_to 'Edit', edit_requests_closure_path(requests_closure) %></td>
-        <td><%= link_to 'Destroy', requests_closure, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+  <div class="box-footer">
+    <%= link_to 'Nueva Fecha Tope', new_requests_closure_path, class: "btn btn-primary" %>
+  </div>
 
-<br>
-
-<%= link_to 'New Requests closure', new_requests_closure_path %>
+ </section>
+</div>

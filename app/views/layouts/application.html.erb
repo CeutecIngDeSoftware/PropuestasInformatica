@@ -176,7 +176,27 @@
               </a>  
             </li> 
   -->
+<% if userIsCoordinator %>
+
+  <% if !firstClosure current_user.career_id %>
+    <li class="treeview">
+      <a href="/requests_closures/new">
+        <i class="fa fa-calendar"></i>
+        <span>Crear Fecha Tope</span>
+      </a>
+    </li>
+  <% else %>
+    <li class="treeview">
+      <a href="/requests_closures/<%= getCareerClosure current_user.career_id %>/edit">
+        <i class="fa fa-calendar"></i>
+        <span>Editar Fecha Tope</span>
+      </a>
+    </li>
+  <% end %>
 <% end %>
+
+<% end %>
+
 <% if userIsAdmin %>
          <li class="treeview">
               <a href="/user_in_requests">
