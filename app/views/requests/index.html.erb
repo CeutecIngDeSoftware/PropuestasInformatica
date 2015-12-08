@@ -1,8 +1,9 @@
 <div class="content-wrapper">
  <section class="content-header">
 
-<% if firstClosure current_user.career_id %>
-  <%if current_user && !userIsAdmin %>
+
+<%if current_user && !userIsAdmin %>
+  <% if firstClosure current_user.career_id %>
     <%request_closure = RequestsClosure.where(:career_id=>current_user.career_id)%>
     <%if request_closure[0]%>
       <%= render "countdown" , :locals => {:final_date => request_closure[0].final_date} %>
@@ -153,9 +154,9 @@
 			              <td><%= link_to 'Registrarme', {:controller => :requests, :action=>'registrarme', :request_id => request.id ,:course_id => request.course_id, :schedule_id => request.schedule_id} %></td>
 			            <% end %>
 						    <% end %>
-			          <% if UserInRequest.where(:user_id => current_user.id, :request_id =>request.id).count == 1 %>
-				          <td><%= link_to 'Quitarme', '/requests/quitarme?request_id='+request.id.to_s %></td>
-			            <% end %>
+			        <% end %>
+			        <% if UserInRequest.where(:user_id => current_user.id, :request_id =>request.id).count == 1 %>
+				        <td><%= link_to 'Quitarme', '/requests/quitarme?request_id='+request.id.to_s %></td>
 			        <% end %>
             <% end %>
           <% end %>
@@ -348,20 +349,21 @@
 				<td><%= link_to 'Editar', edit_request_path(request) %></td>
 				<td><%= link_to 'Borrar', request, method: :delete, data: { confirm: '¿Borrar propuesta?' } %></td>
 						<% end %>
-			<% if UserInRequest.where(:user_id => current_user.id, :request_id =>request.id).count == 0 %> 
+			
         <% if firstClosure current_user.career_id %>
           <% if !isTimeOver (RequestsClosure.where(:career_id=>current_user.career_id)[0].final_date)%>
-			      <% if !userIsAdmin && (!userIsAssistant) %>
-					    <% if !stateCancelado request %>
-			          <td><%= link_to 'Registrarme', {:controller => :requests, :action=>'registrarme', :request_id => request.id , :course_id => request.course_id, :schedule_id => request.schedule_id} %></td>				
-					    <% end %>
-				    <% end %>
+            <% if UserInRequest.where(:user_id => current_user.id, :request_id =>request.id).count == 0 %> 
+			        <% if !userIsAdmin && (!userIsAssistant) %>
+					      <% if !stateCancelado request %>
+			            <td><%= link_to 'Registrarme', {:controller => :requests, :action=>'registrarme', :request_id => request.id , :course_id => request.course_id, :schedule_id => request.schedule_id} %></td>				
+  					    <% end %>
+	  			    <% end %>
+            <% end %>
 			      <% if UserInRequest.where(:user_id => current_user.id, :request_id =>request.id).count == 1 %>
 			      	<td><%= link_to 'Quitarme', '/requests/quitarme?request_id='+request.id.to_s %></td>
 			      <% end %>
 			    <% end %>
         <% end %>
-      <% end %>
 		      </tr>
 		    <% end %>
 		  </tbody>
