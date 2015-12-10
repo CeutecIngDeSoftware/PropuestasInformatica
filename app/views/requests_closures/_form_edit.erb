@@ -26,6 +26,7 @@
 	</div>
 
   <div class="box-footer">
-	    <p><%= f.submit 'Editar Fecha Tope', class: "btn btn-primary"  %></p>
+	    <p><%= f.submit 'Editar Fecha Tope', class: "btn btn-primary"  %> |
+      <%= link_to 'Borrar', @requests_closure, method: :delete, data: { confirm: 'Borrar la Fecha Final?' }, class: "btn btn-primary" %></p>
 	</div>
 <% end %>

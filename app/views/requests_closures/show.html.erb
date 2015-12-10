@@ -26,7 +26,8 @@
 	 	</div>
 	<br>
 
-<%= link_to 'Editar', edit_requests_closure_path(@requests_closure) %>
+<%= link_to 'Editar', edit_requests_closure_path(@requests_closure) %> |
+<%= link_to 'Borrar', @requests_closure, method: :delete, data: { confirm: 'Borrar la Fecha Final?' } %>
 
   <% else %>
     <%= controller.redirect_to requests_path %>
