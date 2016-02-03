@@ -23,18 +23,25 @@ module ApplicationHelper
     return Time.parse(final_date.to_s).utc.to_i*1000 < Time.parse(DateTime.now.to_s).utc.to_i*1000
   end
 
-#  def ifTimeOver
-#    if current_user
-#      return true
-#    end
-#    if !firstClosure current_user.career_id
+  def userCanRegister
+    if !current_user
+      return false
+    end
+#    if !current_user.career.requests_closure
 #      return false
-#    end    
-#  end
+#    end
+    if !firstClosure current_user.career_id
+      return true
+    elsif isTimeOver current_user.career.requests_closure.final_date
+      return false
+    else
+      return true
+    end
+  end
   
   def firstClosure career_id
     closure = RequestsClosure.where(:career_id => career_id.to_i)[0]
-    if !closure.blank?
+    if closure
       return true
     end
     return false

@@ -40,10 +40,10 @@ get "sign_up" => "users#new", :as => "sign_up"
 get "users/usuario" => "users#usuario", :as => "usuario"
 
 constraints(AuthConstraint.new) do
-	root :to => 'requests#rooturl', :as => "authenticated_root"
+	#root :to => 'requests#rooturl', :as => "authenticated_root"
 end
 
-root :to => "sessions#new"
+#root :to => "sessions#new"
 resources :users
 resources :sessions
 

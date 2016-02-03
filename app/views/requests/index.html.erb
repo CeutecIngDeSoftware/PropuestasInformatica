@@ -373,9 +373,9 @@
             </div>
           </div>
 <br>
-<% if firstClosure current_user.career_id %>
+
 <% if !userIsAdmin && (!userIsAssistant) %>
-  <% if !isTimeOver (RequestsClosure.where(:career_id=>current_user.career_id)[0].final_date)%>
+  <%if userCanRegister%>
     <div class="actions">
   	  <a href="../../requests/new">
   	  <% if current_user.telefono.blank? %>
@@ -385,7 +385,6 @@
   	  <%end %>
     </div>
   <% end %>
-<% end %>
 <% end %>
 
 <% else %>
