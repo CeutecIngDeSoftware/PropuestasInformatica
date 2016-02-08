@@ -179,14 +179,14 @@ end
 
   # GET /requests/new
   def new
-    if current_user && (!isTimeOver (RequestsClosure.where(:career_id=>current_user.career_id)[0].final_date))
+    #if current_user && (!isTimeOver (RequestsClosure.where(:career_id=>current_user.career_id)[0].final_date))
       @request = Request.new
       @courses = Course.where(career_id: current_user.career_id)
-    elsif !current_user
-      redirect_to log_in_path
-    else
-      redirect_to requests_path, notice: 'El tiempo ha finalizado!'
-    end
+    #elsif !current_user
+    #  redirect_to log_in_path
+    #else
+    #  redirect_to requests_path, notice: 'El tiempo ha finalizado!'
+    #end
   end
 
   # GET /requests/1/edit
